@@ -84,6 +84,14 @@ public class Activity {
         return true;
     }
 
+    public Calories getCalories() {
+        return calories;
+    }
+
+    public void setCalories(Calories calories) {
+        this.calories = calories;
+    }
+
     
     
 }
