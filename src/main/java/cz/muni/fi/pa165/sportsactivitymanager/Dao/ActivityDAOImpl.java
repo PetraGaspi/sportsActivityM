@@ -18,6 +18,10 @@ public class ActivityDAOImpl implements ActivityDAO {
 
     @PersistenceContext
     private EntityManager em;
+
+    public ActivityDAOImpl(EntityManager em){
+        this.em = em;
+    }
     
     @Override
     public void create(Activity activity) {

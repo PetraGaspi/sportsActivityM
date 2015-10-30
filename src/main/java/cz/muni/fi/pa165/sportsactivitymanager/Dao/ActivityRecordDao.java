@@ -1,37 +1,26 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Dao;
 
+import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.ActivityRecord;
-import cz.muni.fi.pa165.sportsactivitymanager.Entity.IActivityRecord;
+import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
+import java.util.Collection;
 
 /**
  * Created by michal on 10/27/15.
  */
-public class ActivityRecordDao implements IActivityRecordDao {
+public interface ActivityRecordDao {
 
-    @PersistenceContext
-    private EntityManager em;
+    void create(ActivityRecord activityRecord);
 
-    @Override
-    public void create(IActivityRecord activityRecord) {
-        em.persist(activityRecord);
-    }
+    ActivityRecord getRecordById(int id);
 
-    @Override
-    public ActivityRecord retrieve(int id) {
-        return em.find(ActivityRecord.class, id);
-    }
+    Collection<ActivityRecord> getRecordsByUser(User user);
 
-    @Override
-    public void update(IActivityRecord activityRecord) {
-        em.merge(activityRecord);
-    }
+    Collection<ActivityRecord> getRecordsByActivity(Activity activity);
 
-    @Override
-    public void delete(IActivityRecord activityRecord) {
-        em.remove(activityRecord);
-    }
+    void update(ActivityRecord activityRecord);
+
+    void delete(ActivityRecord activityRecord);
+
 }
