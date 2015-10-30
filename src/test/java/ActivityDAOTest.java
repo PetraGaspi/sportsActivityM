@@ -1,9 +1,8 @@
-package cz.muni.fi.pa165.sportsactivitymanager.Dao;
-
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
 import cz.muni.fi.pa165.sportsactivitymanager.PersistenceSampleApplicationContext;
 import junit.framework.TestCase;
 import org.junit.Test;
+import org.springframework.context.ApplicationContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
@@ -32,6 +31,7 @@ public class ActivityDAOTest extends TestCase {
         emf = Persistence.createEntityManagerFactory("ActivityManagerPersistence");
         em = emf.createEntityManager();
 
+        em.per
     }
 
     @Test

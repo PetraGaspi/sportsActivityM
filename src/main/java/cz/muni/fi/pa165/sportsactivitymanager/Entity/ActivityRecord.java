@@ -3,12 +3,13 @@ package cz.muni.fi.pa165.sportsactivitymanager.Entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Calendar;
+import java.util.Objects;
 
 /**
- * Created by michal on 10/27/15.
+ * @author Michal Stefanik 422237
  */
 @Entity
-public class ActivityRecord implements IActivityRecord {
+public class ActivityRecord {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +18,7 @@ public class ActivityRecord implements IActivityRecord {
     @NotNull
     private java.util.Calendar date;
 
+    @NotNull
     private double duration;
 
     private double distance;
@@ -78,8 +80,35 @@ public class ActivityRecord implements IActivityRecord {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ActivityRecord)) return false;
+
+        ActivityRecord that = (ActivityRecord) o;
+
+        if (Double.compare(that.getDistance(), distance) != 0) return false;
+        if (Double.compare(that.getDuration(), duration) != 0) return false;
+        if (id != that.id) return false;
+        if (!activity.equals(that.getActivity())) return false;
+        if (!date.equals(that.getDate())) return false;
+        if (!user.equals(that.getUser())) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + Objects.hashCode(id);
+        return hash;
+    }
+
+    /**
+     * Calculates the burned calories according to ActivityRecord's attributes' values
+     * @return burned calories in kj
+     */
     public double calculateBurnedCalories() {
-        return 0;
+        return duration*activity.getCalories().getIndex();
     }
 
 }
