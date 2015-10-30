@@ -18,7 +18,7 @@ public interface CaloriesDAO {
     void update (Calories calories);
     void delete (Calories calories);
     Calories findById (Long id);
-    List findAll();
+    List<Calories> findAll();
     
     
 }

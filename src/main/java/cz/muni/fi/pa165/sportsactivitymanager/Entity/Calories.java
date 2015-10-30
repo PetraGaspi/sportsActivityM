@@ -35,11 +35,7 @@ public class Calories {
         return Id;
     }
 
-    public void setId(Long Id) {
-        this.Id = Id;
-    }
-
-    
+        
     public Double getIndex() {
         return Index;
     }
