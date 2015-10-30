@@ -1,17 +1,32 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Entity;
 
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Calendar;
 
 /**
  * Created by michal on 10/27/15.
  */
+@Entity
 public class ActivityRecord implements IActivityRecord {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @NotNull
     private java.util.Calendar date;
+
     private double duration;
+
     private double distance;
+
+    @ManyToOne
+    @NotNull
     private User user;
+
+    @ManyToOne
+    @NotNull
     private Activity activity;
 
     public long getId() {
