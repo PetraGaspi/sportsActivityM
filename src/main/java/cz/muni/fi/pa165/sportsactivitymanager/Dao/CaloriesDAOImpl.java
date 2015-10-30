@@ -16,6 +16,10 @@ import javax.persistence.PersistenceContext;
  */
 public class CaloriesDAOImpl implements CaloriesDAO {
 
+    public CaloriesDAOImpl(EntityManager em){
+        this.em = em;
+    }
+
     @PersistenceContext
     private EntityManager em;
     
