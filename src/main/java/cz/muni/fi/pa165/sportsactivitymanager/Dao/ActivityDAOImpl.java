@@ -59,9 +59,9 @@ public class ActivityDAOImpl implements ActivityDAO {
     }
 
     @Override
-    public Activity findByName(String name) {
+    public List<Activity> findByName(String name) {
         return em.createQuery("SELECT a FROM Activity a WHERE a.name LIKE :name",Activity.class)
-                .setParameter("name",name).getSingleResult();
+                .setParameter("name",name).getResultList();
     }
     
 }

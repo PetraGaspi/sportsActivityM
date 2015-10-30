@@ -3,18 +3,15 @@ package cz.muni.fi.pa165.sportsactivitymanager.Entity;
 import cz.muni.fi.pa165.sportsactivitymanager.Enum.Sex;
 
 import java.util.Objects;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
-import javax.persistence.Column;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 
 /**
  *
  * @author Petra Gasparikova
  */
+@Entity
 public class User {
     
     @Id

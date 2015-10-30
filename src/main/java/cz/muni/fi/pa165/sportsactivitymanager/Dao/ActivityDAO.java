@@ -21,7 +21,7 @@ public interface ActivityDAO {
     List<Activity> findAll();
     List<Activity> findDistance();
     List<Activity> findNonDistance();
-    Activity findByName(String name);
+    List<Activity> findByName(String name);
     
     
 }

@@ -6,6 +6,7 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Entity;
 
 import java.util.Objects;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,6 +15,7 @@ import javax.persistence.Id;
  *
  * @author Juraj Pleško, 359530
  */
+@Entity
 public class Calories {
     
     @Id

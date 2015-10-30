@@ -6,15 +6,14 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Entity;
 
 import java.util.Objects;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
  *
  * @author Juraj Pleško, 359530
  */
+@Entity
 public class Activity {
   
     @Id
@@ -28,6 +27,7 @@ public class Activity {
     private Boolean MeasureDistance;
     
     @NotNull
+    @OneToOne
     private Calories calories;
     
     public Activity () {

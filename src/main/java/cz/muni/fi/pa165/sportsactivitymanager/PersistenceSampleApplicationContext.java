@@ -24,12 +24,12 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @EnableJpaRepositories
 @ComponentScan(basePackageClasses={UserDao.class})
 public class PersistenceSampleApplicationContext {
-	
-	@Bean 
+
+	@Bean
 	public JpaTransactionManager transactionManager(){
 		return  new JpaTransactionManager(entityManagerFactory().getObject());
 	}
-	
+
 	/**
 	 * Starts up a container that emulates behavior prescribed in JPA spec for container-managed EntityManager
 	 * @return
@@ -42,8 +42,8 @@ public class PersistenceSampleApplicationContext {
 		jpaFactoryBean.setPersistenceProviderClass(HibernatePersistenceProvider.class);
 		return jpaFactoryBean;
 	}
-	
-	@Bean 
+
+	@Bean
 	public LocalValidatorFactoryBean localValidatorFactoryBean(){
 		return new LocalValidatorFactoryBean();
 	}
@@ -51,7 +51,7 @@ public class PersistenceSampleApplicationContext {
 	public LoadTimeWeaver instrumentationLoadTimeWeaver() {
 		return new InstrumentationLoadTimeWeaver();
 	}
-	
+
 	@Bean
 	public DataSource db(){
 		EmbeddedDatabaseBuilder builder = new EmbeddedDatabaseBuilder();
