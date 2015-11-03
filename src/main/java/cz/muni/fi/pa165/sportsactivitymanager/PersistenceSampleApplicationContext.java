@@ -1,7 +1,12 @@
 package cz.muni.fi.pa165.sportsactivitymanager;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
 import javax.sql.DataSource;
 
+import cz.muni.fi.pa165.sportsactivitymanager.Dao.ActivityDAO;
+import cz.muni.fi.pa165.sportsactivitymanager.Dao.ActivityDAOImpl;
 import cz.muni.fi.pa165.sportsactivitymanager.Dao.UserDao;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
@@ -24,6 +29,9 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 @EnableJpaRepositories
 @ComponentScan(basePackageClasses={UserDao.class})
 public class PersistenceSampleApplicationContext {
+
+    @PersistenceUnit
+    private EntityManager em;
 
 	@Bean
 	public JpaTransactionManager transactionManager(){
@@ -58,4 +66,11 @@ public class PersistenceSampleApplicationContext {
 		EmbeddedDatabase db = builder.setType(EmbeddedDatabaseType.DERBY).build();
 		return db;
 	}
+
+//    @Bean
+//    public ActivityDAO activityDAOGetter(){
+//        return new ActivityDAOImpl(em);
+//    }
+
+
 }

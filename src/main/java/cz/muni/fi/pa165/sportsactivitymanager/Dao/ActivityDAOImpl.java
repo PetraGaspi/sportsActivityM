@@ -6,6 +6,10 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Dao;
 
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -14,15 +18,15 @@ import javax.persistence.PersistenceContext;
  *
  * @author Juraj Pleško, 359530
  */
+@Repository
 public class ActivityDAOImpl implements ActivityDAO {
 
-    @PersistenceContext
     private EntityManager em;
 
     public ActivityDAOImpl(EntityManager em){
         this.em = em;
     }
-    
+
     @Override
     public void create(Activity activity) {
         em.persist(activity);

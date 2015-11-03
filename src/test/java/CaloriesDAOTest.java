@@ -3,13 +3,15 @@ import cz.muni.fi.pa165.sportsactivitymanager.Dao.CaloriesDAOImpl;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Calories;
 import junit.framework.Assert;
 import junit.framework.TestCase;
+import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
+import org.testng.annotations.BeforeMethod;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceUnit;
 
-public class CaloriesDAOTest extends TestCase {
+public class CaloriesDAOTest extends AbstractTestNGSpringContextTests {
 
     private Calories c1;
     private Calories c2;
@@ -23,8 +25,8 @@ public class CaloriesDAOTest extends TestCase {
 
     private EntityManager em;
 
+    @BeforeMethod
     public void setUp() throws Exception {
-        super.setUp();
 
         c1 = new Calories((long)1);
         c2 = new Calories((long)2);

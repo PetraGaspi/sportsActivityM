@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.sportsactivitymanager.Dao;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.ActivityRecord;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -12,6 +13,7 @@ import java.util.List;
 /**
  * @author Michal Stefanik 422237
  */
+@Repository
 public class ActivityRecordDaoImpl implements ActivityRecordDao {
 
     @PersistenceContext
