@@ -6,7 +6,6 @@ import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Calories;
 import cz.muni.fi.pa165.sportsactivitymanager.PersistenceSampleApplicationContext;
 import junit.framework.Assert;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -16,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
 import javax.persistence.*;
 import java.util.List;
@@ -36,21 +36,22 @@ public class ActivityDAOTest extends AbstractTestNGSpringContextTests {
     private static boolean setup = false;
 
     @Autowired
-    private static ActivityDAO activityDao;
+    private  ActivityDAO activityDao;
 
     @Autowired
-    private static CaloriesDAO caloriesDao;
+    private  CaloriesDAO caloriesDao;
 
     @PersistenceUnit
-    private static EntityManagerFactory emf;
+    private  EntityManagerFactory emf;
 
-    private static EntityManager em;
+    private  EntityManager em;
 
     /**
      * setUp creates and persists 3 Activity objects that the tests run on
      */
     @BeforeMethod
-    public static void setUp() {
+    public  void setUp() {
+        //TODO: FIX ME
         if(!setup){
             System.out.println("setup started");
 
