@@ -1,23 +1,24 @@
 import cz.muni.fi.pa165.sportsactivitymanager.Dao.ActivityDAO;
-import cz.muni.fi.pa165.sportsactivitymanager.Dao.ActivityDAOImpl;
 import cz.muni.fi.pa165.sportsactivitymanager.Dao.CaloriesDAO;
-import cz.muni.fi.pa165.sportsactivitymanager.Dao.CaloriesDAOImpl;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Calories;
 import cz.muni.fi.pa165.sportsactivitymanager.PersistenceSampleApplicationContext;
 import junit.framework.Assert;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,34 +34,29 @@ public class ActivityDAOTest extends AbstractTestNGSpringContextTests {
     private static Activity a3;
     private static Activity a4;
 
-    private static boolean setup = false;
+    @Autowired
+    private ActivityDAO activityDao;
 
     @Autowired
-    private static ActivityDAO activityDao;
-
-    @Autowired
-    private static CaloriesDAO caloriesDao;
+    private CaloriesDAO caloriesDao;
 
     @PersistenceUnit
-    private static EntityManagerFactory emf;
+    private EntityManagerFactory emf;
 
-    private static EntityManager em;
+    @PersistenceContext
+    private EntityManager em;
 
     /**
      * setUp creates and persists 3 Activity objects that the tests run on
      */
     @BeforeMethod
-    public static void setUp() {
-        if(!setup){
+    public void setUp() {
             System.out.println("setup started");
 
-            emf = Persistence.createEntityManagerFactory("ActivityManagerPersistence");
-            em = emf.createEntityManager();
-
-
-            caloriesDao = new CaloriesDAOImpl(em);
-            activityDao = new ActivityDAOImpl(em);
-            //TODO stale nevieme activityDao injectovat pomocou Springu
+            if(null==emf){
+                System.err.println("emf null");
+                Assert.fail();
+            }
 
             //activity1
             a1 = new Activity();
@@ -89,7 +85,6 @@ public class ActivityDAOTest extends AbstractTestNGSpringContextTests {
             c4.setIndex(8.10);
             a4.setCalories(c4);
 
-            em.getTransaction().begin();
             em.persist(c1);
             em.persist(c3);
             em.persist(c4);
@@ -98,48 +93,34 @@ public class ActivityDAOTest extends AbstractTestNGSpringContextTests {
             em.persist(a3);
             em.persist(a4);
 
-            setup = true;
-
             System.out.println("setup done");
-        }
     }
 
     @AfterMethod
     public void destroy(){
 
-        em.clear();
-        emf.close();
+
     }
 
     @Test
     public void testFindById() {
-        setUp();
-        //TODO preco sa @BeforeTest nespusta automaticky?
-        //TODO ked bude @BeforeTest robit co ma, odstranit bool setup
+        Assert.assertEquals(a1, activityDao.findById(a1.getId()));
 
-        Assert.assertTrue(true);
-
-        Assert.assertEquals(a1, activityDao.findById((long)1));
-
-        Assert.assertEquals(null, activityDao.findById((long)5));
-
-        Assert.assertTrue(true);
+        Assert.assertEquals(null, activityDao.findById((long) -1));
     }
 
     @Test
     public void testFindAll() {
-        setUp();
-
         List<Activity> found = activityDao.findAll();
+
         Assert.assertEquals(3, found.size());
         for(Activity a: found){
             Assert.assertTrue(a.equals(a1) || a.equals(a3) || a.equals(a4));
         }
+        System.out.println("asserion here");
     }
     @Test
     public void testFindDistance() {
-        setUp();
-
         List<Activity> found = activityDao.findDistance();
         Assert.assertEquals(1, found.size());
         for(Activity a: found){
@@ -148,18 +129,14 @@ public class ActivityDAOTest extends AbstractTestNGSpringContextTests {
     }
     @Test
     public void testFindNonDistance() {
-        setUp();
-
         List<Activity> found = activityDao.findNonDistance();
-        Assert.assertEquals(3, found.size());
+        Assert.assertEquals(2, found.size());
         for(Activity a: found){
             Assert.assertTrue(a.equals(a1) ||a.equals(a4));
         }
     }
     @Test
     public void testFindByName() {
-        setUp();
-
         List<Activity> found = activityDao.findByName("Volley");
         Assert.assertEquals(2, found.size());
         for(Activity a: found){
@@ -169,11 +146,9 @@ public class ActivityDAOTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testCreate() {
-        setUp();
-
         a2 = new Activity();
         a2.setName("Hockey");
-
+        a2.setMeasureDistance(false);
         Calories c1 = new Calories();
         c1.setIndex(10.8);
         caloriesDao.create(c1);
@@ -189,31 +164,28 @@ public class ActivityDAOTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testUpdate() {
-        setUp();
-
         Calories c1 = new Calories((long)3);
         c1.setIndex(9.7);
-        a2 = em.find(Activity.class, (long)1);
-        a2.setCalories(c1);
-        a2.setName("Beachvolley");
 
-        activityDao.update(a2);
+        //assure that updated object exists
+        Assert.assertNotNull(em.find(Activity.class, a1.getId()));
+        a1.setCalories(c1);
+        a1.setName("Beachvolley");
 
-        Assert.assertEquals(9.7, activityDao.findById((long)1).getCalories().getIndex());
+        activityDao.update(a1);
+
+        Assert.assertEquals(9.7, activityDao.findById(a1.getId()).getCalories().getIndex());
     }
 
     @Test
     public void testDelete() {
-        setUp();
 
-        a2 = em.find(Activity.class, (long)2);
+        //assure that the a4 is persisted
+        Assert.assertEquals(a4, activityDao.findByName("Basket").get(0));
 
-        //assure that the a2 is persisted
-        Assert.assertEquals(a2, activityDao.findById((long) 2));
+        activityDao.delete(a4);
 
-        activityDao.delete(a2);
-
-        //assure that a2 is no longer persisted
-        Assert.assertEquals(null, activityDao.findById((long) 2));
+        //assure that a4 is no longer persisted
+        Assert.assertEquals(new ArrayList<Activity>(), activityDao.findByName("Basket"));
     }
 }

@@ -21,13 +21,9 @@ import javax.persistence.PersistenceContext;
 @Repository
 public class CaloriesDAOImpl implements CaloriesDAO {
 
-    public CaloriesDAOImpl(EntityManager em){
-        this.em = em;
-    }
-
     @PersistenceContext
     private EntityManager em;
-    
+
     @Override
     public void create(Calories calories) {
         em.persist(calories);

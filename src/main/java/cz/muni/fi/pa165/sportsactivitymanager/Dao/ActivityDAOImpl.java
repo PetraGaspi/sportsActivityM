@@ -12,7 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceUnit;
 
 /**
  *
@@ -21,11 +23,8 @@ import javax.persistence.PersistenceContext;
 @Repository
 public class ActivityDAOImpl implements ActivityDAO {
 
+    @PersistenceContext
     private EntityManager em;
-
-    public ActivityDAOImpl(EntityManager em){
-        this.em = em;
-    }
 
     @Override
     public void create(Activity activity) {

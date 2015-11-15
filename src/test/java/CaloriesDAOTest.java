@@ -37,7 +37,7 @@ public class CaloriesDAOTest extends AbstractTestNGSpringContextTests {
         emf = Persistence.createEntityManagerFactory("ActivityManagerPersistence");
         em = emf.createEntityManager();
 
-        dao = new CaloriesDAOImpl(em);
+        //dao = new CaloriesDAOImpl(em);
         em.getTransaction().begin();
         em.persist(c1);
         em.persist(c2);

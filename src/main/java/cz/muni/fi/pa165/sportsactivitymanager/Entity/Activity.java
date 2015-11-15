@@ -24,7 +24,7 @@ public class Activity {
     private String name;
 
     @NotNull
-    private Boolean MeasureDistance;
+    private Boolean measureDistance;
     
     @NotNull
     @OneToOne
@@ -33,10 +33,6 @@ public class Activity {
     public Activity () {
     }
     
-    public Activity (Long Id){
-     this.id = id;   
-    }
-
     public Long getId() {
         return id;
     }
@@ -46,7 +42,7 @@ public class Activity {
     }
 
     public Boolean getMeasureDistance() {
-        return MeasureDistance;
+        return measureDistance;
     }
 
     public void setName(String name) {
@@ -54,12 +50,12 @@ public class Activity {
     }
 
     public void setMeasureDistance(Boolean MeasureDistanca) {
-        this.MeasureDistance= MeasureDistanca;
+        this.measureDistance = MeasureDistanca;
     }
 
     @Override
     public String toString() {
-        return "Activity{" + "id=" + id + ", name=" + name + ", MeasureDistanca=" + MeasureDistance + ", calories=" + calories + '}';
+        return "Activity{" + "id=" + id + ", name=" + name + ", measureDistanca=" + measureDistance + ", calories=" + calories + '}';
     }
 
     @Override
