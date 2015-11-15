@@ -1,15 +1,19 @@
 import cz.muni.fi.pa165.sportsactivitymanager.Dao.ActivityDAO;
+import cz.muni.fi.pa165.sportsactivitymanager.Dao.ActivityDAOImpl;
 import cz.muni.fi.pa165.sportsactivitymanager.Dao.CaloriesDAO;
+import cz.muni.fi.pa165.sportsactivitymanager.Dao.CaloriesDAOImpl;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Calories;
 import cz.muni.fi.pa165.sportsactivitymanager.PersistenceSampleApplicationContext;
 import junit.framework.Assert;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.transaction.annotation.Transactional;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -51,12 +55,6 @@ public class ActivityDAOTest extends AbstractTestNGSpringContextTests {
      */
     @BeforeMethod
     public void setUp() {
-            System.out.println("setup started");
-
-            if(null==emf){
-                System.err.println("emf null");
-                Assert.fail();
-            }
 
             //activity1
             a1 = new Activity();
@@ -93,13 +91,14 @@ public class ActivityDAOTest extends AbstractTestNGSpringContextTests {
             em.persist(a3);
             em.persist(a4);
 
-            System.out.println("setup done");
+        }
     }
 
     @AfterMethod
     public void destroy(){
 
-
+        em.clear();
+        emf.close();
     }
 
     @Test
@@ -117,7 +116,6 @@ public class ActivityDAOTest extends AbstractTestNGSpringContextTests {
         for(Activity a: found){
             Assert.assertTrue(a.equals(a1) || a.equals(a3) || a.equals(a4));
         }
-        System.out.println("asserion here");
     }
     @Test
     public void testFindDistance() {
