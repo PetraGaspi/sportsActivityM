@@ -1,6 +1,5 @@
 import cz.muni.fi.pa165.sportsactivitymanager.Dao.ActivityRecordDao;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.ActivityRecord;
-//import cz.muni.fi.pa165.sportsactivitymanager.Entity.IActivityRecord;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Calories;
@@ -14,6 +13,7 @@ import javax.transaction.Transactional;
 import javax.persistence.PersistenceContext;
 import javax.validation.ConstraintViolationException;
 
+import cz.muni.fi.pa165.sportsactivitymanager.PersistenceSampleApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.TestExecutionListeners;
@@ -30,7 +30,7 @@ import org.testng.Assert;
  * @author Petra Gasparikova
  */
 
-@ContextConfiguration //(locations = {"classpath:/applicationContext.xml"})
+@ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class ActivityRecordDaoTest extends AbstractTestNGSpringContextTests {
@@ -172,7 +172,7 @@ public class ActivityRecordDaoTest extends AbstractTestNGSpringContextTests {
         activityRecordDao.create(activityRecord1);
         activityRecordDao.create(activityRecord2);
         List<ActivityRecord> arList = activityRecordDao.getRecordsByUser(user2);
-        Assert.assertTrue(arList.size() == 2);
+        Assert.assertTrue(arList.size() == 1);
         arList = activityRecordDao.getRecordsByUser(user1);
         Assert.assertTrue(arList.size() == 1);
         ActivityRecord ar = arList.get(0);
@@ -184,7 +184,7 @@ public class ActivityRecordDaoTest extends AbstractTestNGSpringContextTests {
         activityRecordDao.create(activityRecord1);
         activityRecordDao.create(activityRecord2);
         List<ActivityRecord> arList = activityRecordDao.getRecordsByActivity(activity1);
-        Assert.assertTrue(arList.size() == 2);
+        Assert.assertTrue(arList.size() == 1);
         arList = activityRecordDao.getRecordsByActivity(activity2);
         Assert.assertTrue(arList.size() == 1);
         ActivityRecord ar = arList.get(0);

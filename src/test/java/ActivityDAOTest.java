@@ -29,19 +29,16 @@ import java.util.List;
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
 public class ActivityDAOTest extends AbstractTestNGSpringContextTests {
-    private static Activity a1;
-    private static Activity a2;
-    private static Activity a3;
-    private static Activity a4;
+    private Activity a1;
+    private Activity a2;
+    private Activity a3;
+    private Activity a4;
 
     @Autowired
     private ActivityDAO activityDao;
 
     @Autowired
     private CaloriesDAO caloriesDao;
-
-    @PersistenceUnit
-    private EntityManagerFactory emf;
 
     @PersistenceContext
     private EntityManager em;
@@ -92,9 +89,6 @@ public class ActivityDAOTest extends AbstractTestNGSpringContextTests {
 
     @AfterMethod
     public void destroy() {
-
-        em.clear();
-        emf.close();
     }
 
     @Test

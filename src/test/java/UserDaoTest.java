@@ -12,6 +12,8 @@ import cz.muni.fi.pa165.sportsactivitymanager.Enum.Sex;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+
+import cz.muni.fi.pa165.sportsactivitymanager.PersistenceSampleApplicationContext;
 import junit.framework.Assert;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +34,9 @@ import org.testng.annotations.Test;
  *  @author Juraj Pleško, 359530
  */
 
-@ContextConfiguration
+@ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
-@Transactional
+@org.springframework.transaction.annotation.Transactional
 public class UserDaoTest extends AbstractTestNGSpringContextTests{
     
     @javax.persistence.PersistenceContext

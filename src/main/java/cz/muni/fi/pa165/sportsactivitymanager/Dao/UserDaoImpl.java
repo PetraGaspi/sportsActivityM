@@ -47,13 +47,13 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> findByName(String name) {
-        return em.createQuery("SELECT u FROM User u WHERE a.name LIKE :name",User.class)
+        return em.createQuery("SELECT u FROM User u WHERE u.name LIKE :name",User.class)
                 .setParameter("name",name).getResultList();
     }
 
     @Override
     public User findByEmail(String email) {
-        return em.createQuery("SELECT u FROM User u WHERE a.email LIKE :email", User.class)
+        return em.createQuery("SELECT u FROM User u WHERE u.email LIKE :email", User.class)
                 .setParameter("email", email)
                 .getSingleResult();
     }

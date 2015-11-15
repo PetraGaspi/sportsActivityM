@@ -12,6 +12,8 @@ import javax.validation.constraints.Pattern;
  * @author Petra Gasparikova
  */
 @Entity
+//User is a reserved SQL table, so we need to change it to avoid conflicts
+@Table(name="app_user")
 public class User {
     
     @Id
