@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.sportsactivitymanager.Enum.Sex;
 
 import java.util.Objects;
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
@@ -25,7 +26,8 @@ public class User {
     
     @NotNull
     private Integer age;
-    
+
+    @DecimalMin("0.0")
     @NotNull
     private Double weight;
     

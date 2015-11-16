@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import java.util.Calendar;
 import java.util.Objects;
@@ -18,9 +19,11 @@ public class ActivityRecord {
     @NotNull
     private java.util.Calendar date;
 
+    @DecimalMin("0.0")
     @NotNull
     private double duration;
 
+    @DecimalMin("0.0")
     private double distance;
 
     @ManyToOne

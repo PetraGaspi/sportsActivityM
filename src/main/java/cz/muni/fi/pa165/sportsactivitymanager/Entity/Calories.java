@@ -28,6 +28,7 @@ public class Calories {
         return Id;
     }
 
+
     public Double getIndex() {
         return Index;
     }

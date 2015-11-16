@@ -21,6 +21,7 @@ public class Activity {
     private Long id;
     
     @NotNull
+    @Column(nullable = false, unique = true)
     private String name;
 
     @NotNull
