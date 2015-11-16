@@ -1,3 +1,5 @@
+package cz.muni.fi.pa165.sportsactivitymanager;
+
 import cz.muni.fi.pa165.sportsactivitymanager.Dao.ActivityDAO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dao.CaloriesDAO;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
@@ -155,7 +157,7 @@ public class ActivityDAOTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testUpdate() {
-        Calories c1 = new Calories((long) 3);
+        Calories c1 = new Calories();
         c1.setIndex(9.7);
 
         //assure that updated object exists

@@ -24,20 +24,10 @@ public class Calories {
     
     private Double Index;
     
-    public Calories (Long Id){
-        this.Id = Id;
-        
-    }
-    
-    public Calories (){
-        
-    }
-
     public Long getId() {
         return Id;
     }
 
-        
     public Double getIndex() {
         return Index;
     }
