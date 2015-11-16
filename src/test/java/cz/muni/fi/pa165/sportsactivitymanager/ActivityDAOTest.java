@@ -148,10 +148,11 @@ public class ActivityDAOTest extends AbstractTestNGSpringContextTests {
 
         a2.setCalories(c1);
 
+        Assert.assertEquals(0, activityDao.findByName(a2.getName()).size());
+
         activityDao.create(a2);
 
-        Assert.assertEquals(a2, activityDao.findById((long) 4));
-        Assert.assertEquals(10.8, activityDao.findById((long) 4).getCalories().getIndex());
+        Assert.assertEquals(a2, activityDao.findById(a2.getId()));
 
     }
 
