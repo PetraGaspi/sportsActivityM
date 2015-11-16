@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.sportsactivitymanager;
 
-import cz.muni.fi.pa165.sportsactivitymanager.Dao.UserDao;
+import cz.muni.fi.pa165.sportsactivitymanager.Dao.UserDAO;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,7 +22,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories
-@ComponentScan(basePackageClasses={UserDao.class})
+@ComponentScan(basePackageClasses={UserDAO.class})
 public class PersistenceSampleApplicationContext {
 
 	@Bean

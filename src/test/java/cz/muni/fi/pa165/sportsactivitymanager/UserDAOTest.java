@@ -5,15 +5,13 @@ package cz.muni.fi.pa165.sportsactivitymanager;/*
  */
 
 
-import cz.muni.fi.pa165.sportsactivitymanager.Dao.UserDao;
+import cz.muni.fi.pa165.sportsactivitymanager.Dao.UserDAO;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
 import cz.muni.fi.pa165.sportsactivitymanager.Enum.Sex;
 
 import java.util.List;
 import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 
-import cz.muni.fi.pa165.sportsactivitymanager.PersistenceSampleApplicationContext;
 import junit.framework.Assert;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,13 +35,13 @@ import org.testng.annotations.Test;
 @ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @org.springframework.transaction.annotation.Transactional
-public class UserDaoTest extends AbstractTestNGSpringContextTests{
+public class UserDAOTest extends AbstractTestNGSpringContextTests{
     
     @javax.persistence.PersistenceContext
     public EntityManager em;
     
     @Autowired
-    public UserDao userDao;
+    public UserDAO userDao;
             
     private User user1;
     private User user2;
@@ -131,6 +129,9 @@ public class UserDaoTest extends AbstractTestNGSpringContextTests{
         userDao.create(user2);
         List<User> all = userDao.findAll();
         Assert.assertEquals(2, all.size());
+        for(User u : all){
+            Assert.assertTrue(u.equals(user1) || u.equals(user2));
+        }
     }    
     /**
     *   testing findByEmail

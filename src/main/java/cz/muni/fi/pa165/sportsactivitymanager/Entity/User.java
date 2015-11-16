@@ -33,7 +33,7 @@ public class User {
     
     @NotNull
     @Enumerated
-    private Sex sex;
+    private Sex SEX;
       
     @Column(nullable=false,unique=true)
     @NotNull
@@ -76,11 +76,11 @@ public class User {
     }
 
     public Sex getSex() {
-        return sex;
+        return SEX;
     }
 
     public void setSex(Sex sex) {
-        this.sex = sex;
+        this.SEX = sex;
     }
 
     public String getEmail() {
@@ -93,7 +93,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", name=" + name + ", age=" + age + ", weight=" + weight + ", sex=" + sex + ", phoneNumber=" + email + '}';
+        return "User{" + "id=" + id + ", name=" + name + ", age=" + age + ", weight=" + weight + ", sex=" + SEX + ", phoneNumber=" + email + '}';
     }
 
     @Override

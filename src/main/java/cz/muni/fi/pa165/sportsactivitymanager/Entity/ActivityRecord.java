@@ -17,6 +17,7 @@ public class ActivityRecord {
     private long id;
 
     @NotNull
+    @Temporal(TemporalType.TIMESTAMP)
     private java.util.Calendar date;
 
     @DecimalMin("0.0")

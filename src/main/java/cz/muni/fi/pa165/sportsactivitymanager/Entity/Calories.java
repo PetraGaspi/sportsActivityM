@@ -20,32 +20,32 @@ public class Calories {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long Id;
+    private Long id;
     
-    private Double Index;
+    private Double index;
     
     public Long getId() {
-        return Id;
+        return id;
     }
 
 
     public Double getIndex() {
-        return Index;
+        return index;
     }
 
     public void setIndex(Double Index) {
-        this.Index = Index;
+        this.index = Index;
     }
 
     @Override
     public String toString() {
-        return "Calories{" + "Id=" + Id + ", Index=" + Index + '}';
+        return "Calories{" + "Id=" + id + ", Index=" + index + '}';
     }
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.Id);
+        hash = 23 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -58,7 +58,7 @@ public class Calories {
             return false;
         }
         final Calories other = (Calories) obj;
-        if (!Objects.equals(this.Id, other.Id)) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         return true;

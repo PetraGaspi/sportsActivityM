@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author Michal Stefanik 422237
  */
-public interface ActivityRecordDao {
+public interface ActivityRecordDAO {
 
     /**
      * Persists a new ActivityRecord object
@@ -49,5 +49,6 @@ public interface ActivityRecordDao {
      * @param activityRecord an instance of the ActivityRecord object that has to be removed from persistence
      */
     void delete(ActivityRecord activityRecord);
+
 
 }

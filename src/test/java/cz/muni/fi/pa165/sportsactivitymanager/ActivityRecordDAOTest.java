@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.sportsactivitymanager;
 
-import cz.muni.fi.pa165.sportsactivitymanager.Dao.ActivityRecordDao;
+import cz.muni.fi.pa165.sportsactivitymanager.Dao.ActivityRecordDAO;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.ActivityRecord;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
@@ -15,7 +15,6 @@ import javax.transaction.Transactional;
 import javax.persistence.PersistenceContext;
 import javax.validation.ConstraintViolationException;
 
-import cz.muni.fi.pa165.sportsactivitymanager.PersistenceSampleApplicationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.TestExecutionListeners;
@@ -35,13 +34,13 @@ import org.testng.Assert;
 @ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @Transactional
-public class ActivityRecordDaoTest extends AbstractTestNGSpringContextTests {
+public class ActivityRecordDAOTest extends AbstractTestNGSpringContextTests {
     
     @PersistenceContext
     public EntityManager em;
     
     @Autowired
-    public ActivityRecordDao activityRecordDao;
+    public ActivityRecordDAO activityRecordDao;
     
     private ActivityRecord activityRecord1;
     private ActivityRecord activityRecord2;

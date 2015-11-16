@@ -45,7 +45,7 @@ public class CaloriesDAOImpl implements CaloriesDAO {
     }
 
     @Override
-    public List findAll() {
+    public List<Calories> findAll() {
         return em.createQuery("SELECT c FROM Calories c", Calories.class).getResultList();
     }
     
