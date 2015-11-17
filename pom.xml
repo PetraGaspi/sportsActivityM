@@ -35,6 +35,8 @@
 
     <modules>
         <module>sportsActivityManager-persistance</module>
+        <module>sportsActivityManager-api</module>
+        <module>sportsActivityManager-service</module>
     </modules>
     <dependencies>
     </dependencies>

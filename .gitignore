@@ -1,2 +1,4 @@
 /target/
 /sportsActivityManager-persistance/target/
+/sportsActivityManager-api/target/
+/sportsActivityManager-service/target/
