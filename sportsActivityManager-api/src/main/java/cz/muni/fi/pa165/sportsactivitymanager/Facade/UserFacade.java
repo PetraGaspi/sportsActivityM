@@ -12,13 +12,11 @@ import java.util.Collection;
 public interface UserFacade {
     
     Long createUser(UserDTO user);
-    void deleteUser(UserDTO user);
+    void deleteUser(Long id);
     void updateUser(UserDTO user);
     UserDTO getUserById(Long id);
     Collection<UserDTO> getUsersByName(String name);
     UserDTO getUserByEmail(String email);
     Collection<UserDTO> getAllUsers();
-    void registerUser(UserDTO user, String password);
-    boolean userAuthenticate(UserAuthenticateDTO user);
     
 }
