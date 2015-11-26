@@ -1,7 +1,6 @@
 package cz.muni.fi.pa165.sportsactivitymanager.service;
 
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
-//import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserDTO;
 
 import org.springframework.stereotype.Service;
 
