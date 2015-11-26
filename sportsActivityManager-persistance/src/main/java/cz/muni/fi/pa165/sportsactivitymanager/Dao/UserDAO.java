@@ -22,7 +22,7 @@ public interface UserDAO {
      *
      * @param user user to be updated
      */
-    void update(User user);
+    User update(User user);
 
     /**
      * Removes user from database

@@ -1,9 +1,9 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Facade;
 
-import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserAuthenticateDTO;
+import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserCreateDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserDTO;
 
-import java.util.Collection;
+import java.util.List;
 
 /**
  *
@@ -11,14 +11,12 @@ import java.util.Collection;
  */
 public interface UserFacade {
     
-    Long createUser(UserDTO user);
-    void deleteUser(UserDTO user);
+    Long createUser(UserCreateDTO user);
+    void deleteUser(Long id);
     void updateUser(UserDTO user);
     UserDTO getUserById(Long id);
-    Collection<UserDTO> getUsersByName(String name);
+    List<UserDTO> getUsersByName(String name);
     UserDTO getUserByEmail(String email);
-    Collection<UserDTO> getAllUsers();
-    void registerUser(UserDTO user, String password);
-    boolean userAuthenticate(UserAuthenticateDTO user);
+    List<UserDTO> getAllUsers();
     
 }
