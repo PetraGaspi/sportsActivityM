@@ -7,7 +7,6 @@ import cz.muni.fi.pa165.sportsactivitymanager.Facade.UserFacade;
 import cz.muni.fi.pa165.sportsactivitymanager.service.BeanMappingService;
 import cz.muni.fi.pa165.sportsactivitymanager.service.UserService;
 
-import java.util.Collection;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +55,7 @@ public class UserFacadeImpl implements UserFacade{
     }
 
     @Override
-    public Collection<UserDTO> getUsersByName(String name) {
+    public List<UserDTO> getUsersByName(String name) {
         List<User> users = userService.getUserByName(name);
         return (users == null) ? null : beanMappingService.mapTo(users, UserDTO.class);
     }
@@ -68,7 +67,7 @@ public class UserFacadeImpl implements UserFacade{
     }
 
     @Override
-    public Collection<UserDTO> getAllUsers() {
+    public List<UserDTO> getAllUsers() {
          return beanMappingService.mapTo(userService.getAllUsers(), UserDTO.class);
     }
 }

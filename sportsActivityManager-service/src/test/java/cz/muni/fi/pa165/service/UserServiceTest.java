@@ -5,8 +5,10 @@ import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
 import cz.muni.fi.pa165.sportsactivitymanager.Enum.Sex;
 import cz.muni.fi.pa165.sportsactivitymanager.service.UserService;
 import cz.muni.fi.pa165.sportsactivitymanager.service.config.ServiceConfiguration;
+
 import org.hibernate.service.spi.ServiceException;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -26,19 +28,19 @@ import org.testng.annotations.Test;
 @ContextConfiguration(classes = ServiceConfiguration.class)
 public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTests{
     
-    @Mock
+    @Autowired
     private UserDAO userDao;
     
     @Autowired
     @InjectMocks
     private UserService userService;
     
-    private User user;
-    
     @BeforeClass
     public void setup() throws ServiceException{
          MockitoAnnotations.initMocks(this);
     }
+    
+    private User user;
     
     @BeforeMethod
     public void setUpMethod() throws Exception {
@@ -48,13 +50,64 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
         user.setEmail("test@java.fi");
         user.setSex(Sex.Male);
         user.setWeight(85.4);
+    }  
+    
+    @Test
+    public void testCreateUser() {
+        User u = userService.createUser(user);
+        assertDeepEquals(userDao.findById(u.getId()), user);
+    }
+       
+    @Test
+    public void testUpdateUser() {
+        userDao.create(user);
+        user.setName("New User");
+        user.setEmail("user@pa165.fi");
+        user.setWeight(91.74);
+        userService.updateUser(user);
+        assertDeepEquals(user, userDao.findById(user.getId()));
+    }
+
+    @Test
+    public void testDeleteUser() {
+        userDao.create(user);
+        assertNotNull(userDao.findById(user.getId()));
+        userService.deleteUser(user);
+        assertNull(userDao.findById(user.getId()));
+    }
+
+    @Test
+    public void testGetUserByIdNotExisting() {       
+        assertNull(userService.getUserById(Long.MIN_VALUE));
     }
     
     @Test
-    public void testGetUserByIdNotExisting() {
-        assertNull(userService.getUserById(Long.MIN_VALUE));
+    public void testGetUserById() {
+        userDao.create(user);                  
+        assertDeepEquals(user, userService.getUserById(user.getId()));
     }
-
+    
+    @Test
+    public void testGetUserByEmail() {
+        userDao.create(user);
+        assertDeepEquals(user, userService.getUserByEmail(user.getEmail()));
+    }
+    
+    @Test
+    public void testGetAllUsers() {
+        assertEquals(userService.getAllUsers().size(), 0);
+        User u = new User();
+        u.setName("Charlie Man");
+        u.setEmail("charlie@man.man");
+        u.setSex(Sex.Male);
+        u.setAge(55);
+        u.setWeight(102.0);
+        userDao.create(u);
+        assertEquals(userService.getAllUsers().size(), 1);
+        userDao.create(user);
+        assertEquals(userService.getAllUsers().size(), 2);
+    }
+    
     private void assertDeepEquals(User user1, User user2) {
         assertEquals(user1, user2);
         assertEquals(user1.getId(), user2.getId());
