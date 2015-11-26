@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 package cz.muni.fi.pa165.sportsactivitymanager.service;
 
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
