@@ -27,7 +27,7 @@ public class Activity {
     private Boolean measureDistance;
     
     @NotNull
-    @OneToOne
+    @OneToOne(cascade=CascadeType.PERSIST)
     private Calories calories;
     
     public Activity () {

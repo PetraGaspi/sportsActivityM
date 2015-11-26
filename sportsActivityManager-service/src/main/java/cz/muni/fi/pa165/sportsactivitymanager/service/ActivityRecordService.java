@@ -18,19 +18,13 @@ public interface ActivityRecordService {
      * @param days number rof previous days to search in
      * @return list of all activities for specified criteria
      */
-    public List<ActivityRecord> getAllRecordsLastDays(Activity a, int days);
+    public List<ActivityRecord> getActivityRecordsLastDays(Activity a, int days);
 
     /**
      *
      * @param ar
      */
     public void createRecord(ActivityRecord ar);
-
-    /**
-     *
-     * @param id
-     */
-    public void getRecordById(long id);
 
     /**
      *
@@ -57,5 +51,11 @@ public interface ActivityRecordService {
      * @param activityRecord
      */
     void delete(ActivityRecord activityRecord);
-    //TODO toto naozaj? ^^
+
+    /**
+     *
+     * @param activityRecordId
+     * @return
+     */
+    ActivityRecord getActivityRecordById(long activityRecordId);
 }

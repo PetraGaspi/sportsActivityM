@@ -31,7 +31,7 @@ public class ActivityRecord {
     @NotNull
     private User user;
 
-    @ManyToOne
+    @ManyToOne(cascade=CascadeType.PERSIST)
     @NotNull
     private Activity activity;
 
