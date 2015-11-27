@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface ActivityRecordFacade {
 
-    void create(long activityRecordId);
+    void create(ActivityRecordDTO activity);
 
     ActivityRecordDTO getRecordById(Long id);
 

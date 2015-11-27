@@ -33,8 +33,8 @@ public class ActivityRecordFacadeImpl implements ActivityRecordFacade{
     private BeanMappingService beanMappingService;
 
     @Override
-    public void create(long activityRecordId) {
-        service.createRecord(service.getActivityRecordById(activityRecordId));
+    public void create(ActivityRecordDTO activityRecordDTO) {
+        service.createRecord(beanMappingService.mapTo(activityRecordDTO, ActivityRecord.class));
     }
 
     @Override
@@ -44,15 +44,15 @@ public class ActivityRecordFacadeImpl implements ActivityRecordFacade{
 
     @Override
     public List<ActivityRecordDTO> getRecordsByUser(UserDTO user) {
-        final List<ActivityRecord> allOrdersLastWeek = service.getRecordsByUser(userService.getUserById(user.getId()));
-        final List<ActivityRecordDTO> dtos = beanMappingService.mapTo(allOrdersLastWeek, ActivityRecordDTO.class);
+        final List<ActivityRecord> allRecords = service.getRecordsByUser(userService.getUserById(user.getId()));
+        final List<ActivityRecordDTO> dtos = beanMappingService.mapTo(allRecords, ActivityRecordDTO.class);
         return dtos;
     }
 
     @Override
     public List<ActivityRecordDTO> getRecordsByActivity(ActivityDTO activity) {
-        final List<ActivityRecord> allOrdersLastWeek = service.getRecordsByActivity(activityService.getActivityById(activity.getId()));
-        final List<ActivityRecordDTO> dtos = beanMappingService.mapTo(allOrdersLastWeek, ActivityRecordDTO.class);
+        final List<ActivityRecord> allRecords = service.getRecordsByActivity(activityService.getActivityById(activity.getId()));
+        final List<ActivityRecordDTO> dtos = beanMappingService.mapTo(allRecords, ActivityRecordDTO.class);
         return dtos;
     }
  
