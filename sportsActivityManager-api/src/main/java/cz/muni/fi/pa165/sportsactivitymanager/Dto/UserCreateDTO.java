@@ -12,6 +12,7 @@ public class UserCreateDTO {
     private String name;
     private Integer age;
     private Double weight;
+    private Double height;
     private Sex SEX;
     private String email;
 
@@ -37,6 +38,14 @@ public class UserCreateDTO {
 
     public void setWeight(Double weight) {
         this.weight = weight;
+    }
+
+    public Double getHeight() {
+        return height;
+    }
+
+    public void setHeight(Double height) {
+        this.height = height;
     }
 
     public Sex getSEX() {

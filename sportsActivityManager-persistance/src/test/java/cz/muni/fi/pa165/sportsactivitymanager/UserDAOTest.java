@@ -59,6 +59,7 @@ public class UserDAOTest extends AbstractTestNGSpringContextTests{
         user1.setAge(25);
         user1.setSex(Sex.Male);
         user1.setWeight(99.99);
+        user1.setHeight(182.5);
         user1.setEmail("test@test.cz");
         
         
@@ -67,6 +68,7 @@ public class UserDAOTest extends AbstractTestNGSpringContextTests{
         user2.setAge(28);
         user2.setSex(Sex.Female);
         user2.setWeight(66.66);
+        user2.setHeight(165.1);
         user2.setEmail("test2@test2.cz");
         
         
@@ -75,6 +77,7 @@ public class UserDAOTest extends AbstractTestNGSpringContextTests{
         user3.setAge(22);
         user3.setSex(Sex.Male);
         user3.setWeight(33.33);
+        user3.setHeight(100.0);
         user3.setEmail("test3@test3.cz");
        
         
@@ -104,6 +107,7 @@ public class UserDAOTest extends AbstractTestNGSpringContextTests{
         user1.setAge(25);
         user1.setSex(Sex.Male);
         user1.setWeight(99.99);
+        user1.setHeight(182.5);
         user1.setEmail("test@test.cz");
         userDao.create(user1);
         Assert.assertNotNull(userDao.findById(user1.getId()));

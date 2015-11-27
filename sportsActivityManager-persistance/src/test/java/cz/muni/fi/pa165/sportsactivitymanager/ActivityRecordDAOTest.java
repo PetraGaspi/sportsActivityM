@@ -82,12 +82,14 @@ public class ActivityRecordDAOTest extends AbstractTestNGSpringContextTests {
         user1.setAge(20);
         user1.setSex(Sex.Male);
         user1.setWeight(90.5);
+        user1.setHeight(189.0);
         
         user2.setName("Martina");
         user2.setEmail("martina@test.com");
         user2.setAge(40);
         user2.setSex(Sex.Female);
         user2.setWeight(70.5);
+        user2.setHeight(150.9);
         
         activity1.setName("tennis");
         activity1.setMeasureDistance(Boolean.FALSE);

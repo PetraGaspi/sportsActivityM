@@ -54,6 +54,7 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
         user.setEmail("test@java.fi");
         user.setSex(Sex.Male);
         user.setWeight(85.4);
+        user.setHeight(170.5);
     }  
     
     @Test
@@ -95,6 +96,7 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
         u.setSex(Sex.Male);
         u.setAge(55);
         u.setWeight(102.0);
+        u.setHeight(198.0);
         when(userDao.findByName(user.getName())).thenReturn(Arrays.asList(user,u));
     }
     
@@ -108,6 +110,7 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
         u.setSex(Sex.Male);
         u.setAge(55);
         u.setWeight(102.0);
+        u.setHeight(198.0);
         when(userDao.findAll()).thenReturn(Arrays.asList(user,u));
         assertEquals(userService.getAllUsers().size(), 2);
         userDao.delete(user);
@@ -117,7 +120,24 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
         when(userDao.findAll()).thenReturn(new ArrayList<>());
         assertEquals(userService.getAllUsers().size(), 0);          
     }
+   
+    /*
+    * Test is being skipped for some (for now) unknown reason.
     
+    @Test
+    public void testCalculateBMI(User user){        
+        
+        user.setWeight(100.0);
+        user.setHeight(200.0);
+        userDao.update(user);
+        double bmi = user.getWeight()/(user.getHeight()/100)*(user.getHeight()/100);
+        assertEquals(userService.calculateBMI(user),25.0,0.0);
+        
+        user.setHeight(0.0);
+        userDao.update(user);
+        assertEquals(userService.calculateBMI(user),0.0,0.0);       
+    }
+    */
     private void assertDeepEquals(User user1, User user2) {
         assertEquals(user1, user2);
         assertEquals(user1.getId(), user2.getId());
@@ -125,6 +145,7 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
         assertEquals(user1.getAge(), user2.getAge());
         assertEquals(user1.getEmail(), user2.getEmail());
         assertEquals(user1.getWeight(), user2.getWeight());
+        assertEquals(user1.getHeight(), user2.getHeight());
         assertEquals(user1.getSex(), user2.getSex());
     }
 }
