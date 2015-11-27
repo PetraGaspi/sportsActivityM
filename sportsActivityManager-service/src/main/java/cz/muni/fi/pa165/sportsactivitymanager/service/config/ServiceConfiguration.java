@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.sportsactivitymanager.service.config;
 
+import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
@@ -12,7 +13,7 @@ import org.springframework.context.annotation.Import;
 import cz.muni.fi.pa165.sportsactivitymanager.PersistenceSampleApplicationContext;
 
 import cz.muni.fi.pa165.sportsactivitymanager.service.UserServiceImpl;
-import cz.muni.fi.pa165.sportsactivitymanager.Facade.UserFacadeImpl;
+import cz.muni.fi.pa165.sportsactivitymanager.service.facade.UserFacadeImpl;
 
 @Configuration
 @Import(PersistenceSampleApplicationContext.class)
