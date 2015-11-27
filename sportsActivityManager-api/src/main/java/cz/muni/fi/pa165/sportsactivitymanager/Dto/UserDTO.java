@@ -14,7 +14,7 @@ public class UserDTO {
     private Integer age;
     private Double weight;
     private Double height;
-    private Sex SEX;
+    private Sex sex;
     private String email;
 
     public Long getId() {
@@ -57,12 +57,12 @@ public class UserDTO {
         this.height = height;
     }
 
-    public Sex getSEX() {
-        return SEX;
+    public Sex getSex() {
+        return sex;
     }
 
-    public void setSEX(Sex SEX) {
-        this.SEX = SEX;
+    public void setSex(Sex sex) {
+        this.sex = sex;
     }
 
     public String getEmail() {

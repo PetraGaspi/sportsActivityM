@@ -35,7 +35,7 @@ public class User {
     @NotNull
     private Double height;
     
-    @NotNull
+    //@NotNull
     @Enumerated
     private Sex SEX;
       
