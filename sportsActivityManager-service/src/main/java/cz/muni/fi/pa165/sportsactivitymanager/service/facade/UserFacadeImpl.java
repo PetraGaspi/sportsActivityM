@@ -1,4 +1,4 @@
-package cz.muni.fi.pa165.sportsactivitymanager.service.facade;
+package cz.muni.fi.pa165.sportsactivitymanager.Facade;
 
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserCreateDTO;
