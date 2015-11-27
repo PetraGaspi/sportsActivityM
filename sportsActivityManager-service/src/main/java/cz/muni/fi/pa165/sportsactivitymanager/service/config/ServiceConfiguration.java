@@ -20,12 +20,6 @@ import cz.muni.fi.pa165.sportsactivitymanager.service.facade.UserFacadeImpl;
 @ComponentScan(basePackageClasses={UserServiceImpl.class, UserFacadeImpl.class})
 public class ServiceConfiguration {
 	
-        @Bean
-	public Mapper dozer(){
-		return new DozerBeanMapper();
-	}
-    
-        /*
 	@Bean
 	public Mapper dozer(){
 		DozerBeanMapper dozer = new DozerBeanMapper();		
@@ -39,5 +33,5 @@ public class ServiceConfiguration {
 	        mapping(User.class, UserDTO.class);
 	    }
 	}
-	*/
+
 }

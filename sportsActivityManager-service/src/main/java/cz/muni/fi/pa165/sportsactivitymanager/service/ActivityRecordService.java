@@ -10,7 +10,6 @@ import java.util.List;
 /**
  * Created by michal on 11/21/15.
  */
-@Service
 public interface ActivityRecordService {
     /**
      * Gets all records for the particular activity used by the system users in the last 7 days

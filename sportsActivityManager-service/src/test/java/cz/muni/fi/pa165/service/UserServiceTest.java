@@ -61,15 +61,6 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
         userService.createUser(user);
         verify(userDao).create(user);
     }
-       
-    @Test
-    public void testUpdateUser() {
-        user.setName("New User");
-        user.setEmail("user@pa165.fi");
-        user.setWeight(91.74);
-        userService.updateUser(user);
-        verify(userDao).update(user);
-    }
 
     @Test
     public void testDeleteUser() {
