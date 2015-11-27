@@ -70,4 +70,9 @@ public class UserFacadeImpl implements UserFacade{
     public List<UserDTO> getAllUsers() {
          return beanMappingService.mapTo(userService.getAllUsers(), UserDTO.class);
     }
+
+    @Override
+    public Double calculateBMI(UserDTO user) {
+        return userService.calculateBMI(beanMappingService.mapTo(user, User.class));
+    }
 }

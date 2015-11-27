@@ -31,6 +31,10 @@ public class User {
     @NotNull
     private Double weight;
     
+    @DecimalMin("0.0")
+    @NotNull
+    private Double height;
+    
     @NotNull
     @Enumerated
     private Sex SEX;
@@ -78,6 +82,14 @@ public class User {
         this.weight = weight;
     }
 
+    public Double getHeight() {
+        return height;
+    }
+
+    public void setHeight(Double height) {
+        this.height = height;
+    }
+
     public Sex getSex() {
         return SEX;
     }
@@ -96,7 +108,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "id=" + id + ", name=" + name + ", age=" + age + ", weight=" + weight + ", sex=" + SEX + ", phoneNumber=" + email + '}';
+        return "User{" + "id=" + id + ", name=" + name + ", age=" + age + ", weight=" + weight + ", height=" + height + ", SEX=" + SEX + ", email=" + email + '}';
     }
 
     @Override

@@ -21,4 +21,5 @@ public interface UserService {
     List<User> getUserByName(String name);
     User getUserByEmail(String email);
     List<User> getAllUsers();   
+    Double calculateBMI(User user);
 }

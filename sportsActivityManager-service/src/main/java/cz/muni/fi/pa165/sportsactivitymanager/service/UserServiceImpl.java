@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.sportsactivitymanager.Dao.UserDAO;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
 
 import java.util.List;
+import java.math.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,5 +55,16 @@ public class UserServiceImpl implements UserService {
     public List<User> getUserByName(String name) {
         return userDao.findByName(name);
     }
-    
+
+    @Override
+    public Double calculateBMI(User user) {
+        double height = user.getHeight();
+        if(height == 0.0)
+            return 0.0;
+        height = height/100;
+        double bmi = (user.getWeight())/(height*height);
+        bmi = Math.round(bmi * 100.0) / 100.0;
+        return bmi;
+    }
+
 }

@@ -9,8 +9,7 @@ import java.util.List;
  *
  * @author Petra Gašparíková
  */
-public interface UserFacade {
-    
+public interface UserFacade { 
     Long createUser(UserCreateDTO user);
     void deleteUser(Long id);
     void updateUser(UserDTO user);
@@ -18,5 +17,5 @@ public interface UserFacade {
     List<UserDTO> getUsersByName(String name);
     UserDTO getUserByEmail(String email);
     List<UserDTO> getAllUsers();
-    
+    Double calculateBMI(UserDTO user);
 }
