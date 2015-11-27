@@ -18,7 +18,7 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class ActivityRecordFacadeImpl implements ActivityRecordFacade {
+public class ActivityRecordFacadeImpl implements ActivityRecordFacade{
 
     @Autowired
     private ActivityRecordService service;
@@ -55,7 +55,7 @@ public class ActivityRecordFacadeImpl implements ActivityRecordFacade {
         final List<ActivityRecordDTO> dtos = beanMappingService.mapTo(allOrdersLastWeek, ActivityRecordDTO.class);
         return dtos;
     }
-
+ 
     @Override
     public void changeDistance(NewDistanceDTO newDistance) {
         ActivityRecord changedRecord = service.getActivityRecordById(newDistance.getRecordId());

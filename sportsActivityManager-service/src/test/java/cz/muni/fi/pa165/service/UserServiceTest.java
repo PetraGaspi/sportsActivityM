@@ -5,13 +5,17 @@ import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
 import cz.muni.fi.pa165.sportsactivitymanager.Enum.Sex;
 import cz.muni.fi.pa165.sportsactivitymanager.service.UserService;
 import cz.muni.fi.pa165.sportsactivitymanager.service.config.ServiceConfiguration;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 
 import org.hibernate.service.spi.ServiceException;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -28,7 +32,7 @@ import org.testng.annotations.Test;
 @ContextConfiguration(classes = ServiceConfiguration.class)
 public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTests{
     
-    @Autowired
+    @Mock
     private UserDAO userDao;
     
     @Autowired
@@ -54,58 +58,73 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
     
     @Test
     public void testCreateUser() {
-        User u = userService.createUser(user);
-        assertDeepEquals(userDao.findById(u.getId()), user);
+        userService.createUser(user);
+        verify(userDao).create(user);
     }
        
     @Test
     public void testUpdateUser() {
-        userDao.create(user);
         user.setName("New User");
         user.setEmail("user@pa165.fi");
         user.setWeight(91.74);
         userService.updateUser(user);
-        assertDeepEquals(user, userDao.findById(user.getId()));
+        verify(userDao).update(user);
     }
 
     @Test
     public void testDeleteUser() {
-        userDao.create(user);
-        assertNotNull(userDao.findById(user.getId()));
         userService.deleteUser(user);
-        assertNull(userDao.findById(user.getId()));
+        verify(userDao).delete(user);
     }
 
     @Test
-    public void testGetUserByIdNotExisting() {       
+    public void testGetUserByIdNotExisting() {      
+        when(userDao.findById(Long.MIN_VALUE)).thenReturn(null);
         assertNull(userService.getUserById(Long.MIN_VALUE));
     }
     
     @Test
     public void testGetUserById() {
-        userDao.create(user);                  
+        user.setId(1l); 
+        when(userDao.findById(user.getId())).thenReturn(user);
         assertDeepEquals(user, userService.getUserById(user.getId()));
     }
     
     @Test
     public void testGetUserByEmail() {
-        userDao.create(user);
+        when(userDao.findByEmail(user.getEmail())).thenReturn(user);
         assertDeepEquals(user, userService.getUserByEmail(user.getEmail()));
     }
     
     @Test
+    public void testgetUsersByName(){
+        User u = new User();
+        u.setName(user.getName());
+        u.setEmail("charlie@man.man");
+        u.setSex(Sex.Male);
+        u.setAge(55);
+        u.setWeight(102.0);
+        when(userDao.findByName(user.getName())).thenReturn(Arrays.asList(user,u));
+    }
+    
+    @Test
     public void testGetAllUsers() {
-        assertEquals(userService.getAllUsers().size(), 0);
+        when(userDao.findAll()).thenReturn(Collections.singletonList(user));
+        assertEquals(userService.getAllUsers().size(), 1);
         User u = new User();
         u.setName("Charlie Man");
         u.setEmail("charlie@man.man");
         u.setSex(Sex.Male);
         u.setAge(55);
         u.setWeight(102.0);
-        userDao.create(u);
-        assertEquals(userService.getAllUsers().size(), 1);
-        userDao.create(user);
+        when(userDao.findAll()).thenReturn(Arrays.asList(user,u));
         assertEquals(userService.getAllUsers().size(), 2);
+        userDao.delete(user);
+        when(userDao.findAll()).thenReturn(Collections.singletonList(user));
+        assertEquals(userService.getAllUsers().size(), 1);
+        userDao.delete(u);
+        when(userDao.findAll()).thenReturn(new ArrayList<>());
+        assertEquals(userService.getAllUsers().size(), 0);          
     }
     
     private void assertDeepEquals(User user1, User user2) {

@@ -5,7 +5,7 @@ import java.util.Objects;
 
 /**
  *
- * @author Maemi
+ * @author Petra Gasparikova
  */
 public class UserCreateDTO {
     
