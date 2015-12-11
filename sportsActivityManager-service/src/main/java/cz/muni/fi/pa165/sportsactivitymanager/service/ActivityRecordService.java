@@ -12,7 +12,7 @@ import java.util.List;
  */
 public interface ActivityRecordService {
     /**
-     * Gets all records for the particular activity used by the system users in the last 7 days
+     * Gets all records for the particular activity used by the system users in the last days specified as argument
      * @param a activity to search records for
      * @param days number rof previous days to search in
      * @return list of all activities for specified criteria

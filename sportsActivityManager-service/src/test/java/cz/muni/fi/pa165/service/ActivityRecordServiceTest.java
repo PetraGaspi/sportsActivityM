@@ -47,7 +47,7 @@ public class ActivityRecordServiceTest extends AbstractTransactionalTestNGSpring
     @Mock
     private ActivityRecordDAO recordDAO;
 
-    @Autowired
+    @Mock
     private ActivityDAO activityDAO;
     
     @Autowired
@@ -75,6 +75,8 @@ public class ActivityRecordServiceTest extends AbstractTransactionalTestNGSpring
         activity.setCalories(calories);
         activity.setMeasureDistance(false);
         activity.setName("Volleyball");
+
+        activityDAO.create(activity);
 
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DAY_OF_MONTH, -2);
@@ -120,7 +122,7 @@ public class ActivityRecordServiceTest extends AbstractTransactionalTestNGSpring
         record.setUser(user2);
         recordDAO.update(record);
 
-        when(recordDAO.getRecordsByUser(user)).thenReturn(Arrays.asList());
+        when(recordDAO.getRecordsByUser(user2)).thenReturn(Arrays.asList(record));
     }
 
     @Test
@@ -128,19 +130,22 @@ public class ActivityRecordServiceTest extends AbstractTransactionalTestNGSpring
         service.getRecordsByActivity(activity);
         when(recordDAO.getRecordsByActivity(activity)).thenReturn(Arrays.asList(record));
 
-        activityDAO.create(activity);
-
-        Activity activity2 = activityDAO.findById(activity.getId());
+        Activity activity2 = new Activity();
+        activity2.setCalories(new Calories());
+        activity2.setMeasureDistance(false);
         activity2.setName("Squash");
+        activityDAO.create(activity2);
 
         record.setActivity(activity2);
         recordDAO.update(record);
 
-        when(recordDAO.getRecordsByActivity(activity)).thenReturn(Arrays.asList());
+        when(recordDAO.getRecordsByActivity(activity2)).thenReturn(Arrays.asList(record));
     }
 
     @Test
     public void testGetActivityRecordsLastDays() {
+        activityDAO.create(activity);
+        record.setActivity(activity);
         service.createRecord(record);
         when(service.getActivityRecordsLastDays(activity, 3)).thenReturn(Arrays.asList(record));
 
