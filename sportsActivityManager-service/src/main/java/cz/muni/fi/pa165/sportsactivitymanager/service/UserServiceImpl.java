@@ -4,7 +4,6 @@ import cz.muni.fi.pa165.sportsactivitymanager.Dao.UserDAO;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
 
 import java.util.List;
-import java.math.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
