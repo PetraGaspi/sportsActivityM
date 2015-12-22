@@ -36,7 +36,7 @@ public class UserController {
     private UserDAO userDAO;
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public final Collection<Integer> getAllUsers() throws JsonProcessingException {
+    public final Collection<UserDTO> getAllUsers() throws JsonProcessingException {
         //debug attempts:
         UserDTO userDTO = new UserDTO();
         userDTO.setId(1l);
@@ -48,14 +48,7 @@ public class UserController {
         List<UserDTO> out = new ArrayList<>();
         out.add(userDTO);
 
-        CaloriesDTO c1 = new CaloriesDTO();
-        c1.setId(1l);
-        c1.setIndex(0.458d);
-        Collection<Integer> out2 = new ArrayList<>();
-        out2.add(123);
-        out2.add(456);
-
-        return out2;
+        return out;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
