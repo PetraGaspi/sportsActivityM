@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="sportsActivityM-sample-data:war exploded">
+    <output-path>$PROJECT_DIR$/classes/artifacts/sportsActivityM_sample_data_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="sportsActivityM-sample-data/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="sportsActivityM-sample-data" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
