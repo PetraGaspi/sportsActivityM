@@ -91,13 +91,14 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
     @Test
     public void testgetUsersByName(){
         User u = new User();
-        u.setName(user.getName());
+        u.setName("User Name");
         u.setEmail("charlie@man.man");
         u.setSex(Sex.Male);
         u.setAge(55);
         u.setWeight(102.0);
         u.setHeight(198.0);
         when(userDao.findByName(user.getName())).thenReturn(Arrays.asList(user,u));
+        assertEquals(userService.getUserByName("User Name").size(), 2);
     }
     
     @Test
@@ -121,11 +122,8 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
         assertEquals(userService.getAllUsers().size(), 0);          
     }
    
-    /*
-    * Test is being skipped for some (for now) unknown reason.
-    
     @Test
-    public void testCalculateBMI(User user){        
+    public void testCalculateBMI(){        
         
         user.setWeight(100.0);
         user.setHeight(200.0);
@@ -137,7 +135,7 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
         userDao.update(user);
         assertEquals(userService.calculateBMI(user),0.0,0.0);       
     }
-    */
+    
     private void assertDeepEquals(User user1, User user2) {
         assertEquals(user1, user2);
         assertEquals(user1.getId(), user2.getId());
