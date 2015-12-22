@@ -37,5 +37,6 @@
         <module>sportsActivityManager-api</module>
         <module>sportsActivityManager-service</module>
         <module>sportsActivityM-rest</module>
+        <module>sportsActivityM-sample-data</module>
     </modules>
 </project>

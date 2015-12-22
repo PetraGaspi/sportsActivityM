@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.sportsactivitymanager.Facade;
 
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserCreateDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserDTO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  * 
  * @author Petra Gašparíková
  */
+@Service
 public interface UserFacade { 
 
     /**
