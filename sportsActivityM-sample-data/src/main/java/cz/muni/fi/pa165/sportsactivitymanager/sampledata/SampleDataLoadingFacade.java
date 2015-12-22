@@ -1,4 +1,4 @@
-package sampledata;
+package cz.muni.fi.pa165.sportsactivitymanager.sampledata;
 
 import java.io.IOException;
 

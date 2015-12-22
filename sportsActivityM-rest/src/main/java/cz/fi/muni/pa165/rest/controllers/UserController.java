@@ -1,5 +1,8 @@
 package cz.fi.muni.pa165.rest.controllers;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import cz.muni.fi.pa165.sportsactivitymanager.Dto.CaloriesDTO;
+import cz.muni.fi.pa165.sportsactivitymanager.Entity.Calories;
 import cz.muni.fi.pa165.sportsactivitymanager.service.UserService;
 import cz.muni.fi.pa165.sportsactivitymanager.Facade.UserFacade;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserDTO;
@@ -15,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -32,23 +36,26 @@ public class UserController {
     private UserDAO userDAO;
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-    public final List<UserDTO> getAllUsers() {
-//            //create mock data: TODO implement in sample-data module
-//            User user = new User();
-//            user.setName("Peter");
-//            user.setWeight(81d);
-//            user.setAge(21);
-//            user.setHeight(185d);
-//            user.setEmail("peter2@gmail.com");
-//
-//            userDAO.create(user);
-//            System.out.println(user.getEmail() + "attached id: " + user.getId());
+    public final Collection<Integer> getAllUsers() throws JsonProcessingException {
+        //debug attempts:
+        UserDTO userDTO = new UserDTO();
+        userDTO.setId(1l);
+        userDTO.setHeight(180d);
+        userDTO.setAge(21);
+        userDTO.setWeight(75d);
+        userDTO.setName("Peter");
 
+        List<UserDTO> out = new ArrayList<>();
+        out.add(userDTO);
 
-            List<UserDTO> out = userFacade.getAllUsers();
+        CaloriesDTO c1 = new CaloriesDTO();
+        c1.setId(1l);
+        c1.setIndex(0.458d);
+        Collection<Integer> out2 = new ArrayList<>();
+        out2.add(123);
+        out2.add(456);
 
-            return out;
-
+        return out2;
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

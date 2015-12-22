@@ -1,4 +1,4 @@
-package sampledata;
+package cz.muni.fi.pa165.sportsactivitymanager.sampledata;
 
 import cz.muni.fi.pa165.sportsactivitymanager.service.config.ServiceConfiguration;
 import org.slf4j.Logger;
@@ -19,9 +19,9 @@ import java.io.IOException;
 @Configuration
 @Import(ServiceConfiguration.class)
 @ComponentScan(basePackageClasses = {SampleDataLoadingFacadeImpl.class})
-public class EshopWithSampleDataConfiguration {
+public class ManagerSampleDataFiller {
 
-    final static Logger log = LoggerFactory.getLogger(EshopWithSampleDataConfiguration.class);
+    final static Logger log = LoggerFactory.getLogger(ManagerSampleDataFiller.class);
 
     @Autowired
     SampleDataLoadingFacade sampleDataLoadingFacade;
