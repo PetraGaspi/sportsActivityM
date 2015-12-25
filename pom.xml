@@ -8,9 +8,7 @@
     <version>1.0</version>
     <name>Sports activity manager</name>
     <!--TOTO: zrevidovat-->
-    <dependencies>
 
-    </dependencies>
     <build>
         <plugins>
             <plugin>
