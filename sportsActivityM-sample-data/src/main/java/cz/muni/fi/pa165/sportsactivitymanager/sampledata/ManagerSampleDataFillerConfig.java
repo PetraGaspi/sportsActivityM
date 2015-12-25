@@ -19,9 +19,9 @@ import java.io.IOException;
 @Configuration
 @Import(ServiceConfiguration.class)
 @ComponentScan(basePackageClasses = {SampleDataLoadingFacadeImpl.class})
-public class ManagerSampleDataFiller {
+public class ManagerSampleDataFillerConfig {
 
-    final static Logger log = LoggerFactory.getLogger(ManagerSampleDataFiller.class);
+    final static Logger log = LoggerFactory.getLogger(ManagerSampleDataFillerConfig.class);
 
     @Autowired
     SampleDataLoadingFacade sampleDataLoadingFacade;

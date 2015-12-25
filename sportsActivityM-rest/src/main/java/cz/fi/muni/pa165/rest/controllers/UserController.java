@@ -45,8 +45,10 @@ public class UserController {
         userDTO.setWeight(75d);
         userDTO.setName("Peter");
 
-        List<UserDTO> out = new ArrayList<>();
+        List<UserDTO> out = userFacade.getAllUsers();
         out.add(userDTO);
+
+        System.out.println();
 
         return out;
     }
@@ -54,11 +56,11 @@ public class UserController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public final UserDTO getUser(@PathVariable("id") long id) throws ResourceNotFoundException {
 
-        try {
-            return userFacade.getUserById(id);
-        } catch (Exception ex) {
+        UserDTO out = userFacade.getUserById(id);
+        if (out == null) {
             throw new ResourceNotFoundException();
         }
+        return out;
 
     }
 

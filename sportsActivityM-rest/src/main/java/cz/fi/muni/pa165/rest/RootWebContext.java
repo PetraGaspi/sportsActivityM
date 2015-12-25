@@ -10,12 +10,13 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import cz.muni.fi.pa165.sportsactivitymanager.sampledata.ManagerSampleDataFillerConfig;
 
 import java.util.List;
 
 @EnableWebMvc
 @Configuration
-@Import({ServiceConfiguration.class})
+@Import({ServiceConfiguration.class, ManagerSampleDataFillerConfig.class})
 @ComponentScan(basePackages = {"cz.fi.muni.pa165"})
 public class RootWebContext extends WebMvcConfigurerAdapter {
 
