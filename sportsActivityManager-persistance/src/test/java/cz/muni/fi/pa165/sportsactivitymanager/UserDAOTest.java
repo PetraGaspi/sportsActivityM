@@ -7,7 +7,7 @@ package cz.muni.fi.pa165.sportsactivitymanager;/*
 
 import cz.muni.fi.pa165.sportsactivitymanager.Dao.UserDAO;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
-import cz.muni.fi.pa165.sportsactivitymanager.Enum.Sex;
+import cz.muni.fi.pa165.sportsactivitymanager.Enums.Sex;
 
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -24,11 +24,8 @@ import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-
-
-
 /**
- *  Test class for UserDao funcionality
+ *  Test class for UserDao functionality
  *  @author Juraj Pleško, 359530
  */
 

@@ -7,7 +7,7 @@
     <packaging>pom</packaging>
     <version>1.0</version>
     <name>Sports activity manager</name>
-    <!--TOTO: zrevidovat-->
+    <!--TODO: zrevidovat-->
 
     <build>
         <plugins>
@@ -29,5 +29,6 @@
         <module>sportsActivityManager-service</module>
         <module>sportsActivityM-rest</module>
         <module>sportsActivityM-sample-data</module>
+        <module>sportsActivityM-spring-mvc</module>
     </modules>
 </project>

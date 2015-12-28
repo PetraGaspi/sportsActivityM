@@ -1,4 +1,4 @@
-//package cz.muni.fi.pa165.service.facade;
+//package cz.muni.fi.pa165.sportsactivitymanager.service.facade.test;
 //
 //import cz.muni.fi.pa165.sportsactivitymanager.Dao.ActivityDAO;
 //import cz.muni.fi.pa165.sportsactivitymanager.Dao.ActivityRecordDAO;
@@ -7,7 +7,7 @@
 //import cz.muni.fi.pa165.sportsactivitymanager.Entity.ActivityRecord;
 //import cz.muni.fi.pa165.sportsactivitymanager.Entity.Calories;
 //import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
-//import cz.muni.fi.pa165.sportsactivitymanager.Enum.Sex;
+//import cz.muni.fi.pa165.sportsactivitymanager.Enums.Sex;
 //import cz.muni.fi.pa165.sportsactivitymanager.Facade.ActivityRecordFacade;
 //import cz.muni.fi.pa165.sportsactivitymanager.service.ActivityRecordService;
 //import cz.muni.fi.pa165.sportsactivitymanager.service.BeanMappingService;

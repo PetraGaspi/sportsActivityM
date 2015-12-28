@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Facade;
 
+import cz.muni.fi.pa165.sportsactivitymanager.Enums.UserState;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserCreateDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserDTO;
 import org.springframework.stereotype.Service;
@@ -66,6 +67,14 @@ public interface UserFacade {
      * @return List of DTOs of all users
      */
     List<UserDTO> getAllUsers();
+
+    /**
+     * Finds all users with specified state
+     * @param state specified state
+     * @return all users with specified state
+     */
+    List<UserDTO> getUsersByState(UserState state);
+
 
     /**
      * Calculates Body Mass Index (BMI) of selected user.

@@ -3,6 +3,8 @@ package cz.muni.fi.pa165.sportsactivitymanager.Dao;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
 
 import java.util.List;
+
+import cz.muni.fi.pa165.sportsactivitymanager.Enums.UserState;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -58,6 +60,12 @@ public class UserDAOImpl implements UserDAO {
                 .getSingleResult();
     }
 
+    @Override
+    public List<User> findByState(UserState state){
+        return em.createQuery("SELECT u FROM User u WHERE u.state = :state", User.class)
+                .setParameter("state", state)
+                .getResultList();
+    }
     
     
 }

@@ -1,6 +1,7 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Entity;
 
-import cz.muni.fi.pa165.sportsactivitymanager.Enum.Sex;
+import cz.muni.fi.pa165.sportsactivitymanager.Enums.Sex;
+import cz.muni.fi.pa165.sportsactivitymanager.Enums.UserState;
 
 import java.util.Objects;
 import javax.persistence.*;
@@ -23,6 +24,8 @@ public class User {
     
     @NotNull
     private String name;
+
+    private String passwordHash;
     
     @NotNull
     private Integer age;
@@ -38,12 +41,18 @@ public class User {
     //@NotNull
     @Enumerated
     private Sex SEX;
+
+    //TODO: state and password should get notNull
+    //@NotNull
+    @Enumerated
+    private UserState state;
       
     @Column(nullable=false,unique=true)
     @NotNull
     @Pattern(regexp=".+@.+\\....?")
     private String email;
 
+    //TODO: remove usages of this:
     public User(Long id) {
         this.id = id;
     }
@@ -105,6 +114,23 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public String getPasswordHash() {
+        return passwordHash;
+    }
+
+    public void setPasswordHash(String passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public UserState getState() {
+        return state;
+    }
+
+    public void setState(UserState state) {
+        this.state = state;
+    }
+
 
     @Override
     public String toString() {

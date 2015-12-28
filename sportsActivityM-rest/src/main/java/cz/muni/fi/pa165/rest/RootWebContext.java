@@ -1,4 +1,4 @@
-package cz.fi.muni.pa165.rest;
+package cz.muni.fi.pa165.rest;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -17,7 +17,7 @@ import java.util.List;
 @EnableWebMvc
 @Configuration
 @Import({ServiceConfiguration.class, ManagerSampleDataFillerConfig.class})
-@ComponentScan(basePackages = {"cz.fi.muni.pa165"})
+@ComponentScan(basePackages = {"cz.muni.fi.pa165.rest"})
 public class RootWebContext extends WebMvcConfigurerAdapter {
 
     @Override

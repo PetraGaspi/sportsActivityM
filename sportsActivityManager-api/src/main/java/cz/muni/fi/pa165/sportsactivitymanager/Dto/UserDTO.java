@@ -1,6 +1,8 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Dto;
 
 import cz.muni.fi.pa165.sportsactivitymanager.Enums.Sex;
+import cz.muni.fi.pa165.sportsactivitymanager.Enums.UserState;
+
 import java.util.Objects;
 
 /**
@@ -16,6 +18,8 @@ public class UserDTO {
     private Double height;
     private Sex sex;
     private String email;
+
+    private UserState state;
 
     public Long getId() {
         return id;
@@ -71,6 +75,14 @@ public class UserDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public UserState getState() {
+        return state;
+    }
+
+    public void setState(UserState state) {
+        this.state = state;
     }
 
     @Override

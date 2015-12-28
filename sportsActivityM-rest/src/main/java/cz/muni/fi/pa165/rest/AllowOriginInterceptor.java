@@ -1,4 +1,4 @@
-package cz.fi.muni.pa165.rest;
+package cz.muni.fi.pa165.rest;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 

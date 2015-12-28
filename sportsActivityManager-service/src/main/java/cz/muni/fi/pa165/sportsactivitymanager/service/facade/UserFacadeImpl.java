@@ -3,6 +3,7 @@ package cz.muni.fi.pa165.sportsactivitymanager.service.facade;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserCreateDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
+import cz.muni.fi.pa165.sportsactivitymanager.Enums.UserState;
 import cz.muni.fi.pa165.sportsactivitymanager.Facade.UserFacade;
 import cz.muni.fi.pa165.sportsactivitymanager.service.BeanMappingService;
 import cz.muni.fi.pa165.sportsactivitymanager.service.UserService;
@@ -69,6 +70,13 @@ public class UserFacadeImpl implements UserFacade{
     @Override
     public List<UserDTO> getAllUsers() {
          return beanMappingService.mapTo(userService.getAllUsers(), UserDTO.class);
+    }
+
+    @Override
+    public List<UserDTO> getUsersByState(UserState state) {
+        List<User> users = userService.getUsersByState(state);
+
+        return (users == null) ? null : beanMappingService.mapTo(users, UserDTO.class);
     }
 
     @Override

@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.sportsactivitymanager.service;
 
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
 
+import cz.muni.fi.pa165.sportsactivitymanager.Enums.UserState;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -67,7 +68,14 @@ public interface UserService {
      * 
      * @return list of all users
      */
-    List<User> getAllUsers();   
+    List<User> getAllUsers();
+
+    /**
+     * Finds all users with specified state
+     * @param state specified state
+     * @return all users with specified state
+     */
+    List<User> getUsersByState(UserState state);
 
     /**
      * Calculates Body Mass Index (BMI) of selected user.

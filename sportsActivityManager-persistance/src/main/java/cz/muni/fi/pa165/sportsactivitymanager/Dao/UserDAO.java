@@ -1,6 +1,8 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Dao;
 
 import  cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
+import cz.muni.fi.pa165.sportsactivitymanager.Enums.UserState;
+
 import java.util.List;
 
 /**
@@ -62,4 +64,11 @@ public interface UserDAO {
      * @return list of users
      */
     List<User> findAll();
+
+    /**
+     * Finds all registered users with specified state
+     * @param state specified state
+     * @return all registered users with specified state
+     */
+    List<User> findByState(UserState state);
 }

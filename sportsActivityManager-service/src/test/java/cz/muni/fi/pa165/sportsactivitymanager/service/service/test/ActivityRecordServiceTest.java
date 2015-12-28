@@ -1,21 +1,18 @@
-package cz.muni.fi.pa165.service;
+package cz.muni.fi.pa165.sportsactivitymanager.service.service.test;
 
 import cz.muni.fi.pa165.sportsactivitymanager.Dao.ActivityDAO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dao.ActivityRecordDAO;
-import cz.muni.fi.pa165.sportsactivitymanager.Dao.UserDAO;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.ActivityRecord;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Calories;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
-import cz.muni.fi.pa165.sportsactivitymanager.Enum.Sex;
+import cz.muni.fi.pa165.sportsactivitymanager.Enums.Sex;
 import cz.muni.fi.pa165.sportsactivitymanager.service.ActivityRecordService;
-import cz.muni.fi.pa165.sportsactivitymanager.service.UserService;
 import cz.muni.fi.pa165.sportsactivitymanager.service.config.ServiceConfiguration;
 import org.hibernate.service.spi.ServiceException;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.stubbing.Answer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
@@ -24,12 +21,9 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import javax.inject.Inject;
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 
-import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 
 /**

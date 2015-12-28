@@ -4,7 +4,7 @@ import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.ActivityRecord;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Calories;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
-import cz.muni.fi.pa165.sportsactivitymanager.Enum.Sex;
+import cz.muni.fi.pa165.sportsactivitymanager.Enums.Sex;
 import cz.muni.fi.pa165.sportsactivitymanager.service.ActivityRecordService;
 import cz.muni.fi.pa165.sportsactivitymanager.service.ActivityService;
 import cz.muni.fi.pa165.sportsactivitymanager.service.CaloriesService;
@@ -15,17 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.Random;
 
 /**
  * Loads some sample data to populate the eshop database.

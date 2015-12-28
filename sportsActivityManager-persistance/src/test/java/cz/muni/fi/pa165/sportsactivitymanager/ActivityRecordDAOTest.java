@@ -5,7 +5,7 @@ import cz.muni.fi.pa165.sportsactivitymanager.Entity.ActivityRecord;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Calories;
-import cz.muni.fi.pa165.sportsactivitymanager.Enum.Sex;
+import cz.muni.fi.pa165.sportsactivitymanager.Enums.Sex;
 
 import java.util.Calendar;
 import java.util.List;
