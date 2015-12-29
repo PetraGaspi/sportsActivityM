@@ -15,6 +15,8 @@ public interface ActivityRecordFacade {
 
     void create(ActivityRecordDTO activity);
 
+    List<ActivityRecordDTO> getAllRecords();
+
     ActivityRecordDTO getRecordById(Long id);
 
     List<ActivityRecordDTO> getRecordsByUser(UserDTO user);

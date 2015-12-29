@@ -64,6 +64,12 @@ public class ActivityRecordDAOImpl implements ActivityRecordDAO {
     }
 
     @Override
+    public List<ActivityRecord> getAllRecords() {
+        return em.createQuery("SELECT ar FROM ActivityRecord ar", ActivityRecord.class)
+                .getResultList();
+    }
+
+    @Override
     public ActivityRecord getRecordById(Long id) {
         return em.find(ActivityRecord.class, id);
     }

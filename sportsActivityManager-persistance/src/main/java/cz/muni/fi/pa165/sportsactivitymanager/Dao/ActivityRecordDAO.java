@@ -18,6 +18,12 @@ public interface ActivityRecordDAO {
     void create(ActivityRecord activityRecord);
 
     /**
+     * Gets all persisted records objects
+     * @return all persisted records objects
+     */
+    List getAllRecords();
+
+    /**
      * Finds and returns persisted ActivityRecord object with specified id
      * @param id auto-generated identification of the object
      * @return ActivityRecord object with specified id, or null if no such object exists

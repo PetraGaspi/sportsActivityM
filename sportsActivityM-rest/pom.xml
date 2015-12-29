@@ -23,7 +23,7 @@
                 <artifactId>tomcat7-maven-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <url>http://localhost:8080</url>
+                    <url>http://localhost:8080/pa165</url>
                     <path>/rest</path>
                 </configuration>
             </plugin>

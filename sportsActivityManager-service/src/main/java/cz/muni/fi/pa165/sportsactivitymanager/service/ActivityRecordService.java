@@ -26,6 +26,12 @@ public interface ActivityRecordService {
     public void createRecord(ActivityRecord ar);
 
     /**
+     * Gets all persisted records objects
+     * @return all persisted records objects
+     */
+    List<ActivityRecord> getAllRecords();
+
+    /**
      * Finds and returns persisted ActivityRecord objects associated with specified user
      * @param user user associated with retrieved ActivityRecords
      * @return a List of ActivityRecord objects associated with specified user, or empty List if no such object is persisted

@@ -38,6 +38,13 @@ public class ActivityRecordFacadeImpl implements ActivityRecordFacade{
     }
 
     @Override
+    public List<ActivityRecordDTO> getAllRecords() {
+        final List<ActivityRecord> allRecords = service.getAllRecords();
+        final List<ActivityRecordDTO> dtos = beanMappingService.mapTo(allRecords, ActivityRecordDTO.class);
+        return dtos;
+    }
+
+    @Override
     public ActivityRecordDTO getRecordById(Long id) {
         return beanMappingService.mapTo(service.getActivityRecordById(id), ActivityRecordDTO.class);
     }
