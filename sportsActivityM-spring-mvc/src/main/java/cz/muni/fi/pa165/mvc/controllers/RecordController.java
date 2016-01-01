@@ -1,4 +1,4 @@
-package cz.fi.muni.pa165.mvc.controllers;
+package cz.muni.fi.pa165.mvc.controllers;
 
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Enums.UserState;
@@ -23,15 +23,11 @@ public class RecordController {
     @Autowired
     private ActivityRecordFacade recordFacade;
 
-    /* TODO: autowiring recordFacade might not work - check persistence
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
-        recordFacade.getAllRecords();
         model.addAttribute("records", recordFacade.getAllRecords());
         return "record/list";
     }
-
-    */
 
     /* TODO: make some filter maybe
 

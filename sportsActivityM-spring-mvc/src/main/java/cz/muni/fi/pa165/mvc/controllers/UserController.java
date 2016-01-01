@@ -1,9 +1,10 @@
-package cz.fi.muni.pa165.mvc.controllers;
+package cz.muni.fi.pa165.mvc.controllers;
 
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Enums.UserState;
 import cz.muni.fi.pa165.sportsactivitymanager.Facade.UserFacade;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -32,6 +34,7 @@ public class UserController {
     @RequestMapping(value = "/list/{filter}", method = RequestMethod.GET)
     public String list(@PathVariable String filter, Model model) {
         List<UserDTO> users;
+
         switch (filter) {
             case "all":
                 users = userFacade.getAllUsers();
@@ -48,8 +51,15 @@ public class UserController {
             default:
                 users = new ArrayList<>();
                 model.addAttribute("alert_danger", "Unknown filter " + filter);
-
         }
+
+        model.addAttribute("users", users);
+        return "user/list";
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String getUser(@PathVariable("id") long id, Model model) {
+        List<UserDTO> users = new ArrayList<>(Arrays.asList(userFacade.getUserById(id)));
         model.addAttribute("users", users);
         return "user/list";
     }

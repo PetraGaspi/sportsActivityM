@@ -1,4 +1,4 @@
-package cz.fi.muni.pa165.mvc.config;
+package cz.muni.fi.pa165.mvc.config;
 
 import cz.muni.fi.pa165.sportsactivitymanager.sampledata.ManagerSampleDataFillerConfig;
 import cz.muni.fi.pa165.sportsactivitymanager.service.config.ServiceConfiguration;
@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 @EnableWebMvc
 @Configuration
 @Import({ServiceConfiguration.class, ManagerSampleDataFillerConfig.class})
-@ComponentScan(basePackages = "cz.fi.muni.pa165.mvc.controllers")
+@ComponentScan(basePackages = "cz.muni.fi.pa165.mvc.controllers")
 public class SpringMvcConfig extends WebMvcConfigurerAdapter {
 
     public static final String TEXTS = "Texts";

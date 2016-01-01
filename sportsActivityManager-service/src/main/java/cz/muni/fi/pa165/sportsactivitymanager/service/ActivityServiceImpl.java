@@ -18,9 +18,10 @@ public class ActivityServiceImpl implements ActivityService {
     @Inject
     ActivityDAO dao;
 
+    //TODO: edit to make unique naming (find/get)x
     @Override
     public Activity getActivityById(long id) {
-        return null;
+        return dao.findById(id);
     }
 
     @Override

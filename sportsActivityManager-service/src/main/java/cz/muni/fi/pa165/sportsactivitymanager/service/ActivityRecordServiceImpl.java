@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.sportsactivitymanager.Dao.ActivityRecordDAO;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.ActivityRecord;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -18,7 +19,7 @@ import java.util.List;
 @Service
 public class ActivityRecordServiceImpl implements ActivityRecordService {
 
-    @Inject
+    @Autowired
     ActivityRecordDAO dao;
 
     @Override

@@ -33,19 +33,6 @@ public class UserController {
     public final Collection<UserDTO> getAllUsers() throws JsonProcessingException {
         List<UserDTO> out = userFacade.getAllUsers();
 
-        //debug attempts:
-//        List<UserDTO> out = new ArrayList<>();
-//
-//        UserDTO userDTO = new UserDTO();
-//        userDTO.setId(1l);
-//        userDTO.setHeight(180d);
-//        userDTO.setAge(21);
-//        userDTO.setWeight(75d);
-//        userDTO.setName("Peter");
-//        out.add(userDTO);
-//
-//        System.out.println();
-
         return out;
     }
 

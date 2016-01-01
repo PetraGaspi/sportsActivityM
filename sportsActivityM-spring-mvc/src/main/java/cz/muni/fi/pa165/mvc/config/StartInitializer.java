@@ -1,4 +1,4 @@
-package cz.fi.muni.pa165.mvc.config;
+package cz.muni.fi.pa165.mvc.config;
 
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;

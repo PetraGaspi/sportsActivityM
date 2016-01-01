@@ -7,7 +7,7 @@ package cz.muni.fi.pa165.sportsactivitymanager.service.facade;
 
 import javax.transaction.Transactional;
 
-import org.springframework.context.annotation.Bean;
+import cz.muni.fi.pa165.sportsactivitymanager.Dto.ActivityCreateDTO;
 import org.springframework.stereotype.Service;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.ActivityDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
@@ -34,9 +34,18 @@ public class ActivityFacadeImpl implements ActivityFacade {
     private BeanMappingService beanMappingService;
 
     @Override
-    public void createActivity(ActivityDTO activity) {
+    public long createActivity(ActivityCreateDTO activityDTO) {
+        Calories createC = new Calories();
+        createC.setIndex(activityDTO.getCalories().getIndex());
 
-        service.createActivity(service.getActivityById(activity.getId()));
+        Activity createA = new Activity();
+
+        createA.setCalories(createC);
+        createA.setMeasureDistance(activityDTO.getMeasureDistance());
+        createA.setName(activityDTO.getName());
+
+        service.createActivity(createA);
+        return createA.getId();
     }
 
     @Override
@@ -55,7 +64,7 @@ public class ActivityFacadeImpl implements ActivityFacade {
     }
 
     @Override
-    public List<ActivityDTO> findAllActivities() {
+    public List<ActivityDTO> getAllActivities() {
         return beanMappingService.mapTo(service.findAllActivities(), ActivityDTO.class);
     }
 

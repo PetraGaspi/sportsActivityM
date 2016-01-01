@@ -17,7 +17,7 @@ import cz.muni.fi.pa165.sportsactivitymanager.service.facade.UserFacadeImpl;
 
 @Configuration
 @Import(PersistenceSampleApplicationContext.class)
-@ComponentScan(basePackageClasses={UserServiceImpl.class, UserFacadeImpl.class})
+@ComponentScan(basePackages = "cz.muni.fi.pa165.sportsactivitymanager.service")
 public class ServiceConfiguration {
 	
 	@Bean

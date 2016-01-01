@@ -21,7 +21,7 @@ public interface ActivityRecordDAO {
      * Gets all persisted records objects
      * @return all persisted records objects
      */
-    List getAllRecords();
+    List<ActivityRecord> getAllRecords();
 
     /**
      * Finds and returns persisted ActivityRecord object with specified id

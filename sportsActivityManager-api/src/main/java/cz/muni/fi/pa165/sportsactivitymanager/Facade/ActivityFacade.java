@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Facade;
 
+import cz.muni.fi.pa165.sportsactivitymanager.Dto.ActivityCreateDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.ActivityDTO;
 import java.util.List;
 
@@ -9,12 +10,12 @@ import java.util.List;
  */
 public interface ActivityFacade {
     
-    void createActivity (ActivityDTO activity);
+    long createActivity (ActivityCreateDTO activity);
     void deleteActivity (ActivityDTO activity);
     void updateActivity (ActivityDTO activity);
     ActivityDTO findActivityById(long id);
     
-    List<ActivityDTO> findAllActivities();
+    List<ActivityDTO> getAllActivities();
     
     List<ActivityDTO> findAllDistance();
     

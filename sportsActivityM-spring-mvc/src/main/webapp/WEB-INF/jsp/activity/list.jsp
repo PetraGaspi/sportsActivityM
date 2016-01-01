@@ -14,23 +14,17 @@
         <tr>
             <th>id</th>
             <th>name</th>
-            <th>age</th>
-            <th>email</th>
-            <th>height</th>
-            <th>weight</th>
-            <th>sex</th>
+            <th>distance measured</th>
+            <th>calories per hour</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${users}" var="user">
+        <c:forEach items="${activities}" var="activity">
             <tr>
-                <td>${user.id}</td>
-                <td><c:out value="${user.name}"/></td>
-                <td><c:out value="${user.age}"/></td>
-                <td><c:out value="${user.email}"/></td>
-                <td><c:out value="${user.height}"/></td>
-                <td><c:out value="${user.weight}"/></td>
-                <td><c:out value="${user.sex}"/></td>
+                <td>${activity.id}</td>
+                <td><c:out value="${activity.name}"/></td>
+                <td><c:out value="${activity.measureDistance}"/></td>
+                <td><c:out value="${activity.calories.index}"/></td>
             </tr>
         </c:forEach>
         </tbody>
