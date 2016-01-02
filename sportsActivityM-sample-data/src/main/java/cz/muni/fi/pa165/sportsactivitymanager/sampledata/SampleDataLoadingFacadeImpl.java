@@ -5,6 +5,7 @@ import cz.muni.fi.pa165.sportsactivitymanager.Entity.ActivityRecord;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Calories;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
 import cz.muni.fi.pa165.sportsactivitymanager.Enums.Sex;
+import cz.muni.fi.pa165.sportsactivitymanager.Enums.UserState;
 import cz.muni.fi.pa165.sportsactivitymanager.service.ActivityRecordService;
 import cz.muni.fi.pa165.sportsactivitymanager.service.ActivityService;
 import cz.muni.fi.pa165.sportsactivitymanager.service.CaloriesService;
@@ -61,7 +62,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         //activity3
         a3 = new Activity();
         a3.setMeasureDistance(true);
-        a3.setName("Volley");
+        a3.setName("Skating");
 
         Calories c3 = new Calories();
         c3.setIndex(8.10);
@@ -82,6 +83,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         user1.setSex(Sex.Male);
         user1.setWeight(90.5);
         user1.setHeight(189.0);
+        user1.setState(UserState.CUSTOMER);
 
         user2.setName("Martina");
         user2.setEmail("martina@test.com");
@@ -89,11 +91,12 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         user2.setSex(Sex.Female);
         user2.setWeight(70.5);
         user2.setHeight(150.9);
+        user2.setState(UserState.CUSTOMER);
 
         Calendar date1 = Calendar.getInstance();
         Calendar date2 = Calendar.getInstance();
-        date1.set(2015, 5, 23);
-        date2.set(2015,8,4);
+        date1.set(2015, Calendar.DECEMBER, 23);
+        date2.set(2015, Calendar.DECEMBER, 4);
 
         ActivityRecord activityRecord1 = new ActivityRecord();
         ActivityRecord activityRecord2 = new ActivityRecord();
@@ -118,6 +121,21 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         activityRecordService.createRecord(activityRecord1);
         activityRecordService.createRecord(activityRecord2);
         activityRecordService.createRecord(activityRecord3);
+
+        //admin creation:
+        User admin = new User();
+        admin.setAge(20);
+        admin.setName("The Boss");
+        admin.setEmail("admin@eshop.com");
+        admin.setWeight(95d);
+        admin.setHeight(195d);
+        admin.setSex(Sex.Male);
+        admin.setState(UserState.ADMIN);
+        admin.setPasswordHash("1000:b7d48890077c130e0ac5552e3266b52680c52f408b5ff259:88b9c1fda1055b729a72a9eca5f6e23be9c8c03a6b232559");
+
+        userService.createUser(admin);
+        log.debug("User "+admin.getEmail()+" should be created");
+        log.debug("User with that emails: "+ userService.getUserByEmail(admin.getEmail()));
     }
 
 }

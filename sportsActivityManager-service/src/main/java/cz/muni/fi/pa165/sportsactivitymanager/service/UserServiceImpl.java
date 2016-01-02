@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
+import javax.persistence.NoResultException;
 
 /**
  *
@@ -48,7 +49,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User getUserByEmail(String email) {
-       return userDao.findByEmail(email);
+        try {
+            return userDao.findByEmail(email);
+        } catch (NoResultException e){
+            return null;
+        }
+
     }
 
     @Override
@@ -82,6 +88,11 @@ public class UserServiceImpl implements UserService {
     public void registerUser(User u, String unencryptedPassword) {
         u.setPasswordHash(createHash(unencryptedPassword));
         userDao.create(u);
+    }
+
+    @Override
+    public boolean authenticate(User u, String password) {
+        return validatePassword(password, u.getPasswordHash());
     }
 
     public static boolean validatePassword(String password, String correctHash) {

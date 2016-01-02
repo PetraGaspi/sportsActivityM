@@ -26,5 +26,7 @@ public interface ActivityRecordFacade {
     void changeDistance(NewDistanceDTO newDistance);
 
     void delete(long id);
+
+    List<ActivityRecordDTO> getRecordsLastDays(int days);
     
 }

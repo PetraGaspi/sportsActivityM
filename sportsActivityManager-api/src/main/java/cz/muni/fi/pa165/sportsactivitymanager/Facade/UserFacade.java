@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Facade;
 
+import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserAuthenticateDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Enums.UserState;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserCreateDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserDTO;
@@ -83,4 +84,6 @@ public interface UserFacade {
      * @return BMI
      */
     Double calculateBMI(UserDTO user);
+
+    boolean authenticate(UserAuthenticateDTO userAuthDTO);
 }

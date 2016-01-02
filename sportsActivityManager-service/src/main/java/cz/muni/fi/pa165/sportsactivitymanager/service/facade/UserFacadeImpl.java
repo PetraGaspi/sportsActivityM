@@ -1,5 +1,6 @@
 package cz.muni.fi.pa165.sportsactivitymanager.service.facade;
 
+import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserAuthenticateDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserCreateDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
@@ -83,4 +84,11 @@ public class UserFacadeImpl implements UserFacade{
     public Double calculateBMI(UserDTO user) {
         return userService.calculateBMI(beanMappingService.mapTo(user, User.class));
     }
+
+    @Override
+    public boolean authenticate(UserAuthenticateDTO userAuthDTO) {
+        return userService.authenticate(userService.getUserById(userAuthDTO.getUserId()), userAuthDTO.getPassword());
+    }
+
+
 }

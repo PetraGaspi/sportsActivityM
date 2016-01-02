@@ -7,10 +7,8 @@ import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.inject.Inject;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by michal on 11/21/15.
@@ -23,17 +21,13 @@ public class ActivityRecordServiceImpl implements ActivityRecordService {
     ActivityRecordDAO dao;
 
     @Override
-    public List<ActivityRecord> getActivityRecordsLastDays(Activity a, int days) {
+    public List<ActivityRecord> getActivityRecordsLastDays(int days) {
         Calendar acceptedTimeLimit = Calendar.getInstance();
-        acceptedTimeLimit.add(Calendar.DAY_OF_MONTH, days);
+        acceptedTimeLimit.add(Calendar.DAY_OF_MONTH, -days);
 
-        List<ActivityRecord> all = dao.getRecordsByActivity(a);
-        List<ActivityRecord> filtered = new ArrayList<>();
-        for(ActivityRecord record : all){
-            if(record.getDate().after(acceptedTimeLimit)){
-                all.add(record);
-            }
-        }
+        List<ActivityRecord> all = dao.getAllRecords();
+        List<ActivityRecord> filtered = all.stream().filter(record -> record.getDate().after(acceptedTimeLimit)).collect(Collectors.toList());
+        Collections.sort(filtered);
 
         return filtered;
     }

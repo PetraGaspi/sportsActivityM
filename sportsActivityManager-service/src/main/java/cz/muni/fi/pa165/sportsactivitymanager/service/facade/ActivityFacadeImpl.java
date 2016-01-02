@@ -36,7 +36,7 @@ public class ActivityFacadeImpl implements ActivityFacade {
     @Override
     public long createActivity(ActivityCreateDTO activityDTO) {
         Calories createC = new Calories();
-        createC.setIndex(activityDTO.getCalories().getIndex());
+        createC.setIndex(activityDTO.getCalories());
 
         Activity createA = new Activity();
 

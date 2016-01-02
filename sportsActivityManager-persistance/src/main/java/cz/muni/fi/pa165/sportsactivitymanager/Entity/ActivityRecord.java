@@ -10,7 +10,7 @@ import java.util.Objects;
  * @author Michal Stefanik 422237
  */
 @Entity
-public class ActivityRecord {
+public class ActivityRecord implements Comparable<ActivityRecord> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -115,4 +115,8 @@ public class ActivityRecord {
         return duration*activity.getCalories().getIndex();
     }
 
+    @Override
+    public int compareTo(ActivityRecord other) {
+        return (-1)*date.compareTo(other.date);
+    }
 }

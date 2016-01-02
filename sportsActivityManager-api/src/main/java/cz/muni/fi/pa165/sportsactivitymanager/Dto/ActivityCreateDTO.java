@@ -1,5 +1,8 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Dto;
 
+import javax.validation.constraints.NotNull;
+
+import javax.validation.constraints.Min;
 import java.util.Objects;
 
 /**
@@ -8,9 +11,14 @@ import java.util.Objects;
  */
 public class ActivityCreateDTO {
 
+    @NotNull
     private String name;
+
+    @NotNull
     private Boolean measureDistance;
-    private CaloriesDTO calories;
+
+    @Min(0)
+    private Double calories;
 
     public String getName() {
         return name;
@@ -28,11 +36,11 @@ public class ActivityCreateDTO {
         this.measureDistance = measureDistance;
     }
 
-    public CaloriesDTO getCalories() {
+    public Double getCalories() {
         return calories;
     }
 
-    public void setCalories(CaloriesDTO calories) {
+    public void setCalories(Double calories) {
         this.calories = calories;
     }
 

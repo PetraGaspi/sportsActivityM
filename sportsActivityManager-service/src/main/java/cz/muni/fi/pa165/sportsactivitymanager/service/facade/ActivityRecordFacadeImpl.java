@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.sportsactivitymanager.Dto.ActivityDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.ActivityRecordDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.NewDistanceDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserDTO;
+import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.ActivityRecord;
 import cz.muni.fi.pa165.sportsactivitymanager.Facade.ActivityRecordFacade;
 import cz.muni.fi.pa165.sportsactivitymanager.service.*;
@@ -76,5 +77,13 @@ public class ActivityRecordFacadeImpl implements ActivityRecordFacade{
         deleteTemplate.setId(activityRecordId);
 
         service.delete(deleteTemplate);
+    }
+
+    @Override
+    public List<ActivityRecordDTO> getRecordsLastDays(int days) {
+        List<ActivityRecord> records = service.getActivityRecordsLastDays(days);
+        final List<ActivityRecordDTO> recordsDTO = beanMappingService.mapTo(records, ActivityRecordDTO.class);
+
+        return recordsDTO;
     }
 }

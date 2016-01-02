@@ -84,4 +84,12 @@ public interface UserService {
      * @return  bmi(body mass index)
      */
     Double calculateBMI(User user);
+
+    /**
+     * authenticates the user u
+     * @param u user to authenticate
+     * @param password auth token
+     * @return true if authenticated, otherwise false
+     */
+    boolean authenticate(User u, String password);
 }

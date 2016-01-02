@@ -16,16 +16,16 @@
                 <form:label path="name" cssClass="col-sm-2 control-label">Name</form:label>
                 <form:input path="name" cssClass="form-control"/>
 
-                <form:label path="name" cssClass="col-sm-2 control-label">Measurable index</form:label>
-                <form:select path="name" cssClass="form-control">
+                <form:label path="measureDistance" cssClass="col-sm-2 control-label">Measurable</form:label>
+                <form:select path="measureDistance" cssClass="form-control">
                     <form:option value="true">true</form:option>
                     <form:option value="false">false</form:option>
                 </form:select>
 
-                <form:label path="name" cssClass="col-sm-2 control-label">Calories index</form:label>
-                <form:input path="name" cssClass="form-control"/>
+                <form:label path="calories" cssClass="col-sm-2 control-label">Calories/hour</form:label>
+                <form:input path="calories" cssClass="form-control"/>
 
-                <form:errors path="name" cssClass="help-block"/>
+                <form:errors path="calories" cssClass="help-block"/>
             </div>
         </div>
         <button class="btn btn-primary" type="submit">Create activity</button>

@@ -5,7 +5,7 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Activities Administration">
+<my:pagetemplate title="Activities">
 <jsp:attribute name="body">
 
     <table class="table">
@@ -16,6 +16,7 @@
             <th>name</th>
             <th>distance measured</th>
             <th>calories per hour</th>
+            <th>action</th>
         </tr>
         </thead>
         <tbody>
@@ -25,6 +26,7 @@
                 <td><c:out value="${activity.name}"/></td>
                 <td><c:out value="${activity.measureDistance}"/></td>
                 <td><c:out value="${activity.calories.index}"/></td>
+                <td><a href="delete/${activity.id}">delete</a></td>
             </tr>
         </c:forEach>
         </tbody>

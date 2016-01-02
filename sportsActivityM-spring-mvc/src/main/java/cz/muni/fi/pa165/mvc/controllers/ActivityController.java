@@ -33,8 +33,16 @@ public class ActivityController {
     @Autowired
     private ActivityFacade activityFacade;
 
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String list(Model model) {
+        model.addAttribute("activities", activityFacade.getAllActivities());
+        return "activity/list";
+    }
+
     @RequestMapping(value = "/list/{filter}", method = RequestMethod.GET)
     public String list(@PathVariable String filter, Model model) {
+        //TODO: might be expandable with more filters
+
         List<ActivityDTO> users;
         switch (filter) {
             case "all":
@@ -50,7 +58,7 @@ public class ActivityController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public String getUser(@PathVariable("id") long id, Model model) {
+    public String getActivity(@PathVariable("id") long id, Model model) {
         List<ActivityDTO> users = new ArrayList<>(Arrays.asList(activityFacade.findActivityById(id)));
         model.addAttribute("activities", users);
         return "activity/list";

@@ -9,6 +9,13 @@
         </fileset>
       </configuration>
     </facet>
+    <facet type="web" name="Web">
+      <configuration>
+        <webroots>
+          <root url="file://$MODULE_DIR$/web" relative="/" />
+        </webroots>
+      </configuration>
+    </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
@@ -27,5 +34,6 @@
     <orderEntry type="module" module-name="sportsActivityManager-api" />
     <orderEntry type="library" name="Maven: javax:javaee-web-api:7.0" level="project" />
     <orderEntry type="module" module-name="sportsActivityManager-service" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.5" level="project" />
   </component>
 </module>

@@ -5,26 +5,32 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="Activities Administration">
+<my:pagetemplate title="Users">
 <jsp:attribute name="body">
 
     <table class="table">
-        <caption>Bulk info - Activities</caption>
+        <caption>Bulk info - Users</caption>
         <thead>
         <tr>
             <th>id</th>
             <th>name</th>
-            <th>distance measured</th>
-            <th>calories per hour</th>
+            <th>age</th>
+            <th>email</th>
+            <th>height</th>
+            <th>weight</th>
+            <th>sex</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${activities}" var="activity">
+        <c:forEach items="${users}" var="user">
             <tr>
-                <td>${activity.id}</td>
-                <td><c:out value="${activity.name}"/></td>
-                <td><c:out value="${activity.measureDistance}"/></td>
-                <td><c:out value="${activity.calories.index}"/></td>
+                <td>${user.id}</td>
+                <td><c:out value="${user.name}"/></td>
+                <td><c:out value="${user.age}"/></td>
+                <td><c:out value="${user.email}"/></td>
+                <td><c:out value="${user.height}"/></td>
+                <td><c:out value="${user.weight}"/></td>
+                <td><c:out value="${user.sex}"/></td>
             </tr>
         </c:forEach>
         </tbody>

@@ -13,11 +13,10 @@ import java.util.List;
 public interface ActivityRecordService {
     /**
      * Gets all records for the particular activity used by the system users in the last days specified as argument
-     * @param a activity to search records for
      * @param days number rof previous days to search in
      * @return list of all activities for specified criteria
      */
-    public List<ActivityRecord> getActivityRecordsLastDays(Activity a, int days);
+    public List<ActivityRecord> getActivityRecordsLastDays(int days);
 
     /**
      * Creates a new ActivityRecord

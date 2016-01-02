@@ -72,6 +72,13 @@
             <version>5.2.2.Final</version>
         </dependency>
 
+        <!--Logger-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+            <version>1.3.0.RELEASE</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -91,7 +98,7 @@
                 <version>2.2</version>
                 <configuration>
                     <url>http://localhost:8080</url>
-                    <path>/pa165/mvc</path>
+                    <path>/pa165</path>
                 </configuration>
             </plugin>
         </plugins>

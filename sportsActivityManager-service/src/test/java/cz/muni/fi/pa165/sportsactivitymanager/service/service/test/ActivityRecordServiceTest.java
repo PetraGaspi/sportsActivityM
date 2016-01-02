@@ -141,13 +141,13 @@ public class ActivityRecordServiceTest extends AbstractTransactionalTestNGSpring
         activityDAO.create(activity);
         record.setActivity(activity);
         service.createRecord(record);
-        when(service.getActivityRecordsLastDays(activity, 3)).thenReturn(Arrays.asList(record));
+        when(service.getActivityRecordsLastDays(3)).thenReturn(Arrays.asList(record));
 
         Calendar newDate = Calendar.getInstance();
         newDate.add(Calendar.DAY_OF_MONTH,-5);
         record.setDate(newDate);
         recordDAO.update(record);
 
-        when(service.getActivityRecordsLastDays(activity, 3)).thenReturn(Arrays.asList());
+        when(service.getActivityRecordsLastDays(3)).thenReturn(Arrays.asList());
     }
 }
