@@ -3,7 +3,6 @@ package cz.muni.fi.pa165.sportsactivitymanager.Dto;
 import java.util.Objects;
 
 /**
- *
  * @author Petra Gasparikova
  */
 public class ActivityDTO {
@@ -74,6 +73,6 @@ public class ActivityDTO {
         }
         return true;
     }
-    
-    
+
+
 }

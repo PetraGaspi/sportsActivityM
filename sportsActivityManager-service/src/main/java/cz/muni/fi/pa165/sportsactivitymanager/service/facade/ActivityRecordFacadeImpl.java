@@ -4,10 +4,12 @@ import cz.muni.fi.pa165.sportsactivitymanager.Dto.ActivityDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.ActivityRecordDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.NewDistanceDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserDTO;
-import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.ActivityRecord;
 import cz.muni.fi.pa165.sportsactivitymanager.Facade.ActivityRecordFacade;
-import cz.muni.fi.pa165.sportsactivitymanager.service.*;
+import cz.muni.fi.pa165.sportsactivitymanager.service.ActivityRecordService;
+import cz.muni.fi.pa165.sportsactivitymanager.service.ActivityService;
+import cz.muni.fi.pa165.sportsactivitymanager.service.BeanMappingService;
+import cz.muni.fi.pa165.sportsactivitymanager.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +21,7 @@ import java.util.List;
  */
 @Service
 @Transactional
-public class ActivityRecordFacadeImpl implements ActivityRecordFacade{
+public class ActivityRecordFacadeImpl implements ActivityRecordFacade {
 
     @Autowired
     private ActivityRecordService service;
@@ -63,7 +65,7 @@ public class ActivityRecordFacadeImpl implements ActivityRecordFacade{
         final List<ActivityRecordDTO> dtos = beanMappingService.mapTo(allRecords, ActivityRecordDTO.class);
         return dtos;
     }
- 
+
     @Override
     public void changeDistance(NewDistanceDTO newDistance) {
         ActivityRecord changedRecord = service.getActivityRecordById(newDistance.getRecordId());

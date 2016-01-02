@@ -5,34 +5,33 @@
  */
 package cz.muni.fi.pa165.sportsactivitymanager.Entity;
 
-import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 /**
- *
  * @author Juraj Pleško, 359530
  */
 @Entity
 public class Activity {
-  
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @NotNull
     private String name;
 
     @NotNull
     private Boolean measureDistance;
-    
+
     @NotNull
-    @OneToOne(cascade=CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST)
     private Calories calories;
-    
-    public Activity () {
+
+    public Activity() {
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -41,12 +40,12 @@ public class Activity {
         return name;
     }
 
-    public Boolean getMeasureDistance() {
-        return measureDistance;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Boolean getMeasureDistance() {
+        return measureDistance;
     }
 
     public void setMeasureDistance(Boolean MeasureDistanca) {
@@ -88,6 +87,5 @@ public class Activity {
         this.calories = calories;
     }
 
-    
-    
+
 }

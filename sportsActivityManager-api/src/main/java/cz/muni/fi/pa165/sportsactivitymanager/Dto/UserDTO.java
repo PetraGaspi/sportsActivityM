@@ -6,11 +6,10 @@ import cz.muni.fi.pa165.sportsactivitymanager.Enums.UserState;
 import java.util.Objects;
 
 /**
- *
  * @author Petra Gašparíková
  */
 public class UserDTO {
-    
+
     private Long id;
     private String name;
     private Integer age;
@@ -28,7 +27,7 @@ public class UserDTO {
     public void setId(Long id) {
         this.id = id;
     }
-    
+
     public String getName() {
         return name;
     }
@@ -110,8 +109,6 @@ public class UserDTO {
         }
         return true;
     }
-    
-    
-    
-    
+
+
 }

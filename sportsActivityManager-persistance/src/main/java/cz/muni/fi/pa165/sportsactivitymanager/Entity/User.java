@@ -3,41 +3,40 @@ package cz.muni.fi.pa165.sportsactivitymanager.Entity;
 import cz.muni.fi.pa165.sportsactivitymanager.Enums.Sex;
 import cz.muni.fi.pa165.sportsactivitymanager.Enums.UserState;
 
-import java.util.Objects;
 import javax.persistence.*;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.Objects;
 
 /**
- *
  * @author Petra Gasparikova
  */
 @Entity
 //User is a reserved SQL table, so we need to change it to avoid conflicts
-@Table(name="app_user")
+@Table(name = "app_user")
 public class User {
-    
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     @NotNull
     private String name;
 
     private String passwordHash;
-    
+
     @NotNull
     private Integer age;
 
     @DecimalMin("0.0")
     @NotNull
     private Double weight;
-    
+
     @DecimalMin("0.0")
     @NotNull
     private Double height;
-    
+
     //@NotNull
     @Enumerated
     private Sex SEX;
@@ -46,10 +45,10 @@ public class User {
     //@NotNull
     @Enumerated
     private UserState state;
-      
-    @Column(nullable=false,unique=true)
+
+    @Column(nullable = false, unique = true)
     @NotNull
-    @Pattern(regexp=".+@.+\\....?")
+    @Pattern(regexp = ".+@.+\\....?")
     private String email;
 
     //TODO: remove usages of this:
@@ -59,10 +58,11 @@ public class User {
 
     public User() {
     }
-       
+
     public Long getId() {
         return id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
@@ -146,10 +146,10 @@ public class User {
 
     @Override
     public boolean equals(Object obj) {
-        if(this == obj){
+        if (this == obj) {
             return true;
         }
-        
+
         if (obj == null) {
             return false;
         }
@@ -163,8 +163,5 @@ public class User {
         return true;
     }
 
-    
-    
-    
-    
+
 }

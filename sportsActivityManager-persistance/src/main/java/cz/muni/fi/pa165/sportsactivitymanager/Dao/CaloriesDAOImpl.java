@@ -6,16 +6,13 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Dao;
 
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Calories;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.List;
 
 /**
- *
  * @author Juraj Pleško, 359530
  */
 @Repository
@@ -48,5 +45,5 @@ public class CaloriesDAOImpl implements CaloriesDAO {
     public List<Calories> findAll() {
         return em.createQuery("SELECT c FROM Calories c", Calories.class).getResultList();
     }
-    
+
 }

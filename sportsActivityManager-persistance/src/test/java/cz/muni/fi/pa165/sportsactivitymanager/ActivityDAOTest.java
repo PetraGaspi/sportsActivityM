@@ -4,7 +4,6 @@ import cz.muni.fi.pa165.sportsactivitymanager.Dao.ActivityDAO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dao.CaloriesDAO;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Calories;
-import cz.muni.fi.pa165.sportsactivitymanager.PersistenceSampleApplicationContext;
 import junit.framework.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -17,9 +16,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceUnit;
 import java.util.ArrayList;
 import java.util.List;
 

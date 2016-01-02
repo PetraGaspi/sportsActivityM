@@ -10,6 +10,8 @@
 
     <div class="jumbotron">
         <form:errors path="error" cssClass="help-block"/>
+        <h3>Welcome back!</h3>
+
         <h3>Recent records overview (last ${days} days):</h3>
     </div>
 
@@ -30,8 +32,10 @@
                 <td><b><fmt:formatDate value="${record.date.time}" pattern="yyyy-MM-dd"/></b></td>
                 <td><c:out value="${record.duration}"/></td>
                 <td><c:out value="${record.distance}"/></td>
-                <td><a href='/pa165/mvc/user/<c:out value="${record.user.id}"/>'><c:out value="${record.user.name}"/></a></td>
-                <td><a href='/pa165/mvc/activity/<c:out value="${record.activity.id}"/>'><c:out value="${record.activity.name}"/></a></td>
+                <td><a href='/pa165/mvc/user/<c:out value="${record.user.id}"/>'><c:out
+                        value="${record.user.name}"/></a></td>
+                <td><a href='/pa165/mvc/activity/<c:out value="${record.activity.id}"/>'><c:out
+                        value="${record.activity.name}"/></a></td>
             </tr>
         </c:forEach>
         </tbody>

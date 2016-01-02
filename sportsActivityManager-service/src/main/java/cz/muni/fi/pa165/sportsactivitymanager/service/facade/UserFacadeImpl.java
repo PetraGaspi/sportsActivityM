@@ -1,31 +1,30 @@
 package cz.muni.fi.pa165.sportsactivitymanager.service.facade;
 
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserAuthenticateDTO;
-import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserCreateDTO;
+import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
 import cz.muni.fi.pa165.sportsactivitymanager.Enums.UserState;
 import cz.muni.fi.pa165.sportsactivitymanager.Facade.UserFacade;
 import cz.muni.fi.pa165.sportsactivitymanager.service.BeanMappingService;
 import cz.muni.fi.pa165.sportsactivitymanager.service.UserService;
-
-import java.util.List;
-import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.List;
+
 /**
- *
  * @author Petra Gasparikova
  */
 
 @Service
 @Transactional
-public class UserFacadeImpl implements UserFacade{
-    
+public class UserFacadeImpl implements UserFacade {
+
     @Autowired
     private UserService userService;
-    
+
     @Autowired
     private BeanMappingService beanMappingService;
 
@@ -70,7 +69,7 @@ public class UserFacadeImpl implements UserFacade{
 
     @Override
     public List<UserDTO> getAllUsers() {
-         return beanMappingService.mapTo(userService.getAllUsers(), UserDTO.class);
+        return beanMappingService.mapTo(userService.getAllUsers(), UserDTO.class);
     }
 
     @Override

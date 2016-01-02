@@ -4,11 +4,10 @@ import java.util.Calendar;
 import java.util.Objects;
 
 /**
- *
  * @author Petra Gasparikova
  */
 public class ActivityRecordDTO {
-    
+
     private long id;
     private java.util.Calendar date;
     private double duration;
@@ -101,6 +100,6 @@ public class ActivityRecordDTO {
         }
         return true;
     }
-    
-    
+
+
 }

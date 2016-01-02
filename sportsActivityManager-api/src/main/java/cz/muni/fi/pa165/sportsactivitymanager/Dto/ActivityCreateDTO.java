@@ -1,12 +1,10 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Dto;
 
-import javax.validation.constraints.NotNull;
-
 import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 /**
- *
  * @author Petra Gasparikova
  */
 public class ActivityCreateDTO {
@@ -73,6 +71,6 @@ public class ActivityCreateDTO {
         }
         return true;
     }
-    
-    
+
+
 }

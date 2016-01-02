@@ -5,25 +5,24 @@
  */
 package cz.muni.fi.pa165.sportsactivitymanager.Entity;
 
-import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
 
 /**
- *
  * @author Juraj Pleško, 359530
  */
 @Entity
 public class Calories {
-    
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
+
     private Double index;
-    
+
     public Long getId() {
         return id;
     }
@@ -63,5 +62,5 @@ public class Calories {
         }
         return true;
     }
-    
+
 }

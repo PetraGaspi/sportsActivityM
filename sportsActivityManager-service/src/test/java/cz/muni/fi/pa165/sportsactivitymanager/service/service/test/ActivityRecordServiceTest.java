@@ -24,15 +24,15 @@ import org.testng.annotations.Test;
 import java.util.Arrays;
 import java.util.Calendar;
 
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
- *
  * @author Michal Stefanik
  */
 
 @ContextConfiguration(classes = ServiceConfiguration.class)
-public class ActivityRecordServiceTest extends AbstractTransactionalTestNGSpringContextTests{
+public class ActivityRecordServiceTest extends AbstractTransactionalTestNGSpringContextTests {
 
     private ActivityRecord record = new ActivityRecord();
     private User user;
@@ -43,14 +43,14 @@ public class ActivityRecordServiceTest extends AbstractTransactionalTestNGSpring
 
     @Mock
     private ActivityDAO activityDAO;
-    
+
     @Autowired
     @InjectMocks
     private ActivityRecordService service;
-    
+
     @BeforeClass
-    public void setup() throws ServiceException{
-         MockitoAnnotations.initMocks(this);
+    public void setup() throws ServiceException {
+        MockitoAnnotations.initMocks(this);
     }
 
     @BeforeMethod
@@ -144,7 +144,7 @@ public class ActivityRecordServiceTest extends AbstractTransactionalTestNGSpring
         when(service.getActivityRecordsLastDays(3)).thenReturn(Arrays.asList(record));
 
         Calendar newDate = Calendar.getInstance();
-        newDate.add(Calendar.DAY_OF_MONTH,-5);
+        newDate.add(Calendar.DAY_OF_MONTH, -5);
         record.setDate(newDate);
         recordDAO.update(record);
 

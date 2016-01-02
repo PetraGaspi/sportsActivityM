@@ -28,8 +28,8 @@ public class Initializer extends AbstractAnnotationConfigDispatcherServletInitia
         CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
         encodingFilter.setEncoding("utf-8");
         encodingFilter.setForceEncoding(true);
-       
-        
+
+
         return new Filter[]{encodingFilter};
     }
 

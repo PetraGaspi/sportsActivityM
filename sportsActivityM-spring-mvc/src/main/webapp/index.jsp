@@ -7,12 +7,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-  <head>
+<head>
     <title></title>
-  </head>
-  <body>
-    <%
-        response.sendRedirect("home");
-    %>
-  </body>
+</head>
+<body>
+<%
+    response.sendRedirect("home");
+%>
+</body>
 </html>

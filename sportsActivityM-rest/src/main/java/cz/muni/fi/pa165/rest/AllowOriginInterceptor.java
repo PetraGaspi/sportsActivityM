@@ -19,7 +19,7 @@ public class AllowOriginInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request,
-            HttpServletResponse response, Object handler)
+                             HttpServletResponse response, Object handler)
             throws Exception {
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods",

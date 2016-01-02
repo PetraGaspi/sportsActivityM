@@ -29,14 +29,14 @@ public class MainController {
 
     @RequestMapping(value = "/{days}", method = RequestMethod.GET)
     public String list(@PathVariable String days, Model model) {
-        try{
+        try {
             int intDays = Integer.parseInt(days);
 
             model.addAttribute("days", intDays);
             model.addAttribute("records", recordFacade.getRecordsLastDays(intDays));
             return "home";
 
-        } catch (NumberFormatException ne){
+        } catch (NumberFormatException ne) {
             model.addAttribute("error", true);
 
             model.addAttribute("days", RECENT_DAYS);

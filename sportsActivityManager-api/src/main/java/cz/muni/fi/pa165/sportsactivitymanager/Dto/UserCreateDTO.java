@@ -1,14 +1,14 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Dto;
 
 import cz.muni.fi.pa165.sportsactivitymanager.Enums.Sex;
+
 import java.util.Objects;
 
 /**
- *
  * @author Petra Gasparikova
  */
 public class UserCreateDTO {
-    
+
     private String name;
     private Integer age;
     private Double weight;
@@ -90,7 +90,5 @@ public class UserCreateDTO {
         return true;
     }
 
-    
-    
-    
+
 }

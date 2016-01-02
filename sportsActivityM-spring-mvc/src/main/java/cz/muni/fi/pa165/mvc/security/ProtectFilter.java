@@ -43,7 +43,7 @@ public class ProtectFilter implements Filter {
         //get Spring context and UserFacade from it
         UserFacade userFacade = WebApplicationContextUtils.getWebApplicationContext(r.getServletContext()).getBean(UserFacade.class);
         UserDTO matchingUser = userFacade.getUserByEmail(logname);
-        if(matchingUser==null) {
+        if (matchingUser == null) {
             log.warn("no user with email {}", logname);
             response401(response);
             return;

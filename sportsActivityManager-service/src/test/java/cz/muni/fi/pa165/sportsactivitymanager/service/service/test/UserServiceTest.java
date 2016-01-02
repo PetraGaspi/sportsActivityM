@@ -5,17 +5,9 @@ import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
 import cz.muni.fi.pa165.sportsactivitymanager.Enums.Sex;
 import cz.muni.fi.pa165.sportsactivitymanager.service.UserService;
 import cz.muni.fi.pa165.sportsactivitymanager.service.config.ServiceConfiguration;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-
 import org.hibernate.service.spi.ServiceException;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -24,28 +16,35 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
 /**
- *
  * @author Petra Gasparikova
  */
 
 @ContextConfiguration(classes = ServiceConfiguration.class)
-public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTests{
-    
+public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTests {
+
     @Mock
     private UserDAO userDao;
-    
+
     @Autowired
     @InjectMocks
     private UserService userService;
-    
-    @BeforeClass
-    public void setup() throws ServiceException{
-         MockitoAnnotations.initMocks(this);
-    }
-    
     private User user;
-    
+
+    @BeforeClass
+    public void setup() throws ServiceException {
+        MockitoAnnotations.initMocks(this);
+    }
+
     @BeforeMethod
     public void setUpMethod() throws Exception {
         user = new User();
@@ -55,8 +54,8 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
         user.setSex(Sex.Male);
         user.setWeight(85.4);
         user.setHeight(170.5);
-    }  
-    
+    }
+
     @Test
     public void testCreateUser() {
         userService.createUser(user);
@@ -70,26 +69,26 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
     }
 
     @Test
-    public void testGetUserByIdNotExisting() {      
+    public void testGetUserByIdNotExisting() {
         when(userDao.findById(Long.MIN_VALUE)).thenReturn(null);
         assertNull(userService.getUserById(Long.MIN_VALUE));
     }
-    
+
     @Test
     public void testGetUserById() {
-        user.setId(1l); 
+        user.setId(1l);
         when(userDao.findById(user.getId())).thenReturn(user);
         assertDeepEquals(user, userService.getUserById(user.getId()));
     }
-    
+
     @Test
     public void testGetUserByEmail() {
         when(userDao.findByEmail(user.getEmail())).thenReturn(user);
         assertDeepEquals(user, userService.getUserByEmail(user.getEmail()));
     }
-    
+
     @Test
-    public void testgetUsersByName(){
+    public void testgetUsersByName() {
         User u = new User();
         u.setName("User Name");
         u.setEmail("charlie@man.man");
@@ -97,10 +96,10 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
         u.setAge(55);
         u.setWeight(102.0);
         u.setHeight(198.0);
-        when(userDao.findByName(user.getName())).thenReturn(Arrays.asList(user,u));
+        when(userDao.findByName(user.getName())).thenReturn(Arrays.asList(user, u));
         assertEquals(userService.getUserByName("User Name").size(), 2);
     }
-    
+
     @Test
     public void testGetAllUsers() {
         when(userDao.findAll()).thenReturn(Collections.singletonList(user));
@@ -112,30 +111,30 @@ public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTes
         u.setAge(55);
         u.setWeight(102.0);
         u.setHeight(198.0);
-        when(userDao.findAll()).thenReturn(Arrays.asList(user,u));
+        when(userDao.findAll()).thenReturn(Arrays.asList(user, u));
         assertEquals(userService.getAllUsers().size(), 2);
         userDao.delete(user);
         when(userDao.findAll()).thenReturn(Collections.singletonList(user));
         assertEquals(userService.getAllUsers().size(), 1);
         userDao.delete(u);
         when(userDao.findAll()).thenReturn(new ArrayList<>());
-        assertEquals(userService.getAllUsers().size(), 0);          
+        assertEquals(userService.getAllUsers().size(), 0);
     }
-   
+
     @Test
-    public void testCalculateBMI(){        
-        
+    public void testCalculateBMI() {
+
         user.setWeight(100.0);
         user.setHeight(200.0);
         userDao.update(user);
-        double bmi = user.getWeight()/(user.getHeight()/100)*(user.getHeight()/100);
-        assertEquals(userService.calculateBMI(user),25.0,0.0);
-        
+        double bmi = user.getWeight() / (user.getHeight() / 100) * (user.getHeight() / 100);
+        assertEquals(userService.calculateBMI(user), 25.0, 0.0);
+
         user.setHeight(0.0);
         userDao.update(user);
-        assertEquals(userService.calculateBMI(user),0.0,0.0);       
+        assertEquals(userService.calculateBMI(user), 0.0, 0.0);
     }
-    
+
     private void assertDeepEquals(User user1, User user2) {
         assertEquals(user1, user2);
         assertEquals(user1.getId(), user2.getId());

@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.rest;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import cz.muni.fi.pa165.sportsactivitymanager.sampledata.ManagerSampleDataFillerConfig;
 import cz.muni.fi.pa165.sportsactivitymanager.service.config.ServiceConfiguration;
 import org.springframework.context.annotation.*;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -10,7 +11,6 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import cz.muni.fi.pa165.sportsactivitymanager.sampledata.ManagerSampleDataFillerConfig;
 
 import java.util.List;
 
@@ -22,9 +22,9 @@ public class RootWebContext extends WebMvcConfigurerAdapter {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new AllowOriginInterceptor()); 
+        registry.addInterceptor(new AllowOriginInterceptor());
     }
-    
+
     @Override
     public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
@@ -36,7 +36,7 @@ public class RootWebContext extends WebMvcConfigurerAdapter {
         MappingJackson2HttpMessageConverter jsonConverter = new MappingJackson2HttpMessageConverter();
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-       
+
         jsonConverter.setObjectMapper(objectMapper);
         return jsonConverter;
     }

@@ -10,12 +10,24 @@
 
     <table class="table table-bordered">
         <thead>
-        <tr><th><fmt:message key="example.attribute"/></th><th><fmt:message key="example.value"/></th></tr>
+        <tr>
+            <th><fmt:message key="example.attribute"/></th>
+            <th><fmt:message key="example.value"/></th>
+        </tr>
         </thead>
         <tbody>
-        <tr><th>c</th><td><c:out value="${c}"/></td></tr>
-        <tr><th>d</th><td><c:out value="${d}"/></td></tr>
-        <tr><th>e</th><td><c:out value="${e}"/></td></tr>
+        <tr>
+            <th>c</th>
+            <td><c:out value="${c}"/></td>
+        </tr>
+        <tr>
+            <th>d</th>
+            <td><c:out value="${d}"/></td>
+        </tr>
+        <tr>
+            <th>e</th>
+            <td><c:out value="${e}"/></td>
+        </tr>
         </tbody>
     </table>
 

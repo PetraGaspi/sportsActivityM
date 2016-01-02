@@ -8,49 +8,45 @@ package cz.muni.fi.pa165.sportsactivitymanager;/*
 import cz.muni.fi.pa165.sportsactivitymanager.Dao.UserDAO;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
 import cz.muni.fi.pa165.sportsactivitymanager.Enums.Sex;
-
-import java.util.List;
-import javax.persistence.EntityManager;
-
 import junit.framework.Assert;
-
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
-
-
+import org.springframework.test.context.transaction.TransactionalTestExecutionListener;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import javax.persistence.EntityManager;
+import java.util.List;
+
 /**
- *  Test class for UserDao functionality
- *  @author Juraj Pleško, 359530
+ * Test class for UserDao functionality
+ *
+ * @author Juraj Pleško, 359530
  */
 
 @ContextConfiguration(classes = PersistenceSampleApplicationContext.class)
 @TestExecutionListeners(TransactionalTestExecutionListener.class)
 @org.springframework.transaction.annotation.Transactional
-public class UserDAOTest extends AbstractTestNGSpringContextTests{
-    
+public class UserDAOTest extends AbstractTestNGSpringContextTests {
+
     @javax.persistence.PersistenceContext
     public EntityManager em;
-    
+
     @Autowired
     public UserDAO userDao;
-            
+
     private User user1;
     private User user2;
     private User user3;
 
-    
+
     /**
-    *   
-    *   Setup for testing
-    */
-    @BeforeMethod        
-    public void createUsers(){
+     * Setup for testing
+     */
+    @BeforeMethod
+    public void createUsers() {
         user1 = new User();
         user1.setName("Jozef");
         user1.setAge(25);
@@ -58,8 +54,8 @@ public class UserDAOTest extends AbstractTestNGSpringContextTests{
         user1.setWeight(99.99);
         user1.setHeight(182.5);
         user1.setEmail("test@test.cz");
-        
-        
+
+
         user2 = new User();
         user2.setName("Lenka");
         user2.setAge(28);
@@ -67,38 +63,37 @@ public class UserDAOTest extends AbstractTestNGSpringContextTests{
         user2.setWeight(66.66);
         user2.setHeight(165.1);
         user2.setEmail("test2@test2.cz");
-        
-        
-        user3 = new User();        
+
+
+        user3 = new User();
         user3.setName("Ferdo");
         user3.setAge(22);
         user3.setSex(Sex.Male);
         user3.setWeight(33.33);
         user3.setHeight(100.0);
         user3.setEmail("test3@test3.cz");
-       
-        
-        
+
+
     }
+
     /**
-    *   testing findByName call for both positive and negative reults.
-    *   
-    */
+     * testing findByName call for both positive and negative reults.
+     */
     @Test
-    public void findByName(){
+    public void findByName() {
         userDao.create(user1);
         List<User> users;
         users = userDao.findByName("Jozef");
-        Assert.assertEquals(users,userDao.findByName("Jozef"));
+        Assert.assertEquals(users, userDao.findByName("Jozef"));
         Assert.assertNotSame(users, userDao.findByName("Ferdo"));
         Assert.assertNotSame(userDao.findByName("Lenka"), userDao.findByName("Ferdo"));
     }
+
     /**
-    *   testing deletion of persisted users
-    *   
-    */
+     * testing deletion of persisted users
+     */
     @Test
-    public void delete(){
+    public void delete() {
         user1 = new User();
         user1.setName("Jozef");
         user1.setAge(25);
@@ -111,38 +106,38 @@ public class UserDAOTest extends AbstractTestNGSpringContextTests{
         userDao.delete(user1);
         Assert.assertNull(userDao.findById(user1.getId()));
     }
+
     /**
-    *   testing findById 
-    *   
-    */
+     * testing findById
+     */
     @Test
-    public void findByID(){
+    public void findByID() {
         userDao.create(user1);
         Assert.assertEquals(user1, userDao.findById(user1.getId()));
     }
+
     /**
-    *   testing findAll 
-    *   
-    */
+     * testing findAll
+     */
     @Test
-    public void findAll(){
+    public void findAll() {
         userDao.create(user1);
         userDao.create(user2);
         List<User> all = userDao.findAll();
         Assert.assertEquals(2, all.size());
-        for(User u : all){
+        for (User u : all) {
             Assert.assertTrue(u.equals(user1) || u.equals(user2));
         }
-    }    
+    }
+
     /**
-    *   testing findByEmail
-    *   
-    */
+     * testing findByEmail
+     */
     @Test
-    public void findByEmail(){
+    public void findByEmail() {
         userDao.create(user1);
         Assert.assertEquals(user1, userDao.findByEmail("test@test.cz"));
     }
-    
-    
+
+
 }

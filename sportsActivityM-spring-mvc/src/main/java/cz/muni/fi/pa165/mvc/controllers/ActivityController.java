@@ -2,10 +2,8 @@ package cz.muni.fi.pa165.mvc.controllers;
 
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.ActivityCreateDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.ActivityDTO;
-import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Facade.ActivityFacade;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

@@ -5,20 +5,18 @@
  */
 package cz.muni.fi.pa165.sportsactivitymanager.service.facade;
 
-import javax.transaction.Transactional;
-
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.ActivityCreateDTO;
-import org.springframework.stereotype.Service;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.ActivityDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Calories;
 import cz.muni.fi.pa165.sportsactivitymanager.Facade.ActivityFacade;
 import cz.muni.fi.pa165.sportsactivitymanager.service.ActivityService;
 import cz.muni.fi.pa165.sportsactivitymanager.service.BeanMappingService;
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * @author Juraj Pleško, 359530

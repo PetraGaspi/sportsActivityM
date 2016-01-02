@@ -15,8 +15,10 @@
     <title><c:out value="${title}"/></title>
     <!-- bootstrap loaded from content delivery network -->
     <link rel="shortcut icon" href="${pageContext.request.contextPath}/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"  crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+          crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"
+          crossorigin="anonymous">
     <jsp:invoke fragment="head"/>
 </head>
 <body>
@@ -24,7 +26,8 @@
 <nav class="navbar navbar-inverse navbar-static-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -35,7 +38,8 @@
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><f:message key="navigation.show"/><b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><f:message key="navigation.show"/><b
+                            class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><my:a href="/activity/list/all"><f:message key="navigation.admin.activities"/></my:a></li>
                         <li><my:a href="/user/list/all"><f:message key="navigation.admin.users"/></my:a></li>
@@ -43,7 +47,8 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><f:message key="navigation.create"/><b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><f:message key="navigation.create"/><b
+                            class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><my:a href="/activity/new"><f:message key="navigation.admin.activities"/></my:a></li>
                         <%--<li><my:a href="/user/new"><f:message key="navigation.admin.users"/></my:a></li>--%>
@@ -51,15 +56,18 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><f:message key="navigation.admin"/><b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><f:message key="navigation.admin"/><b
+                            class="caret"></b></a>
                     <ul class="dropdown-menu">
-                        <li><my:a href="/secured/activity/list"><f:message key="navigation.admin.activities"/></my:a></li>
+                        <li><my:a href="/secured/activity/list"><f:message
+                                key="navigation.admin.activities"/></my:a></li>
                         <%--<li><my:a href="/user/list"><f:message key="navigation.admin.users"/></my:a></li>--%>
                         <%--<li><my:a href="/record/    list"><f:message key="navigation.admin.records"/></my:a></li>--%>
                     </ul>
                 </li>
             </ul>
-        </div><!--/.nav-collapse -->
+        </div>
+        <!--/.nav-collapse -->
     </div>
 </nav>
 
@@ -74,16 +82,16 @@
 
     <!-- authenticated user info -->
     <c:if test="${not empty authenticatedUser}">
-    <div class="row">
-        <div class="col-xs-6 col-sm-8 col-md-9 col-lg-10"></div>
-        <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <c:out value="${authenticatedUser.name} ${authenticatedUser.email}"/>
+        <div class="row">
+            <div class="col-xs-6 col-sm-8 col-md-9 col-lg-10"></div>
+            <div class="col-xs-6 col-sm-4 col-md-3 col-lg-2">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <c:out value="${authenticatedUser.name} ${authenticatedUser.email}"/>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </c:if>
 
     <!-- alerts -->

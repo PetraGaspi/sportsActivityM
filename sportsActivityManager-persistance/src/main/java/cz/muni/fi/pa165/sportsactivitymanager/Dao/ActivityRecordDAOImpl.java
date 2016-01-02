@@ -32,9 +32,9 @@ public class ActivityRecordDAOImpl implements ActivityRecordDAO {
         validator.validate(activityRecord);
         //^^ this supposedly should not pass
 
-        if(!em.contains(activityRecord.getActivity())){
+        if (!em.contains(activityRecord.getActivity())) {
             //notNull constraint violation verification:
-            if(activityRecord.getActivity() != null && activityRecord.getUser() != null) {
+            if (activityRecord.getActivity() != null && activityRecord.getUser() != null) {
 
                 if (!em.contains(activityRecord.getActivity().getCalories())) {
                     //notNull constraint violation verification:
@@ -47,7 +47,7 @@ public class ActivityRecordDAOImpl implements ActivityRecordDAO {
                 }
                 em.persist(activityRecord.getActivity());
 
-                if(!em.contains(activityRecord.getUser())){
+                if (!em.contains(activityRecord.getUser())) {
                     em.persist(activityRecord.getUser());
                 }
 
@@ -55,7 +55,7 @@ public class ActivityRecordDAOImpl implements ActivityRecordDAO {
                 throw new ConstraintViolationException(new HashSet<ConstraintViolation<?>>());
             }
         }
-        if(!em.contains(activityRecord.getUser())){
+        if (!em.contains(activityRecord.getUser())) {
             em.persist(activityRecord.getUser());
 
         }

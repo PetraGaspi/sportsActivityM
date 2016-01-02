@@ -2,7 +2,6 @@ package cz.muni.fi.pa165.sportsactivitymanager;
 
 import cz.muni.fi.pa165.sportsactivitymanager.Dao.CaloriesDAO;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Calories;
-import cz.muni.fi.pa165.sportsactivitymanager.PersistenceSampleApplicationContext;
 import junit.framework.Assert;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
@@ -13,7 +12,8 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import javax.inject.Inject;
-import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  * @author Michal Stefanik 422237
@@ -92,7 +92,7 @@ public class CaloriesDAOTest extends AbstractTestNGSpringContextTests {
     @Test
     public void testFindAll() throws Exception {
         Assert.assertEquals(2, dao.findAll().size());
-        for(Calories c: dao.findAll()){
+        for (Calories c : dao.findAll()) {
             Assert.assertTrue(c.equals(c1) || c.equals(c2));
         }
 

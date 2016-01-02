@@ -2,11 +2,6 @@ package cz.muni.fi.pa165.sportsactivitymanager.service;
 
 import cz.muni.fi.pa165.sportsactivitymanager.Dao.UserDAO;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
-
-import java.math.BigInteger;
-import java.security.SecureRandom;
-import java.util.List;
-
 import cz.muni.fi.pa165.sportsactivitymanager.Enums.UserState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,90 +9,23 @@ import org.springframework.stereotype.Service;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
 import javax.persistence.NoResultException;
+import java.math.BigInteger;
+import java.security.SecureRandom;
+import java.util.List;
 
 /**
- *
  * @author Petra Gasparikova
  */
 
 @Service
 public class UserServiceImpl implements UserService {
-    
+
     @Autowired
     private UserDAO userDao;
 
-    @Override
-    public User createUser(User user) {
-        userDao.create(user);
-        return(user);
-    }
-
-    @Override
-    public void deleteUser(User user) {
-        userDao.delete(user);
-    }
-
-    @Override
-    public User updateUser(User user) {
-        return userDao.update(user);
-    }
-
-    @Override
-    public User getUserById(Long id) {
-        return userDao.findById(id);
-    }
-
-    @Override
-    public User getUserByEmail(String email) {
-        try {
-            return userDao.findByEmail(email);
-        } catch (NoResultException e){
-            return null;
-        }
-
-    }
-
-    @Override
-    public List<User> getUsersByState(UserState state){
-        return userDao.findByState(state);
-    }
-
-    @Override
-    public List<User> getAllUsers() {
-        return userDao.findAll();
-    }
-    
-    @Override
-    public List<User> getUserByName(String name) {
-        return userDao.findByName(name);
-    }
-
-    @Override
-    public Double calculateBMI(User user) {
-        double height = user.getHeight();
-        if(height == 0.0)
-            return 0.0;
-        height = height/100;
-        double bmi = (user.getWeight())/(height*height);
-        bmi = Math.round(bmi * 100.0) / 100.0;
-        return bmi;
-    }
-
-    //security and authentication part
-    //TODO: in usages this should substitute createUser method
-    public void registerUser(User u, String unencryptedPassword) {
-        u.setPasswordHash(createHash(unencryptedPassword));
-        userDao.create(u);
-    }
-
-    @Override
-    public boolean authenticate(User u, String password) {
-        return validatePassword(password, u.getPasswordHash());
-    }
-
     public static boolean validatePassword(String password, String correctHash) {
-        if(password==null) return false;
-        if(correctHash==null) throw new IllegalArgumentException("password hash is null");
+        if (password == null) return false;
+        if (correctHash == null) throw new IllegalArgumentException("password hash is null");
         String[] params = correctHash.split(":");
         int iterations = Integer.parseInt(params[0]);
         byte[] salt = fromHex(params[1]);
@@ -105,8 +33,6 @@ public class UserServiceImpl implements UserService {
         byte[] testHash = pbkdf2(password.toCharArray(), salt, iterations, hash.length);
         return slowEquals(hash, testHash);
     }
-
-    //the rest is private:
 
     //see  https://crackstation.net/hashing-security.htm#javasourcecode
     private static String createHash(String password) {
@@ -161,6 +87,77 @@ public class UserServiceImpl implements UserService {
         String hex = bi.toString(16);
         int paddingLength = (array.length * 2) - hex.length();
         return paddingLength > 0 ? String.format("%0" + paddingLength + "d", 0) + hex : hex;
+    }
+
+    @Override
+    public User createUser(User user) {
+        userDao.create(user);
+        return (user);
+    }
+
+    @Override
+    public void deleteUser(User user) {
+        userDao.delete(user);
+    }
+
+    @Override
+    public User updateUser(User user) {
+        return userDao.update(user);
+    }
+
+    @Override
+    public User getUserById(Long id) {
+        return userDao.findById(id);
+    }
+
+    @Override
+    public User getUserByEmail(String email) {
+        try {
+            return userDao.findByEmail(email);
+        } catch (NoResultException e) {
+            return null;
+        }
+
+    }
+
+    @Override
+    public List<User> getUsersByState(UserState state) {
+        return userDao.findByState(state);
+    }
+
+    //the rest is private:
+
+    @Override
+    public List<User> getAllUsers() {
+        return userDao.findAll();
+    }
+
+    @Override
+    public List<User> getUserByName(String name) {
+        return userDao.findByName(name);
+    }
+
+    @Override
+    public Double calculateBMI(User user) {
+        double height = user.getHeight();
+        if (height == 0.0)
+            return 0.0;
+        height = height / 100;
+        double bmi = (user.getWeight()) / (height * height);
+        bmi = Math.round(bmi * 100.0) / 100.0;
+        return bmi;
+    }
+
+    //security and authentication part
+    //TODO: in usages this should substitute createUser method
+    public void registerUser(User u, String unencryptedPassword) {
+        u.setPasswordHash(createHash(unencryptedPassword));
+        userDao.create(u);
+    }
+
+    @Override
+    public boolean authenticate(User u, String password) {
+        return validatePassword(password, u.getPasswordHash());
     }
 
 }

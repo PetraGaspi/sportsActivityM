@@ -3,11 +3,10 @@ package cz.muni.fi.pa165.sportsactivitymanager.Dto;
 import java.util.Objects;
 
 /**
- *
  * @author Petra Gasparikova
  */
 public class CaloriesDTO {
-    
+
     private Long id;
     private Double index;
 
@@ -48,6 +47,6 @@ public class CaloriesDTO {
         }
         return true;
     }
-    
-    
+
+
 }

@@ -126,7 +126,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         User admin = new User();
         admin.setAge(20);
         admin.setName("The Boss");
-        admin.setEmail("admin@eshop.com");
+        admin.setEmail("admin@admin.com");
         admin.setWeight(95d);
         admin.setHeight(195d);
         admin.setSex(Sex.Male);
@@ -134,8 +134,8 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         admin.setPasswordHash("1000:b7d48890077c130e0ac5552e3266b52680c52f408b5ff259:88b9c1fda1055b729a72a9eca5f6e23be9c8c03a6b232559");
 
         userService.createUser(admin);
-        log.debug("User "+admin.getEmail()+" should be created");
-        log.debug("User with that emails: "+ userService.getUserByEmail(admin.getEmail()));
+        log.debug("User " + admin.getEmail() + " should be created");
+        log.debug("User with that emails: " + userService.getUserByEmail(admin.getEmail()));
     }
 
 }

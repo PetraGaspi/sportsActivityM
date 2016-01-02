@@ -31,7 +31,7 @@ public class ActivityRecord implements Comparable<ActivityRecord> {
     @NotNull
     private User user;
 
-    @ManyToOne(cascade=CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @NotNull
     private Activity activity;
 
@@ -109,14 +109,15 @@ public class ActivityRecord implements Comparable<ActivityRecord> {
 
     /**
      * Calculates the burned calories according to ActivityRecord's attributes' values
+     *
      * @return burned calories in kj
      */
     public double calculateBurnedCalories() {
-        return duration*activity.getCalories().getIndex();
+        return duration * activity.getCalories().getIndex();
     }
 
     @Override
     public int compareTo(ActivityRecord other) {
-        return (-1)*date.compareTo(other.date);
+        return (-1) * date.compareTo(other.date);
     }
 }

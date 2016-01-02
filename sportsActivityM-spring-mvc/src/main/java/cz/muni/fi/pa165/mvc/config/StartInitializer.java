@@ -8,7 +8,7 @@ import javax.servlet.Filter;
 /**
  * Created by michal on 12/27/15.
  */
-public class StartInitializer  extends AbstractAnnotationConfigDispatcherServletInitializer {
+public class StartInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
     @Override
     protected Class<?>[] getRootConfigClasses() {

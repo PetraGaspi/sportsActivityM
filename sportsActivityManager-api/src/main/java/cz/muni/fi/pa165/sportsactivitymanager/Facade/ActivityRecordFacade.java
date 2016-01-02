@@ -8,7 +8,6 @@ import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserDTO;
 import java.util.List;
 
 /**
- *
  * @author Maemi
  */
 public interface ActivityRecordFacade {
@@ -28,5 +27,5 @@ public interface ActivityRecordFacade {
     void delete(long id);
 
     List<ActivityRecordDTO> getRecordsLastDays(int days);
-    
+
 }

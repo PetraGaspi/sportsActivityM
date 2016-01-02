@@ -6,18 +6,13 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Dao;
 
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceUnit;
+import java.util.List;
 
 /**
- *
  * @author Juraj Pleško, 359530
  */
 @Repository
@@ -33,7 +28,7 @@ public class ActivityDAOImpl implements ActivityDAO {
 
     @Override
     public void update(Activity activity) {
-        em.merge (activity);
+        em.merge(activity);
     }
 
     @Override
@@ -63,8 +58,8 @@ public class ActivityDAOImpl implements ActivityDAO {
 
     @Override
     public List<Activity> findByName(String name) {
-        return em.createQuery("SELECT a FROM Activity a WHERE a.name LIKE :name",Activity.class)
-                .setParameter("name",name).getResultList();
+        return em.createQuery("SELECT a FROM Activity a WHERE a.name LIKE :name", Activity.class)
+                .setParameter("name", name).getResultList();
     }
-    
+
 }
