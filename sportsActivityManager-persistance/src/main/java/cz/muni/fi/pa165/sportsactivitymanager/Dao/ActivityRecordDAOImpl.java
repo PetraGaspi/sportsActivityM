@@ -24,8 +24,6 @@ public class ActivityRecordDAOImpl implements ActivityRecordDAO {
     @Override
     public void create(ActivityRecord activityRecord) {
         //if transient instances are not persisted yet, create them transitively:
-        //TODO obe riesenia validacie su divne, spytat sa cviciaceho:
-        //TODO aj tranzitivne persistovanie smrdi
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
@@ -95,6 +93,6 @@ public class ActivityRecordDAOImpl implements ActivityRecordDAO {
 
     @Override
     public void delete(ActivityRecord activityRecord) {
-        em.remove(activityRecord);
+        em.remove(em.contains(activityRecord) ? activityRecord : em.merge(activityRecord));
     }
 }

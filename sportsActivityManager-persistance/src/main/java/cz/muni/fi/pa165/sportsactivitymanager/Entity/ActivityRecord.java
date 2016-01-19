@@ -27,8 +27,8 @@ public class ActivityRecord implements Comparable<ActivityRecord> {
     @DecimalMin("0.0")
     private double distance;
 
-    @ManyToOne
-    @NotNull
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    //@NotNull
     private User user;
 
     @ManyToOne(cascade = CascadeType.PERSIST)

@@ -21,7 +21,7 @@ import java.io.IOException;
  *
  * @author Martin Kuba makub@ics.muni.cz
  */
-@WebFilter(urlPatterns = {"/secured/activity/*"})
+@WebFilter(urlPatterns = {"/secured/auth/*"})
 public class ProtectFilter implements Filter {
 
     final static Logger log = LoggerFactory.getLogger(ProtectFilter.class);

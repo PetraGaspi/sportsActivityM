@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.mvc.controllers;
 
-import cz.muni.fi.pa165.sportsactivitymanager.Facade.ActivityFacade;
+import cz.muni.fi.pa165.sportsactivitymanager.Facade.ActivityRecordFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,15 +14,15 @@ import org.springframework.web.util.UriComponentsBuilder;
  * Created by michal on 1/2/16.
  */
 @Controller
-@RequestMapping("/secured/auth/activity")
-public class AdminActivityController {
+@RequestMapping("/secured/auth/record")
+public class AdminRecordController {
     @Autowired
-    private ActivityFacade activityFacade;
+    private ActivityRecordFacade recordFacade;
 
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public String list(Model model) {
-        model.addAttribute("activities", activityFacade.getAllActivities());
-        return "secured/auth/activity/list";
+        model.addAttribute("records", recordFacade.getAllRecords());
+        return "secured/auth/record/list";
     }
 
     @RequestMapping(value = "/{action}/{filter}", method = RequestMethod.GET)
@@ -31,11 +31,11 @@ public class AdminActivityController {
 
         switch (action) {
             case "delete":
-                activityFacade.deleteActivity(activityFacade.findActivityById((long) filter));
-                redirectAttributes.addFlashAttribute("alert_success", "Activity " + filter + " was deleted");
-                return "redirect:" + uriBuilder.path("/secured/auth/activity/list").toUriString();
+                recordFacade.delete((long) filter);
+                redirectAttributes.addFlashAttribute("alert_success", "Record " + filter + " was deleted");
+                return "redirect:" + uriBuilder.path("/secured/auth/record/list").toUriString();
             default:
-                return "redirect:" + uriBuilder.path("/secured/auth/activity/list").toUriString();
+                return "redirect:" + uriBuilder.path("/secured/auth/record/list").toUriString();
         }
     }
 }

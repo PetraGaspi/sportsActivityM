@@ -2,6 +2,7 @@ package cz.muni.fi.pa165.mvc.controllers;
 
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserAuthenticateDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserDTO;
+import cz.muni.fi.pa165.sportsactivitymanager.Enums.UserState;
 import cz.muni.fi.pa165.sportsactivitymanager.Facade.UserFacade;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -41,14 +42,14 @@ public class AuthController {
 
         if (req.getSession().getAttribute("sessionId") != null) {
 //          if sessionId is contained in the session, forward the request to the authenticated part
-            return "redirect:/secured/activity/list";
+            return "redirect:/secured/auth/actions";
         }
         // else display login form
 
         return "secured/login";
     }
 
-    @RequestMapping(value = "/auth", method = RequestMethod.POST)
+    @RequestMapping(value = "/authorize", method = RequestMethod.POST)
     public String authenticate(@RequestParam String userId, @RequestParam String password, Model model,
                                RedirectAttributes redirectAttributes, HttpServletRequest req, HttpServletResponse res) {
 
@@ -65,9 +66,11 @@ public class AuthController {
         authDTO.setPassword(password);
 
         if(userFacade.authenticate(authDTO)){
-            //sets new sessionId into onward session.
-            req.getSession().setAttribute("sessionId", userId+":"+userFacade.getUserSession(userFacade.getUserByEmail(userId)));
-            return "redirect:/secured/activity/list";
+            //if user is admin, sets new sessionId into onward session.
+            if(userFacade.getUsersByState(UserState.ADMIN).contains(userDTO)){
+                req.getSession().setAttribute("sessionId", userId+":"+userFacade.getUserSession(userFacade.getUserByEmail(userId)));
+            }
+            return "redirect:/secured/auth/actions";
         }
 
         redirectAttributes.addFlashAttribute("alert_warning", "Wrong credentials. Please check");
@@ -82,5 +85,10 @@ public class AuthController {
 
         redirectAttributes.addFlashAttribute("alert_info", "You have been successfully logged out.");
         return "redirect:/secured/login";
+    }
+
+    @RequestMapping(value = "/auth/actions", method = RequestMethod.GET)
+    public String list(Model model) {
+        return "secured/auth/actions";
     }
 }

@@ -1,12 +1,15 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Dao;
 
+import cz.muni.fi.pa165.sportsactivitymanager.Entity.ActivityRecord;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
 import cz.muni.fi.pa165.sportsactivitymanager.Enums.UserState;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
+import java.util.logging.Logger;
 
 
 /**
@@ -15,6 +18,9 @@ import java.util.List;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
+
+    final static org.slf4j.Logger log = LoggerFactory.getLogger(UserDAOImpl.class);
+
 
     @PersistenceContext
     private EntityManager em;
@@ -31,7 +37,16 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void delete(User user) {
-        em.remove(user);
+        List<ActivityRecord> associatedRecords = em.createQuery("SELECT ar FROM ActivityRecord ar WHERE user.email LIKE :email", ActivityRecord.class)
+                .setParameter("email", user.getEmail())
+                .getResultList();
+
+        for(ActivityRecord record: associatedRecords ){
+            em.remove(record);
+        }
+        log.debug("deleted associated records for user "+user.getId()+" : "+associatedRecords.size());
+
+        em.remove(em.contains(user) ? user : em.merge(user));
     }
 
     @Override

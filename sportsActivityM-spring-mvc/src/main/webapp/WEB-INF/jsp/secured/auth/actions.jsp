@@ -9,14 +9,12 @@
 <jsp:attribute name="body">
 
     <div class="jumbotron">
-        <form id="loginForm" method="POST" action="/pa165/secured/authorize" onsubmit="return mySubmit();">
-            <label>Email:
-                <input id="userId" type="text" name="userId"/>
-            </label><br/>
-            <label>Password: </label>
-            <input id="password" type="password" name="password"/><br/>
-            <input type="submit"/>
-        </form>
+        <form:errors path="error" cssClass="help-block"/>
+        <h3>Entity administration:</h3>
+
+        <h4><a href="activity/list">Activities ></a></h4>
+        <h4><a href="record/list">Records ></a></h4>
+        <h4><a href="user/list">Users ></a></h4>
     </div>
 
 </jsp:attribute>
