@@ -1,14 +1,24 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Dto;
 
 public class UserAuthenticateDTO {
-    private Long userId;
+    private Long id;
+
+    private String userId;
     private String password;
 
-    public Long getUserId() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

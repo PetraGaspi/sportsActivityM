@@ -86,8 +86,37 @@ public class UserFacadeImpl implements UserFacade {
 
     @Override
     public boolean authenticate(UserAuthenticateDTO userAuthDTO) {
-        return userService.authenticate(userService.getUserById(userAuthDTO.getUserId()), userAuthDTO.getPassword());
+        return userService.authenticate(userService.getUserById(userAuthDTO.getId()), userAuthDTO.getPassword());
+    }
+
+    @Override
+    public String getUserSession(UserDTO user){
+        return userService.getUserSession(beanMappingService.mapTo(user, User.class));
     }
 
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -55,16 +55,7 @@
                         <%--<li><my:a href="/record/new"><f:message key="navigation.admin.records"/></my:a></li>--%>
                     </ul>
                 </li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><f:message key="navigation.admin"/><b
-                            class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><my:a href="/secured/activity/list"><f:message
-                                key="navigation.admin.activities"/></my:a></li>
-                        <%--<li><my:a href="/user/list"><f:message key="navigation.admin.users"/></my:a></li>--%>
-                        <%--<li><my:a href="/record/    list"><f:message key="navigation.admin.records"/></my:a></li>--%>
-                    </ul>
-                </li>
+                <li><my:a href="/secured/login"><f:message key="navigation.admin"/></my:a></li>
             </ul>
         </div>
         <!--/.nav-collapse -->
@@ -88,6 +79,8 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <c:out value="${authenticatedUser.name} ${authenticatedUser.email}"/>
+                        <br/>
+                        <a href="${pageContext.request.contextPath}/secured/logout">logout</a>
                     </div>
                 </div>
             </div>

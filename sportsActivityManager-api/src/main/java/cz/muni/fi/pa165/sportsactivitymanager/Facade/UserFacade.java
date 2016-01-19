@@ -86,5 +86,17 @@ public interface UserFacade {
      */
     Double calculateBMI(UserDTO user);
 
+    /**
+     * Attepmts to authenticate the user
+     * @param userAuthDTO authenticated user
+     * @return true if successful, otherwise false
+     */
     boolean authenticate(UserAuthenticateDTO userAuthDTO);
+
+    /**
+     * gets user's hashed password
+     * @param user
+     * @return
+     */
+    String getUserSession(UserDTO user);
 }

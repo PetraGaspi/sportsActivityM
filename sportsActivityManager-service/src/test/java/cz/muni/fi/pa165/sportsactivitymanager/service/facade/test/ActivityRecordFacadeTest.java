@@ -3,6 +3,9 @@
 //import cz.muni.fi.pa165.sportsactivitymanager.Dao.ActivityDAO;
 //import cz.muni.fi.pa165.sportsactivitymanager.Dao.ActivityRecordDAO;
 //import cz.muni.fi.pa165.sportsactivitymanager.Dto.ActivityDTO;
+//import cz.muni.fi.pa165.sportsactivitymanager.Dto.ActivityRecordDTO;
+//import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserCreateDTO;
+//import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserDTO;
 //import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
 //import cz.muni.fi.pa165.sportsactivitymanager.Entity.ActivityRecord;
 //import cz.muni.fi.pa165.sportsactivitymanager.Entity.Calories;
@@ -88,6 +91,15 @@
 //        record.setActivity(activity);
 //        record.setDuration(60);
 //        record.setUser(user);
+//    }
+//
+//    @Test
+//    public void testCreate() throws Exception {
+//        UserDTO userDTO = beanMappingService.mapTo(user, UserDTO.class);
+//        ActivityRecordDTO recordDTO = beanMappingService.mapTo(record, ActivityRecordDTO.class);
+//
+//        recordService.createRecord(record);
+//        when(recordService.getActivityRecordById(record.getId())).thenReturn(record);
 //    }
 //
 //    @Test

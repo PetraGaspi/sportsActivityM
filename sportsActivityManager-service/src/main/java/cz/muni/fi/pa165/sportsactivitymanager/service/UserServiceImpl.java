@@ -11,6 +11,7 @@ import javax.crypto.spec.PBEKeySpec;
 import javax.persistence.NoResultException;
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -158,6 +159,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean authenticate(User u, String password) {
         return validatePassword(password, u.getPasswordHash());
+    }
+
+    /**
+     * gets auth session unique for particular user
+     *
+     * @param user particular user
+     * @return string of user session
+     */
+    @Override
+    public String getUserSession(User user) {
+        return String.valueOf(user.hashCode());
     }
 
 }

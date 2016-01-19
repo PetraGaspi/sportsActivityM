@@ -93,4 +93,11 @@ public interface UserService {
      * @return true if authenticated, otherwise false
      */
     boolean authenticate(User u, String password);
+
+    /**
+     * gets auth session unique for particular user
+     * @param user particular user
+     * @return string of user session
+     */
+    String getUserSession(User user);
 }

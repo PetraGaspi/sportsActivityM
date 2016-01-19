@@ -26,7 +26,8 @@ public class AdminActivityController {
     }
 
     @RequestMapping(value = "/{action}/{filter}", method = RequestMethod.GET)
-    public String list(@PathVariable String action, @PathVariable Integer filter, Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
+    public String list(@PathVariable String action, @PathVariable Integer filter, Model model,
+                       RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
 
         switch (action) {
             case "delete":

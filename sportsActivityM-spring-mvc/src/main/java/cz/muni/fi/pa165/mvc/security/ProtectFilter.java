@@ -12,6 +12,7 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.xml.bind.DatatypeConverter;
 import java.io.IOException;
 
@@ -20,7 +21,7 @@ import java.io.IOException;
  *
  * @author Martin Kuba makub@ics.muni.cz
  */
-@WebFilter(urlPatterns = {"/secured/*"})
+@WebFilter(urlPatterns = {"/secured/activity/*"})
 public class ProtectFilter implements Filter {
 
     final static Logger log = LoggerFactory.getLogger(ProtectFilter.class);
@@ -31,49 +32,43 @@ public class ProtectFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) r;
         HttpServletResponse response = (HttpServletResponse) s;
 
-        String auth = request.getHeader("Authorization");
-        if (auth == null) {
-            response401(response);
-            return;
-        }
-        String[] creds = parseAuthHeader(auth);
-        String logname = creds[0];
-        String password = creds[1];
-
         //get Spring context and UserFacade from it
         UserFacade userFacade = WebApplicationContextUtils.getWebApplicationContext(r.getServletContext()).getBean(UserFacade.class);
-        UserDTO matchingUser = userFacade.getUserByEmail(logname);
-        if (matchingUser == null) {
-            log.warn("no user with email {}", logname);
-            response401(response);
+
+        HttpSession session = request.getSession(true);
+
+        if(session.getAttribute("sessionId") == null){
+            response401(session, response);
             return;
         }
-        UserAuthenticateDTO userAuthenticateDTO = new UserAuthenticateDTO();
-        userAuthenticateDTO.setUserId(matchingUser.getId());
-        userAuthenticateDTO.setPassword(password);
-        if (!userFacade.getUsersByState(UserState.ADMIN).contains(matchingUser)) {
-            log.warn("user not admin {}", matchingUser);
-            response401(response);
+
+        String sessionId = (String)session.getAttribute("sessionId");
+        String userId = sessionId.split(":")[0];
+
+        log.debug("Attempt to authorize with userId: "+userId);
+
+        UserDTO matchingUser = userFacade.getUserByEmail(userId);
+
+        //if user's sessionId matches user's hash:
+        if (userFacade.getUserSession(matchingUser).equals(sessionId.split(":")[1])) {
+            log.debug("user with email {} passed protectFilter", userId);
+            request.setAttribute("authenticatedUser", matchingUser);
+
+            chain.doFilter(request, response);
             return;
+        } else {
+            log.debug("wrong sessionId: "+sessionId);
+            log.debug("matching user email and hash: "+matchingUser.getEmail()+userFacade.getUserSession(matchingUser));
         }
-        if (!userFacade.authenticate(userAuthenticateDTO)) {
-            log.warn("wrong credentials: user={} password={}", creds[0], creds[1]);
-            response401(response);
-            return;
-        }
-        request.setAttribute("authenticatedUser", matchingUser);
-        chain.doFilter(request, response);
+
+        session.setAttribute("loginStatus", true);
+
     }
 
+    private void response401(HttpSession session, HttpServletResponse response) throws IOException {
+        session.setAttribute("loginStatus", false);
 
-    private String[] parseAuthHeader(String auth) {
-        return new String(DatatypeConverter.parseBase64Binary(auth.split(" ")[1])).split(":", 2);
-    }
-
-    private void response401(HttpServletResponse response) throws IOException {
-        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-        response.setHeader("WWW-Authenticate", "Basic realm=\"type email and password\"");
-        response.getWriter().println("<html><body><h1>401 Unauthorized</h1> Go back to <a href='/activity/list/all'>user part</a></body></html>");
+        response.sendRedirect("/pa165/secured/login");
     }
 
     @Override

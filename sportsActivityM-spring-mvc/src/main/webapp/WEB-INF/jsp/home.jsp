@@ -32,9 +32,9 @@
                 <td><b><fmt:formatDate value="${record.date.time}" pattern="yyyy-MM-dd"/></b></td>
                 <td><c:out value="${record.duration}"/></td>
                 <td><c:out value="${record.distance}"/></td>
-                <td><a href='/pa165/mvc/user/<c:out value="${record.user.id}"/>'><c:out
+                <td><a href='/pa165/user/<c:out value="${record.user.id}"/>'><c:out
                         value="${record.user.name}"/></a></td>
-                <td><a href='/pa165/mvc/activity/<c:out value="${record.activity.id}"/>'><c:out
+                <td><a href='/pa165/activity/<c:out value="${record.activity.id}"/>'><c:out
                         value="${record.activity.name}"/></a></td>
             </tr>
         </c:forEach>
