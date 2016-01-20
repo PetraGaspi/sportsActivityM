@@ -63,7 +63,7 @@ public class ActivityController {
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
-    public String newCategory(Model model) {
+    public String newActivity(Model model) {
         model.addAttribute("activityCreate", new ActivityCreateDTO());
         //selectable items for choosing measured distance attribute:
         //model.addAttribute("selectItems", Arrays.asList(true, false));
@@ -71,7 +71,7 @@ public class ActivityController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String create(@Valid @ModelAttribute("activityCreate") ActivityCreateDTO formBean, BindingResult bindingResult,
+    public String createActivity(@Valid @ModelAttribute("activityCreate") ActivityCreateDTO formBean, BindingResult bindingResult,
                          Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         if (bindingResult.hasErrors()) {
             for (ObjectError ge : bindingResult.getGlobalErrors()) {

@@ -36,8 +36,8 @@ public class ActivityRecordFacadeImpl implements ActivityRecordFacade {
     private BeanMappingService beanMappingService;
 
     @Override
-    public void create(ActivityRecordDTO activityRecordDTO) {
-        service.createRecord(beanMappingService.mapTo(activityRecordDTO, ActivityRecord.class));
+    public long create(ActivityRecordDTO activityRecordDTO) {
+        return service.createRecord(beanMappingService.mapTo(activityRecordDTO, ActivityRecord.class));
     }
 
     @Override

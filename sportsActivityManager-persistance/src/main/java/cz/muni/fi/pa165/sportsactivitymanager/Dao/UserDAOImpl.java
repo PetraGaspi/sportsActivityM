@@ -37,8 +37,8 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void delete(User user) {
-        List<ActivityRecord> associatedRecords = em.createQuery("SELECT ar FROM ActivityRecord ar WHERE user.email LIKE :email", ActivityRecord.class)
-                .setParameter("email", user.getEmail())
+        List<ActivityRecord> associatedRecords = em.createQuery("SELECT ar FROM ActivityRecord ar WHERE user.id = :id", ActivityRecord.class)
+                .setParameter("id", user.getId())
                 .getResultList();
 
         for(ActivityRecord record: associatedRecords ){

@@ -23,7 +23,7 @@ public interface ActivityRecordService {
      *
      * @param ar created record
      */
-    public void createRecord(ActivityRecord ar);
+    public long createRecord(ActivityRecord ar);
 
     /**
      * Gets all persisted records objects

@@ -16,7 +16,7 @@ public interface ActivityRecordDAO {
      *
      * @param activityRecord
      */
-    void create(ActivityRecord activityRecord);
+    long create(ActivityRecord activityRecord);
 
     /**
      * Gets all persisted records objects

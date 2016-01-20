@@ -35,8 +35,8 @@ public class ActivityRecordServiceImpl implements ActivityRecordService {
     }
 
     @Override
-    public void createRecord(ActivityRecord ar) {
-        dao.create(ar);
+    public long createRecord(ActivityRecord ar) {
+        return dao.create(ar);
     }
 
     @Override

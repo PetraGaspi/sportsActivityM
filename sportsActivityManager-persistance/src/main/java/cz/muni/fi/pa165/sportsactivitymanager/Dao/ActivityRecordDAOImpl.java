@@ -22,7 +22,7 @@ public class ActivityRecordDAOImpl implements ActivityRecordDAO {
     private EntityManager em;
 
     @Override
-    public void create(ActivityRecord activityRecord) {
+    public long create(ActivityRecord activityRecord) {
         //if transient instances are not persisted yet, create them transitively:
 
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
@@ -59,6 +59,7 @@ public class ActivityRecordDAOImpl implements ActivityRecordDAO {
         }
 
         em.persist(activityRecord);
+        return activityRecord.getId();
     }
 
     @Override
