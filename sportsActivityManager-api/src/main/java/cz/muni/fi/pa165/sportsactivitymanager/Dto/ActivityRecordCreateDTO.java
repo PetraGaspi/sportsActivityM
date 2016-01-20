@@ -1,12 +1,10 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Dto;
 
-import java.util.Calendar;
-
 /**
  * Created by michal on 1/20/16.
  */
 public class ActivityRecordCreateDTO {
-    private java.util.Calendar date;
+    private String date;
 
     private double duration;
 
@@ -24,11 +22,11 @@ public class ActivityRecordCreateDTO {
         this.activityId = activityId;
     }
 
-    public Calendar getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Calendar date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

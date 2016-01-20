@@ -51,8 +51,8 @@
                         <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><my:a href="/activity/new"><f:message key="navigation.admin.activities"/></my:a></li>
-                        <li><my:a href="/user/new"><f:message key="navigation.admin.users"/></my:a></li>
-                        <li><my:a href="/record/new"><f:message key="navigation.admin.records"/></my:a></li>
+                        <%--<li><my:a href="/user/new"><f:message key="navigation.admin.users"/></my:a></li>--%>
+                        <%--<li><my:a href="/record/new"><f:message key="navigation.admin.records"/></my:a></li>--%>
                     </ul>
                 </li>
                 <li><my:a href="/secured/login"><f:message key="navigation.admin"/></my:a></li>

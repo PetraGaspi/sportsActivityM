@@ -21,7 +21,6 @@ public class UserDAOImpl implements UserDAO {
 
     final static org.slf4j.Logger log = LoggerFactory.getLogger(UserDAOImpl.class);
 
-
     @PersistenceContext
     private EntityManager em;
 

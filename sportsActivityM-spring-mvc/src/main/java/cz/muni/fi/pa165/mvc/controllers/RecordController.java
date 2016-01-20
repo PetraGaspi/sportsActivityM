@@ -5,6 +5,7 @@ import cz.muni.fi.pa165.sportsactivitymanager.Dto.ActivityRecordDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Facade.ActivityFacade;
 import cz.muni.fi.pa165.sportsactivitymanager.Facade.ActivityRecordFacade;
 import cz.muni.fi.pa165.sportsactivitymanager.Facade.UserFacade;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import javax.validation.Valid;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by michal on 12/26/15.
@@ -25,6 +30,8 @@ import javax.validation.Valid;
 @Controller
 @RequestMapping("/record")
 public class RecordController {
+
+    final static org.slf4j.Logger log = LoggerFactory.getLogger(RecordController.class);
 
     @Autowired
     private ActivityRecordFacade recordFacade;
@@ -45,6 +52,8 @@ public class RecordController {
     public String newRecord(Model model) {
         model.addAttribute("recordCreate", new ActivityRecordCreateDTO());
         model.addAttribute("users", userFacade.getAllUsers());
+        log.debug("users in selectable list: "+userFacade.getAllUsers().size());
+
         model.addAttribute("activities", activityFacade.getAllActivities());
         //selectable items for choosing measured distance attribute:
         //model.addAttribute("selectItems", Arrays.asList(true, false));
@@ -60,17 +69,27 @@ public class RecordController {
             for (FieldError fe : bindingResult.getFieldErrors()) {
                 model.addAttribute(fe.getField() + "_error", true);
             }
-            return "record/new";
+            return "/record/new";
         }
         //create record
         ActivityRecordDTO recordDTO = new ActivityRecordDTO();
         recordDTO.setActivity(activityFacade.findActivityById(formBean.getActivityId()));
         recordDTO.setUser(userFacade.getUserById(formBean.getUserId()));
-        recordDTO.setDate(formBean.getDate());
+
+        try {
+            DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+            Date parsedDate = df.parse(formBean.getDate());
+            recordDTO.setDate(parsedDate);
+
+        } catch (ParseException e){
+            model.addAttribute("date_error", true);
+            return "/record/new";
+        }
+
         recordDTO.setDistance(formBean.getDistance());
         recordDTO.setDuration(formBean.getDuration());
 
-//        TODO: Create create GUI
+        log.debug("creating Activity record: "+recordDTO.toString());
 
         Long id = recordFacade.create(recordDTO);
         //report success

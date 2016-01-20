@@ -5,11 +5,11 @@
 <%@ taglib prefix="s" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
-<my:pagetemplate title="New activity">
+<my:pagetemplate title="New user">
 <jsp:attribute name="body">
 
-    <form:form method="post" action="${pageContext.request.contextPath}/activity/create"
-               modelAttribute="activityCreate" cssClass="form-horizontal">
+    <form:form method="post" action="${pageContext.request.contextPath}/user/create"
+               modelAttribute="userCreate" cssClass="form-horizontal">
         <div class="form-group ${name_error?'has-error':''}">
 
             <div class="col-sm-5">
@@ -28,7 +28,7 @@
                 <form:errors path="calories" cssClass="help-block"/>
             </div>
         </div>
-        <button class="btn btn-primary" type="submit">Create activity</button>
+        <button class="btn btn-primary" type="submit">Create user</button>
     </form:form>
 
 </jsp:attribute>

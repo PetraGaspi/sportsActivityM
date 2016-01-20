@@ -3,6 +3,8 @@ package cz.muni.fi.pa165.sportsactivitymanager.Dao;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.ActivityRecord;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
+import org.apache.log4j.spi.LoggerFactory;
+import org.hibernate.PersistentObjectException;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -10,6 +12,7 @@ import javax.persistence.PersistenceContext;
 import javax.validation.*;
 import java.util.HashSet;
 import java.util.List;
+import java.util.logging.Logger;
 
 
 /**
@@ -17,6 +20,8 @@ import java.util.List;
  */
 @Repository
 public class ActivityRecordDAOImpl implements ActivityRecordDAO {
+
+    final static org.slf4j.Logger log = org.slf4j.LoggerFactory.getLogger(ActivityRecordDAOImpl.class);
 
     @PersistenceContext
     private EntityManager em;
@@ -46,6 +51,7 @@ public class ActivityRecordDAOImpl implements ActivityRecordDAO {
                 em.persist(activityRecord.getActivity());
 
                 if (!em.contains(activityRecord.getUser())) {
+                    log.debug("subentity: "+activityRecord.getUser().toString());
                     em.persist(activityRecord.getUser());
                 }
 
@@ -53,11 +59,6 @@ public class ActivityRecordDAOImpl implements ActivityRecordDAO {
                 throw new ConstraintViolationException(new HashSet<ConstraintViolation<?>>());
             }
         }
-        if (!em.contains(activityRecord.getUser())) {
-            em.persist(activityRecord.getUser());
-
-        }
-
         em.persist(activityRecord);
         return activityRecord.getId();
     }

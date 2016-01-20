@@ -29,7 +29,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 /**
- * @author Petra Gasparikova
+ * @author Petra Gasparikova, Michal Stefanik
  */
 
 @RunWith(MockitoJUnitRunner.class)
