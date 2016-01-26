@@ -7,7 +7,6 @@
     <packaging>pom</packaging>
     <version>1.0</version>
     <name>Sports activity manager</name>
-    <!--TODO: zrevidovat-->
 
     <build>
         <plugins>

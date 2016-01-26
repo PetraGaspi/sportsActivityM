@@ -110,5 +110,8 @@ public class UserDTO {
         return true;
     }
 
-
+    @Override
+    public String toString() {
+        return "User{" + "id=" + id + ", name=" + name + ", age=" + age + ", weight=" + weight + ", height=" + height + ", SEX=" + sex + ", email=" + email + '}';
+    }
 }

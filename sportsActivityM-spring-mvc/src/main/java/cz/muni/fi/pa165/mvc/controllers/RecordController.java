@@ -22,6 +22,7 @@ import javax.validation.Valid;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -62,28 +63,33 @@ public class RecordController {
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createRecord(@Valid @ModelAttribute("recordCreate") ActivityRecordCreateDTO formBean, BindingResult bindingResult,
-                         Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
+                               Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         if (bindingResult.hasErrors()) {
             for (ObjectError ge : bindingResult.getGlobalErrors()) {
             }
             for (FieldError fe : bindingResult.getFieldErrors()) {
                 model.addAttribute(fe.getField() + "_error", true);
             }
-            return "/record/new";
+            return "redirect:" + uriBuilder.path("/record/new").toUriString();
         }
         //create record
         ActivityRecordDTO recordDTO = new ActivityRecordDTO();
         recordDTO.setActivity(activityFacade.findActivityById(formBean.getActivityId()));
+        log.debug("subentity activity with id: " + formBean.getActivityId() + "\n got activity from facade w calories id: "
+                + activityFacade.findActivityById(formBean.getActivityId()).getCalories().getId());
         recordDTO.setUser(userFacade.getUserById(formBean.getUserId()));
 
         try {
-            DateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             Date parsedDate = df.parse(formBean.getDate());
-            recordDTO.setDate(parsedDate);
+            log.debug("parsed date: "+parsedDate.getDay()+parsedDate.getMonth()+parsedDate.getYear());
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(parsedDate);
+            recordDTO.setDate(cal);
 
         } catch (ParseException e){
             model.addAttribute("date_error", true);
-            return "/record/new";
+            return "redirect:" + uriBuilder.path("/record/new").toUriString();
         }
 
         recordDTO.setDistance(formBean.getDistance());

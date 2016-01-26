@@ -12,6 +12,7 @@ import cz.muni.fi.pa165.sportsactivitymanager.Entity.Calories;
 import cz.muni.fi.pa165.sportsactivitymanager.Facade.ActivityFacade;
 import cz.muni.fi.pa165.sportsactivitymanager.service.ActivityService;
 import cz.muni.fi.pa165.sportsactivitymanager.service.BeanMappingService;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,6 +25,8 @@ import java.util.List;
 @Service
 @Transactional
 public class ActivityFacadeImpl implements ActivityFacade {
+
+    final static org.slf4j.Logger log = LoggerFactory.getLogger(ActivityRecordFacadeImpl.class);
 
     @Autowired
     private ActivityService service;
@@ -58,6 +61,11 @@ public class ActivityFacadeImpl implements ActivityFacade {
 
     @Override
     public ActivityDTO findActivityById(long id) {
+        log.debug("activityDTO id: "+id);
+        log.debug("activity POM id:"+beanMappingService.mapTo(service.getActivityById(id), ActivityDTO.class).getId());
+        log.debug("findActivityById getting object: "+service.getActivityById(id).toString());
+        log.debug("findActivityById returning object: "+beanMappingService.mapTo(service.getActivityById(id), ActivityDTO.class));
+
         return beanMappingService.mapTo(service.getActivityById(id), ActivityDTO.class);
     }
 

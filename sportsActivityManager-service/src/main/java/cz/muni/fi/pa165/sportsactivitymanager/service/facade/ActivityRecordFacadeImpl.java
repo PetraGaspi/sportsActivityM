@@ -10,6 +10,7 @@ import cz.muni.fi.pa165.sportsactivitymanager.service.ActivityRecordService;
 import cz.muni.fi.pa165.sportsactivitymanager.service.ActivityService;
 import cz.muni.fi.pa165.sportsactivitymanager.service.BeanMappingService;
 import cz.muni.fi.pa165.sportsactivitymanager.service.UserService;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +23,8 @@ import java.util.List;
 @Service
 @Transactional
 public class ActivityRecordFacadeImpl implements ActivityRecordFacade {
+
+    final static org.slf4j.Logger log = LoggerFactory.getLogger(ActivityRecordFacadeImpl.class);
 
     @Autowired
     private ActivityRecordService service;
@@ -37,6 +40,12 @@ public class ActivityRecordFacadeImpl implements ActivityRecordFacade {
 
     @Override
     public long create(ActivityRecordDTO activityRecordDTO) {
+        log.debug("create DTO has calories: "+activityRecordDTO.getActivity().getCalories().toString());
+        log.debug("create DTO has calories w id: " + activityRecordDTO.getActivity().getCalories().getId());
+
+        log.debug("create is getting DTO: "+activityRecordDTO);
+        log.debug("create passes to service: "+beanMappingService.mapTo(activityRecordDTO, ActivityRecord.class).toString());
+
         return service.createRecord(beanMappingService.mapTo(activityRecordDTO, ActivityRecord.class));
     }
 

@@ -39,7 +39,7 @@ public class ActivityController {
 
     @RequestMapping(value = "/list/{filter}", method = RequestMethod.GET)
     public String list(@PathVariable String filter, Model model) {
-        //TODO: might be expandable with more filters
+        //might be expandable with more filters
 
         List<ActivityDTO> users;
         switch (filter) {

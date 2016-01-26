@@ -100,4 +100,11 @@ public interface UserService {
      * @return string of user session
      */
     String getUserSession(User user);
+
+    /**
+     * Creates password hash
+     * @param password password
+     * @return hash of the password
+     */
+    String createHash(String password);
 }

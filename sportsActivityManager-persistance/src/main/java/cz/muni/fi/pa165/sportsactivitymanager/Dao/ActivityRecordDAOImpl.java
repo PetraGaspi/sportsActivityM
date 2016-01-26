@@ -3,8 +3,6 @@ package cz.muni.fi.pa165.sportsactivitymanager.Dao;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.Activity;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.ActivityRecord;
 import cz.muni.fi.pa165.sportsactivitymanager.Entity.User;
-import org.apache.log4j.spi.LoggerFactory;
-import org.hibernate.PersistentObjectException;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -12,7 +10,6 @@ import javax.persistence.PersistenceContext;
 import javax.validation.*;
 import java.util.HashSet;
 import java.util.List;
-import java.util.logging.Logger;
 
 
 /**
@@ -33,31 +30,31 @@ public class ActivityRecordDAOImpl implements ActivityRecordDAO {
         ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
         Validator validator = factory.getValidator();
         validator.validate(activityRecord);
-        //^^ this supposedly should not pass
+        //^^ this supposedly should not pass, though it always does
 
-        if (!em.contains(activityRecord.getActivity())) {
-            //notNull constraint violation verification:
-            if (activityRecord.getActivity() != null && activityRecord.getUser() != null) {
+        //notNull constraint violation verification:
+        if (activityRecord.getActivity() != null && activityRecord.getUser() != null) {
+            log.debug("attempt to persist subentity activity:"+ activityRecord.getActivity().toString());
+            log.debug("attempt to persist subentity user:"+ activityRecord.getUser().toString());
 
-                if (!em.contains(activityRecord.getActivity().getCalories())) {
-                    //notNull constraint violation verification:
-                    if (activityRecord.getActivity().getCalories() != null) {
+            if (activityRecord.getActivity().getId() == null) {
+                //notNull constraint violation verification:
+                if (activityRecord.getActivity().getCalories() != null) {
+                    if(activityRecord.getActivity().getCalories().getId() == null) {
                         em.persist(activityRecord.getActivity().getCalories());
-                    } else {
-                        throw new ConstraintViolationException(new HashSet<ConstraintViolation<?>>());
                     }
-
+                } else {
+                    throw new ConstraintViolationException(new HashSet<ConstraintViolation<?>>());
                 }
                 em.persist(activityRecord.getActivity());
-
-                if (!em.contains(activityRecord.getUser())) {
-                    log.debug("subentity: "+activityRecord.getUser().toString());
-                    em.persist(activityRecord.getUser());
-                }
-
-            } else {
-                throw new ConstraintViolationException(new HashSet<ConstraintViolation<?>>());
             }
+
+            if (activityRecord.getUser().getId() == null) {
+                em.persist(activityRecord.getUser());
+            }
+
+        } else {
+            throw new ConstraintViolationException(new HashSet<ConstraintViolation<?>>());
         }
         em.persist(activityRecord);
         return activityRecord.getId();

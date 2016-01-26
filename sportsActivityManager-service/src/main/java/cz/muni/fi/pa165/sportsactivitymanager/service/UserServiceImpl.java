@@ -36,7 +36,8 @@ public class UserServiceImpl implements UserService {
     }
 
     //see  https://crackstation.net/hashing-security.htm#javasourcecode
-    private static String createHash(String password) {
+    @Override
+    public String createHash(String password) {
         final int SALT_BYTE_SIZE = 24;
         final int HASH_BYTE_SIZE = 24;
         final int PBKDF2_ITERATIONS = 1000;

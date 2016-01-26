@@ -33,6 +33,12 @@ public class UserFacadeImpl implements UserFacade {
         User u = new User();
         u.setEmail(user.getEmail());
         u.setName(user.getName());
+        u.setPasswordHash(userService.createHash(user.getPassword()));
+        u.setState(UserState.CUSTOMER);
+        u.setSex(user.getSEX());
+        u.setWeight(user.getWeight());
+        u.setHeight(user.getHeight());
+        u.setAge(user.getAge());
         userService.createUser(u);
         return u.getId();
     }

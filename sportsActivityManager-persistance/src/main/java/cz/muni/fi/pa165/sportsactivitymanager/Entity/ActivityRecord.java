@@ -27,11 +27,11 @@ public class ActivityRecord implements Comparable<ActivityRecord> {
     @DecimalMin("0.0")
     private double distance;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @NotNull
     private User user;
 
-    @ManyToOne(cascade = CascadeType.PERSIST)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @NotNull
     private Activity activity;
 
@@ -119,5 +119,17 @@ public class ActivityRecord implements Comparable<ActivityRecord> {
     @Override
     public int compareTo(ActivityRecord other) {
         return (-1) * date.compareTo(other.date);
+    }
+
+    @Override
+    public String toString() {
+        return "ActivityRecord{" +
+                "activity=" + activity +
+                ", id=" + id +
+                ", date=" + date +
+                ", duration=" + duration +
+                ", distance=" + distance +
+                ", user=" + user +
+                '}';
     }
 }

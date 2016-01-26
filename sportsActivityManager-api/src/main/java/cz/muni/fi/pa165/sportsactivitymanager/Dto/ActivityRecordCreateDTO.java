@@ -1,13 +1,22 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Dto;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 /**
  * Created by michal on 1/20/16.
  */
 public class ActivityRecordCreateDTO {
-    private String date;
 
+    @NotNull
+    private String date = "yyyy-mm-dd";
+
+    @NotNull
+    @Min(0)
     private double duration;
 
+    @NotNull
+    @Min(0)
     private double distance;
 
     private long userId;

@@ -1,6 +1,6 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Dto;
 
-import java.util.Date;
+import java.util.Calendar;
 import java.util.Objects;
 
 /**
@@ -9,7 +9,7 @@ import java.util.Objects;
 public class ActivityRecordDTO {
 
     private long id;
-    private Date date;
+    private java.util.Calendar date;
     private double duration;
     private double distance;
     private UserDTO user;
@@ -23,11 +23,11 @@ public class ActivityRecordDTO {
         this.id = id;
     }
 
-    public Date getDate() {
+    public Calendar getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(Calendar date) {
         this.date = date;
     }
 
@@ -101,5 +101,15 @@ public class ActivityRecordDTO {
         return true;
     }
 
-
+    @Override
+    public String toString() {
+        return "ActivityRecordDTO{" +
+                "activity=" + activity +
+                ", id=" + id +
+                ", date=" + date +
+                ", duration=" + duration +
+                ", distance=" + distance +
+                ", user=" + user +
+                '}';
+    }
 }

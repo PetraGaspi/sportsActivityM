@@ -2,6 +2,10 @@ package cz.muni.fi.pa165.sportsactivitymanager.Dto;
 
 import cz.muni.fi.pa165.sportsactivitymanager.Enums.Sex;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 /**
@@ -9,12 +13,40 @@ import java.util.Objects;
  */
 public class UserCreateDTO {
 
+    @NotNull
+    @Size(min = 3, max = 50)
     private String name;
+
+    @NotNull
+    @Min(0)
     private Integer age;
+
+    @NotNull
+    @Min(0)
     private Double weight;
+
+    @NotNull
+    @Min(0)
     private Double height;
+
+    @NotNull
     private Sex SEX;
+
+    @NotNull
+    @Pattern(regexp = ".+@.+\\....?")
     private String email;
+
+    @NotNull
+    @Size(min = 3, max = 50)
+    private String password;
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public String getName() {
         return name;
@@ -90,5 +122,16 @@ public class UserCreateDTO {
         return true;
     }
 
-
+    @Override
+    public String toString() {
+        return "UserCreateDTO{" +
+                "age=" + age +
+                ", name='" + name + '\'' +
+                ", weight=" + weight +
+                ", height=" + height +
+                ", SEX=" + SEX +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                '}';
+    }
 }

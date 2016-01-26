@@ -37,6 +37,7 @@ public class User {
     @NotNull
     private Double height;
 
+    //for the sake of testing, auth validations remain commented
     //@NotNull
     @Enumerated
     private Sex SEX;

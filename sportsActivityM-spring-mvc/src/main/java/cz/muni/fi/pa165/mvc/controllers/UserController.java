@@ -4,6 +4,7 @@ import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserCreateDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Dto.UserDTO;
 import cz.muni.fi.pa165.sportsactivitymanager.Enums.UserState;
 import cz.muni.fi.pa165.sportsactivitymanager.Facade.UserFacade;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import javax.persistence.PersistenceException;
+import org.hibernate.exception.ConstraintViolationException;
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,6 +31,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/user")
 public class UserController {
+
+    final static org.slf4j.Logger log = LoggerFactory.getLogger(UserController.class);
 
     @Autowired
     private UserFacade userFacade;
@@ -72,7 +77,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "/new", method = RequestMethod.GET)
-    public String newActivity(Model model) {
+    public String newUser(Model model) {
         model.addAttribute("userCreate", new UserCreateDTO());
         //selectable items for choosing measured distance attribute:
         //model.addAttribute("selectItems", Arrays.asList(true, false));
@@ -80,20 +85,32 @@ public class UserController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String createActivity(@Valid @ModelAttribute("userCreate") UserCreateDTO formBean, BindingResult bindingResult,
+    public String createUser(@Valid @ModelAttribute("userCreate") UserCreateDTO formBean, BindingResult bindingResult,
                                  Model model, RedirectAttributes redirectAttributes, UriComponentsBuilder uriBuilder) {
         if (bindingResult.hasErrors()) {
-            for (ObjectError ge : bindingResult.getGlobalErrors()) {
-            }
             for (FieldError fe : bindingResult.getFieldErrors()) {
                 model.addAttribute(fe.getField() + "_error", true);
+
+                log.debug("Error attribute: "+(fe.getField() + "_error"));
             }
             return "user/new";
         }
+
         //create user
-        Long id = userFacade.createUser(formBean);
-        //report success
-        redirectAttributes.addFlashAttribute("alert_success", "Activity " + id + " was created");
+        try {
+            Long id = userFacade.createUser(formBean);
+
+            //report success
+            redirectAttributes.addFlashAttribute("alert_success", "User " + id + " was created");
+
+        } catch (PersistenceException e){
+            log.debug("Supposedly user with email already exists: violates @Unique");
+
+            model.addAttribute("email_error", true);
+            bindingResult.addError(new ObjectError("email", "email already exists"));
+
+            return "user/new";
+        }
         return "redirect:" + uriBuilder.path("/user/list").toUriString();
     }
 }

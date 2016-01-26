@@ -40,6 +40,7 @@ public class UserDAOImpl implements UserDAO {
                 .setParameter("id", user.getId())
                 .getResultList();
 
+//        transitively also delete all activity records to avoid constraint violation
         for(ActivityRecord record: associatedRecords ){
             em.remove(record);
         }

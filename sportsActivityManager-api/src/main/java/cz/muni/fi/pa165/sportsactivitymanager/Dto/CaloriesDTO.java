@@ -48,5 +48,9 @@ public class CaloriesDTO {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Calories{" + "Id=" + id + ", Index=" + index + '}';
+    }
 
 }

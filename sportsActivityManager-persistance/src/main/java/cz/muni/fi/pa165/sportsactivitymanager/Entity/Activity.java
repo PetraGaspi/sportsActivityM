@@ -32,6 +32,10 @@ public class Activity {
     public Activity() {
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Long getId() {
         return id;
     }
@@ -54,7 +58,7 @@ public class Activity {
 
     @Override
     public String toString() {
-        return "Activity{" + "id=" + id + ", name=" + name + ", measureDistanca=" + measureDistance + ", calories=" + calories + '}';
+        return "Activity{" + "id=" + id + ", name=" + name + ", measureDistance=" + measureDistance + ", calories=" + calories + '}';
     }
 
     @Override

@@ -13,19 +13,19 @@
         <div class="form-group ${name_error?'has-error':''}">
 
             <div class="col-sm-5">
-                <form:label path="date" cssClass="col-sm-2 control-label">Date(yyyy-mm-dd)</form:label>
-                <form:input path="date" cssClass="form-control"/>
+                <form:label path="date" cssClass="col-sm-2 control-label">Date</form:label>
+                <form:input path="date" cssClass="form-control" />
                 <form:errors path="date" cssClass="help-block"/>
 
-                <form:label path="duration" cssClass="col-sm-2 control-label">Measurable</form:label>   
+                <form:label path="duration" cssClass="col-sm-2 control-label">Duration</form:label>
                 <form:input path="duration" cssClass="form-control"/>
                 <form:errors path="duration" cssClass="help-block"/>
 
-                <form:label path="distance" cssClass="col-sm-2 control-label">Calories/hour</form:label>
+                <form:label path="distance" cssClass="col-sm-2 control-label">Distance</form:label>
                 <form:input path="distance" cssClass="form-control"/>
                 <form:errors path="distance" cssClass="help-block"/>
 
-                <form:label path="userId" cssClass="col-sm-2 control-label">Customer/hour</form:label>
+                <form:label path="userId" cssClass="col-sm-2 control-label">Customer</form:label>
                 <form:select path="userId" cssClass="form-control">
                     <c:forEach items="${users}" var="customer">
                         <<c:out value="option value=${customer.id}"/>><c:out value="${customer.name}"/><<c:out value="/option"/>>

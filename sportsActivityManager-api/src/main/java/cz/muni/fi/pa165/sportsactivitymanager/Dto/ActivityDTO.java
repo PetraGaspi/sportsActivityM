@@ -74,5 +74,9 @@ public class ActivityDTO {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Activity{" + "id=" + id + ", name=" + name + ", measureDistance=" + measureDistance + ", calories=" + calories + '}';
+    }
 
 }

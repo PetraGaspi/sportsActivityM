@@ -20,7 +20,7 @@ import java.io.IOException;
 import java.util.Calendar;
 
 /**
- * Loads some sample data to populate the eshop database.
+ * Loads some sample data to populate the database.
  *
  * @author Michal Stefanik 422237
  */
@@ -32,10 +32,10 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 
     @Autowired
     private ActivityRecordService activityRecordService;
-    @Autowired
-    private ActivityService activityService;
-    @Autowired
-    private CaloriesService caloriesService;
+//    @Autowired
+//    private ActivityService activityService;
+//    @Autowired
+//    private CaloriesService caloriesService;
     @Autowired
     private UserService userService;
 
@@ -95,8 +95,8 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 
         Calendar date1 = Calendar.getInstance();
         Calendar date2 = Calendar.getInstance();
-        date1.set(2015, Calendar.DECEMBER, 23);
-        date2.set(2015, Calendar.DECEMBER, 4);
+        date1.set(2016, Calendar.JANUARY, 23);
+        date2.set(2016, Calendar.JANUARY, 4);
 
         ActivityRecord activityRecord1 = new ActivityRecord();
         ActivityRecord activityRecord2 = new ActivityRecord();
