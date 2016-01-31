@@ -1,11 +1,9 @@
 package cz.muni.fi.pa165.sportsactivitymanager.Dto;
 
 import cz.muni.fi.pa165.sportsactivitymanager.Enums.Sex;
+import cz.muni.fi.pa165.sportsactivitymanager.Enums.UserState;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 import java.util.Objects;
 
 /**
@@ -19,18 +17,24 @@ public class UserCreateDTO {
 
     @NotNull
     @Min(0)
+    @Max(120)
     private Integer age;
 
     @NotNull
     @Min(0)
+    @Max(250)
     private Double weight;
 
     @NotNull
     @Min(0)
+    @Max(200)
     private Double height;
 
     @NotNull
     private Sex SEX;
+
+    @NotNull
+    private UserState state;
 
     @NotNull
     @Pattern(regexp = ".+@.+\\....?")
@@ -94,6 +98,14 @@ public class UserCreateDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public UserState getState() {
+        return state;
+    }
+
+    public void setState(UserState state) {
+        this.state = state;
     }
 
     @Override

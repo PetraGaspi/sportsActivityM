@@ -69,8 +69,12 @@ public class AuthController {
             //if user is admin, sets new sessionId into onward session.
             if(userFacade.getUsersByState(UserState.ADMIN).contains(userDTO)){
                 req.getSession().setAttribute("sessionId", userId+":"+userFacade.getUserSession(userFacade.getUserByEmail(userId)));
+                return "redirect:/secured/auth/actions";
+            } else {
+                redirectAttributes.addFlashAttribute("alert_info", "User "+userId+" is not admin. Only admins can proceed.");
+                return "redirect:/secured/login";
             }
-            return "redirect:/secured/auth/actions";
+
         }
 
         redirectAttributes.addFlashAttribute("alert_warning", "Wrong credentials. Please check");

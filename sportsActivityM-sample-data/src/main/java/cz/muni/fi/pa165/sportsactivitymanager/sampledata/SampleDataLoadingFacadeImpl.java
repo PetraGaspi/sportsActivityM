@@ -32,10 +32,6 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 
     @Autowired
     private ActivityRecordService activityRecordService;
-//    @Autowired
-//    private ActivityService activityService;
-//    @Autowired
-//    private CaloriesService caloriesService;
     @Autowired
     private UserService userService;
 
@@ -79,6 +75,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 
         user1.setName("Peter");
         user1.setEmail("peter@test.com");
+        user1.setPasswordHash(userService.createHash("test"));
         user1.setAge(20);
         user1.setSex(Sex.Male);
         user1.setWeight(90.5);
@@ -87,6 +84,7 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
 
         user2.setName("Martina");
         user2.setEmail("martina@test.com");
+        user2.setPasswordHash(userService.createHash("matta"));
         user2.setAge(40);
         user2.setSex(Sex.Female);
         user2.setWeight(70.5);
@@ -131,7 +129,8 @@ public class SampleDataLoadingFacadeImpl implements SampleDataLoadingFacade {
         admin.setHeight(195d);
         admin.setSex(Sex.Male);
         admin.setState(UserState.ADMIN);
-        admin.setPasswordHash("1000:b7d48890077c130e0ac5552e3266b52680c52f408b5ff259:88b9c1fda1055b729a72a9eca5f6e23be9c8c03a6b232559");
+//      admin.setPasswordHash("1000:b7d48890077c130e0ac5552e3266b52680c52f408b5ff259:88b9c1fda1055b729a72a9eca5f6e23be9c8c03a6b232559");
+        admin.setPasswordHash(userService.createHash("admin"));
 
         userService.createUser(admin);
         log.debug("User " + admin.getEmail() + " should be created");

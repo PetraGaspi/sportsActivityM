@@ -39,6 +39,7 @@ public class UserFacadeImpl implements UserFacade {
         u.setWeight(user.getWeight());
         u.setHeight(user.getHeight());
         u.setAge(user.getAge());
+        u.setState(user.getState());
         userService.createUser(u);
         return u.getId();
     }

@@ -68,6 +68,18 @@
                 <form:errors path="SEX" cssClass="help-block"/>
             </div>
         </div>
+        <div class="form-group ${state_error?'has-error':''}">
+            <div class="col-sm-5">
+
+                <form:label path="state" cssClass="col-sm-2 control-label">User state</form:label>
+                <form:select path="state" cssClass="form-control">
+                    <form:option value="ADMIN">Admin</form:option>
+                    <form:option value="CUSTOMER">Customer</form:option>
+                    <form:option value="INACTIVE">Inactive</form:option>
+                </form:select>
+                <form:errors path="SEX" cssClass="help-block"/>
+            </div>
+        </div>
 
 
         <button class="btn btn-primary" type="submit">Create user</button>
